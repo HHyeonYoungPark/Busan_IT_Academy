@@ -1,0 +1,9 @@
+07월 22일 금요일 프로그래밍 언어응용
+
+img placeholder
+https://loremflickr.com/640/360 lorem쓸데없는거
+
+08-style.html ->
+id(class).onclick
+addEventLister
+<button onclick>

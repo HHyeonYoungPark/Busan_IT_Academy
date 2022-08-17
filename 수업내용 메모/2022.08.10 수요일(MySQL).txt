@@ -1,0 +1,290 @@
+08월 10일 수요일 데이터베이스 구현 (DBMS설치하기)
+
+- 쉬는 시간에 행정실가서 재원증명서, 출석부 출력
+- 학원 끝나면 행정실가기
+
+========================================
+{데이터베이스}
+
+mysql 설치 
+오라클 아이디,비번
+aud8637282@naver.com / Gusdud1001!
+다운로드 -> mysql cummunity (GLP) Download ->
+mysql community server -> go to download page
+-> 용량높은버전 설치
+
+파일 받으면 Developer Defualt -> excute -> 동의 후 설치 ->
+설치 후 next -> Port : 3306 ->비밀번호 쉬운거로(root)
+-> cmd에서 mysql 명령어 바로 쓸수있게 
+
+내pc -> 고급시스템설정 ->시스템속성-> 고급 -> 환경변수 ->
+시스템변수 -> path 더블클릭 후 -> mysql 경로 복붙해서 추가
+
+cmd에서 후 엔터
+비밀번호: root
+하면 mysql server에 접속..?
+
+exit 하면 윈도우로 나감
+===========================
+1. mysql 접속
+  - cmd 창
+  - mysql -uroot -p
+  - passwd : root
+
+2. 데이터베이스(폴더) -> 테이블(파일)
+
+  - 데이터베이스 보기
+    - show databases;
+
+  - 데이터베이스를 선택하는 명령어는 
+    - use (데이터베이스이름);
+
+  - 데이터베이스 안에 있는 테이블 확인
+    - show tables;
+
+  - 테이블(파일) 내용 확인
+    - SELECT user FROM user;
+
+ 서버는 절대 관리자 계정으로 작업x
+   -> 사용자 계정을 만들어서 사용
+        ex) 프로젝트 쇼핑몰 - shop / 1234 계정을 생성한 후 작업
+
+ 계정생성
+  - CREATE user shop@'localhost' identified by '1234';
+  - 사용자 제거
+     - DROP user shop@'localhost';
+
+  - 계정생성 후에는 권한설정을 해줘야 한다
+     - grant all privileges on shop.* to shop@'localhost' with grant option;(모든 권한을 설정해줌)
+     - flush privileges; (작업이 끝났다)
+     
+ DDL : CREATE(생성), ALTER(수정), DROP(제거)
+
+ DML : SELECT (자료를 보여주는 명령어), 
+          INSERT (자료를 입력하는 명령어),
+          UPDATE (자료의 내용을 바꾸는 명령어),
+          DELETE (자료를 삭제)
+
+      -> mysql -ushop -p  => show databases;
+
+       CREATE TABLE Register(
+        변수명 데이터타입
+        userid varchar(15-아이디 몇자리인지),
+        passwd varchar(15),
+        email varchar(50),
+        username varchar(15) - 한글이름은 2바이트라 넉넉하게
+        regdate date  - 가입한 날짜
+        point int -포인트는 애매하면 ()쓰지말고
+        );
+
+CREATE TABLE Register(
+userid varchar(15),
+passwd varchar(12),
+email varchar(50),
+username varchar(15),
+regdate date,
+point int default 1000
+);
+----------------------------------------------------------------
+관리자 계정으로 접속
+ 1. 계정생성 (busanit/...)
+    CREATE user busanit@'%' identified by '1111';
+
+ 2. 권한설정
+  - grant all privileges on busanit.* to busanit@'%' with grant option;
+  - flush privileges;
+
+ 3. exit
+       생성한 계정으로 접속
+
+ 4. show databases; -> 사용할 데이터베이스가 있는지
+
+ 5. CREATE DATABASE busanit;
+  - 폴더 안에 회원가입, 게시판, 상품관리, 상품카트.. => DATABASE
+
+ 6. show databases;
+
+ 7. use busanit;
+
+ 8. 회원가입 테이블(파일) 만들기
+	varchar - variable charactor ()값이 정해져 있지 않을 때
+	char(1) - 값이 딱 정해져 있을 때
+
+   - 테이블 : rsgister
+      - 사용자 아이디 : 변수명(uid) 타입(글자) 길이(20) -값이 없어도 되나요?
+      - 비밀번호 : 변수명(pwd) 타입(글자) 길이(15) -값이 없어도 되나요?
+      - 이메일 : 변수명(email) 타입(글자) 길이(50) -값이 없어도 되나요?
+      - 이름 : 변수명(uname) 타입(글자) 길이(20) -값이 없어도 되나요?
+      - 성별 : 변수명(gender) 타입(글자) 고정길이(1) -값이 없어도 되나요?
+      - 가입일 : 변수명(regdate) 타입(날짜) 
+
+			값이 없어도 되나요 - 값이 꼭 필요하면 NOT NULL
+
+ 9. desc register; == 테이블 구조확인 (테이블 공간확인)
+
+ 10. drop table register; -> 테이블 제거
+
+ 11. 데이터 입력(변수)
+
+    - INSERT INTO register VALUES('', '', '', '', '',NOW());  NOW()는 날짜 - 자기가 알아서 넣어줌
+    ex) INSERT INTO register VALUES('seoulit', '12345', 'aud8637282@naver.com', '부산', 'F',NOW());
+
+ 12. SELECT *FROM register; ==> html의 테이블 구조대로 표시됨..?
+      - *은 전부선택임
+      -  SELECT (보고 싶은 변수명을 넣어주면 됨)FROM register; 
+
+테이블 register 만들어보기
+CREATE TABLE register(
+uid VARCHAR(20) NOT NULL,
+pwd VARCHAR(15) NOT NULL,
+email VARCHAR(50) NOT NULL,
+uname VARCHAR(15) NOT NULL,
+gender CHAR(1) NOT NULL,
+regdate date
+);
+
+ 전체개수 보기
+ SELECT COUNT(*) as 전체회원수 FROM register;
+
+=======================================================
+mysql database backup : 덤프라고 한다...
+
+mysqldump -ubusanit -p busanit > 20220810-busanit.sql  .sql을 dump로 써도 됨
+  덤프(백업)  이 계정으로  이 파일을 > 밖으로  이렇게 백업할게여
+
+mysql -ubusanit -p busanit < 20220810-busanit.sql  dump를 지우고 < 반대로 하면 데이터가 드감
+=======================================================
+
+SELECT *FROM 테이블이름 WHERE ~
+
+INSERT INTO 테이블이름 VALUES();
+
+DELETE FROM 테이블이름 WHERE 조건;
+
+uid, pwd, uname, email, gender -> 각각 column
+==============================
+INSERT INTO register VALUES('seoulit', '12345', 'aud8637282@naver.com', '부산', 'F',NOW());
+내용을 바꿔서 넣었다가
+
+DELETE FROM register WHERE uid = 'seoulit';
+
+지운후 SELECT *FROM register; 로 확인해보기
+
+=============================
+
+선생님이 주신 sql 파일 넣어서 해보기
+파일 복붙할때 띄워쓰기 지우기
+
+오름차순 정렬 : 1234, 가나다
+SELECT height, name FROM usertbl ORDER BY height ASC;
+                                                키를 기준으로 오름차순 해주세요
+     
+내림차순
+SELECT height, name FROM usertbl ORDER BY height DESC;
+
+'limit 개수' 하면 그 개수만큼만 보임 - limit(시작번호,개수)
+SELECT heigth, name FROM usertbl ORDER BY heigth DESC limit 5;
+==================================================
+
+오후
+
+
+비밀번호 바꾸려면
+
+ALTER - 수정
+ALTER user busanit@'%' identified by '1234';
+
+DROP - 삭제
+DROP user busanit;
+=============================
+
+ 기본키 : primary key
+  - 중복되면 안된다
+  - not null
+   
+ not null primary key auto_increment
+
+=============================
+패스워드에 암호화 할꺼면 넉넉하게
+비밀번호 재확인은 sql에 넣지않음
+num int not null primary key auto_increment,
+ -> 자동으로 번호매겨주는거 무조건 해야함..?
+
+CREATE TABLE users(
+num int not null primary key auto_increment,
+username varchar(10) not null,
+userid varchar(15) not null,
+passwd varchar(100) not null,
+email varchar(50) not null,
+born char(10),
+phone char(13) not null,
+gender char(1),
+userDate date
+);
+
+하고나서 desc users; 로 확인해보기
+
+INSERT INTO users
+VALUES(NULL,'busanit','bs','1234','aud8637282@naver.com','2022-08-10','010-1234-5678','N',now());
+
+INSERT INTO users
+VALUES(NULL,'busanit','bs','1234','aud8637282@naver.com','2022-08-10','010-1234-5678','N',now());
+
+순번 오름차순
+SELECT num FROM users ORDER BY num DESC; 
+	-> 게시물 앞에 보면 순번 거꾸로 되있는거(밑에서부터)
+
+SELECT COUNT(num) FROM users; 
+	-> 전체 게시물 개수 카운트
+
+유사어 검색
+SELECT * FROM users WHERE userid like '%검색어%';
+	-> 검색할때 쓰는 SELECT, %여기에 찾고싶은 글자%
+	-> %% 사이에 들어간 글자가 포함된걸 찾는다 - 유사어 검색
+
+SELECT * FROM users WHERE userid = 's';
+	-> s만 있는걸 검색할때 (s포함된 게 아니라 그냥 only s)
+
+==============================================
+마지막 시간 : UPDATE
+
+add / insert 
+select / view
+
+edit / modify / update -> id값 꼭 필요
+remove / delete -> id값 꼭 필요
+=============================================
+INSERT INTO ~
+SELECT ~ FROM
+DELETE FROM ~
+
+UPDATE 테이블이름 SET 컬럼1 = 바꿀값, 컬럼2 = 바꿀값 WHERE id = ?;
+
+UPDATE users SET passwd = '9999', email = 'asd@naver.com', userDate= now() WHERE num = 3;
+
+SELECT * FROM users WHERE num = 3;
+
+DELETE FROM users WHERE num =3; 꼭 조건을 넣어야함 WHERE ~ 안넣으면 싹다 지워짐...
+
+=======================================
+오늘 한 수업내용 중 기억해야 할 것
+
+DATABASE (폴더) > TABLE (파일)
+생성 CREATE -> 변경 ALTER -> 제거 DROP
+
+자료검색 - SELECT * FROM 테이블명
+자료입력 - INSERT INTO 테이블명 VALUES();
+자료삭제 - DELETE FROM 테이블명 WHERE ~
+자료수정 - UPDATE 테이블명 SET 바꿀컬럼 = 바꿀값 WHERE ~
+
+
+
+
+
+
+
+
+ 
+
+
+

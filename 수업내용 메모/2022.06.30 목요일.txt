@@ -1,0 +1,56 @@
+6월 30일 목요일 ui구현 수업
+
+google>>>java mini project
+
+fontawsome cdn을 title-style 사이에 넣어줌
+
+fontawsome.com 아이콘같지만 폰트라 font-size 등으로 수정
+
+reset.css
+
+*{                                        <==처음시작할때 스타일에 넣어주기 모든태그 불필요한 여백 0으로
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+1rem = 16p
+class 태그할때 .으로 함 중복가능함: 디자인쪽에서 주로 사용
+id 는 #으로 한번만 가능함: 프로그램에서 주로 사용
+
+ctrl + k,f 하면 코드 정리됨  vs코드자동정렬 beautify, prettier
+
+java mini project
+wedsite template
+admin dashboard
+
+main::after{
+            content: "";
+            display: table;
+            clear: both;
+
+1. 새파일 만들기
+2. html 기본내용작성하기 !탭
+3.title명 입력
+4. font: poppins link head에 추가 구글폰트
+5. 폰트어썸 링크 추가 폰트어썸cdn
+6.
+
+<style>에서 목록을 가로로 나열하듯이 보여줄 수 있음
+        display: flex;
+        /*가로끝선정렬*/
+        justify-content: space-between; //space-(다른거)
+
+transition 1.2s 천천히 변하는거
+
+.box:hover {
+        background-color: black;
+        cursor: pointer;
+        transition: 1.2s;
+        transform: skew(-180deg);
+      }
+
+일반사이트>>반응형 웹(미디어쿼리 @)
+
+<style>의 내용을 복붙해서 .css로 저장후에 <style>윗부분에 <link>로 넣어주면
+간단하게 style의 내용을 불러올 수 있음.

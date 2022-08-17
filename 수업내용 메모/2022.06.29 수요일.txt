@@ -1,0 +1,31 @@
+6월 29일 수요일
+강의 : UI구현
+
+vscode 설치
+node.js 설치
+
+Ctrl + `
+unsplash.com == 무저작권 사진 다운로드 사이트
+
+emmet (자동완성) 
+
+meta name="viewport" <==반응형 웹 만든다~
+
+content="width=device-width, initial-scale=1.0"
+반응형 :만들때 세로는 문제가 없는데 가로는 ,,
+
+live server<==vs코드 메뉴에 검색한 후 인스톨자동으로 페이지 새로고침 해주는 기능
+                                             단축키 alt L + alt O
+
+favicon ico <==아이콘 무료다운사이트
+
+head태그 안에,,
+link 태그
+./ <==같은폴더
+
+jpg는 사진(배경색있음)
+png는 사진,아이콘 (무배경)
+
+https://fonts.google.com/  폰트사이트 보통400으로 함..?
+한글폰트 noto sans kr
+영어폰트 robot

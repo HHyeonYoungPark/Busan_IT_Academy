@@ -1,0 +1,45 @@
+07월07일 목요일 - UI구현 수업
+
+login.html  =>> 
+<form>
+input&buuton
+</from>
+
+버튼 2종류가 있다
+type = submit -> 엔터
+   "     button -> 클릭만
+
+<form method="" >
+1. get : 보안x 속도우선 (그냥 검색같은거, 남들이 봐도 되는거)
+2. post : 보안o  (로그인 등, 남들이 보면 안되는거)
+
+<form action="처리할 파일 이름">
+
+input -> name 변수이름(중복x)
+
+=============================================
+포토샵
+단축키 윈도우+r ->그림판 mspaint 실행
+
+1. favicon 
+images.google.com 또는 favicon icon
+파비콘 아이콘 크기는 16x16 px 또는 32x32 px
+2. fonts.google.com
+
+<br /> == break 줄바꿈 됨.
+===========================
+:hover{
+transform scale(1.2);  /*1.2배로 줌 되는거*/
+ transition: 0.3s; /*부드럽게 처리 - 속도 s*/
+}
+->이때 부모가 되는 박스에 overflow: hidden;을 줘야함
+(박스안에서만 커지는거)
+===================================
+media query
+max-width
+min-
+
+========================
+  display: flex;
+  flex-direction: row;
+   flex-wrap: wrap; ==>>> 컨텐츠를 두줄로 만들어줌

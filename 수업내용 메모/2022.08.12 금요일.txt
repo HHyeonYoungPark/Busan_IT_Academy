@@ -1,0 +1,13 @@
+08월 12일 금요일 데이터베이스 구현
+
+https://www.linux.co.kr/
+
+mysql workbench
+
+CREATE, ALTER, DROP -> 없던걸 생성, 수정, 제거
+SELECT, INSERT, UPDATE, DELETE -> 있는 자료를 검색, 삽입,, 수정, 삭제
+
+SELECT ~ FROM WHERE
+INSERT INTO ~ VALUES
+UPDATE SET ~ WHERE
+DELETE FROM ~ WHERE

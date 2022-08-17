@@ -1,0 +1,34 @@
+07월 23일 금요일
+
+cmd
+
+cd - 이동할때
+../ - 전 폴더로 이동
+dir - 디렉토리
+mkdir - 디렉토리 만들기
+rmdir - 디렉토리 삭제
+code . - 그 디렉토리에서 vscode 실행됨
+
+=====================================
+오늘수업 DOM
+
+인터프리터 언어 : 웹
+컴파일 언어 :
+하이브리드 언어 :
+
+html이 먼저 실행된 후 script가 실행된다.
+
+event : click, submit
+
+addEventListener
+DomContentLoaded
+keyup - 글자가 입력되서 글자수 체크나, 입력가능하다
+
+
+
+
+
+
+
+
+

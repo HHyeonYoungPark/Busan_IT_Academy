@@ -1,0 +1,36 @@
+08월04일 프로그래밍 언어 응용
+
+매시간마다 과제함
+
+   //성별체크
+   for (let i = 0; i < gender.lengt; i++) {
+     if (gtender[i].checked) {
+       successCheck(gender);
+     } else {
+       errorCheck(document.querySelector(".gender"), "성별을 선택하세요");
+     }
+   }
+
+function checkGd() {
+  var radios = document.querySelectorAll("input[type=radio]");
+  
+  for (var i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+
+      successCheck(document.querySelector('.gender'));
+      return true;
+    } else {
+
+      errorCheck(document.querySelector('.gender'), "성별은 필수 선택 항목입니다.");
+      return false;
+    }
+  }
+}
+
+
+
+let success = true;
+  if(!regCheck()) success = false;
+  if (success) {
+    location.href = "https://nid.naver.com/nidlogin.login";
+  }

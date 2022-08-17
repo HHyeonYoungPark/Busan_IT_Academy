@@ -1,0 +1,148 @@
+08월 01일 월요일
+
+===============================
+instanceOf 
+
+================================
+357p 360p- 추상클래스, 실체클래스, 실행클래스 예제
+367p
+추상클래스
+-반완성메서드
+-주로 추상메서드를 가지고 있다 { }  <-없는 메서드 ex) void plus( );
+
+==========================================
+일반클래스 -> 추상클래스 -> 인터페이스
+
+추상클래스 == 일반클래스 + 인터페이스
+
+인터페이스는 표준, 기준 그런 ...?
+ 370p~  인터페이스
+ 384p
+=======================================
+프로그래밍 언어활용
+
+DB서버, 웹서버, 웹어플리케이션서버, 네트워크 서버
+서버프로그램 구현
+
+앞으로 배울것
+채팅서버, DB서버, 네트워크서버
+========================================
+
+월화 프로그래밍 응용 자바시험 08/01 당일에 시험을 보네;;;
+
+1. 변수선언문제
+ int, double, char, String
+ double total = height + size;
+
+2. 계산문제
+ 실수가 정수보다 더 우선된다
+ 정수 + 실수 => 실수값으로 나옴
+ 정수/정수 => 정수 (소수점 이하는 안나옴)
+ 실수/정수 => 실수
+ 10==9 => false (boolean타입)
+
+ a=> 10보다 크고 20보다 작다
+   a>10 && a<20 ( 10<a<20 이런식으로는 안된다)
+ >, <, <=, >=, ==, && (and), || (or)
+
+3. 배열선언
+ int[] n = {1,2,3,4,5};
+ int[] n = {0};
+ int n[] = new int[3];  // 변수 선언은 배열임을 확인하면 된다
+ int n[3] = new int[3]; // 오답 : 생성할때 몇개로 만들건지 쓴다...변수선언 안에 숫자를 넣지 않는다
+
+ int a[] = new int[100];
+  -> 0부터 시작해서 99까지 이다 // 마지막번호 99
+     a.length => 100; // 크기
+
+ int[100] = 50; <== 100번이 없으므로 에러
+
+ 2차원배열
+ int[][] a = new int[행][열];
+
+4.for문
+ for(int i=0; i<10;i++){
+ }
+ 
+ int a[] = new int[10];
+ for(int i: a){ // for each
+ }
+
+5.class
+ 자바에서는 객체를 생성하고 나면 가상머신이 관리합니다.
+  => '가비지 컬렉션'이 객체가 생성되면 관리해서 필요없을때 날린다.
+  => 클래스는 인스턴스를 생성(new)를 하기위해서 사용하는 틀이다.
+  => 클래스 소속의 변수 -> 필드, 클래스는 필드+메서드
+  
+  => 접근제어자에서 내부에서만 사용하는 필드의 경우
+		   나만 쓸수있는거 private
+                           아무나 써라 public
+                           같은 폴더 내 default
+
+6.생성자
+ 생성자가 없다면 가상머신이 빈 생성자를 하나 만들어준다
+ 이름 == 클래스명()
+  this() <=내 생성자 중에서 찾기
+  this가 나오면 내 클래스명으로 바꿔서 생각해보면 됨
+      
+       public box{
+          int x;
+           box(){
+	return 1; // 100% 쓸일은 없지만 문법적으로는 가능
+           }
+           box(int i){
+	this.x = i;  //여기서 this는 box이다
+	this();
+           }
+        }
+
+ Book[] = new Book[10]; // 배열은 변수의 묶음이다 => 변수에 값을 자동으로 넣어주는게 아님
+ // Book을 담을 수 있는 객체가 10개 생성된 것이다
+ // Book이 10개 만들어진게 아니다
+
+ this()를 사용했을 때 이점	
+  -코드 줄일려고 (코드중복제거)
+
+ 문제 : 생성자 대신 메소드를 추가하여 수정하라.
+ class Power {
+     private int kick;
+     private int punch;
+
+     public void setKick(int kick) {
+         this.kick = kick;
+     }
+     public void setPunch(int punch) {
+         this.punch = punch;
+     }
+ }
+ public class Example {
+     public static void main(String[] args) {
+         Power robot = new Power();
+         robot.setKick(10);
+         robot.setPunch(20);
+     }
+ }
+
+7. JSON
+ JSON은 키:값 으로 이루어진 맵 형태의 타입
+ 아래의 JSON데이터를 사용하기 위한 라이브러리명을 
+                     기술하고 JSONObject를 이용하여 완성하여라. 
+
+ { "city" : { "seoul" : "맑음" ,  “busan" : "흐림”} }
+
+ 키:값  이루어진 맵 형태의 타입
+
+ JSONObject json = new JSONObject();
+  json.put("seoul","맑음");//object, object
+  json.put("busan","흐림");//object, object
+ JSONObject json2 = new JSONObject();
+  json2.put("city",json);
+
+  Java Archive = xxx.jar => 압축을 풀면 xxx.calss 파일이 들어있음
+    =>보관소 => 압축파일
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+07월 13일 수요일 ui구현
+
+참고: 책 88, 121, 292, 319, 389, 606, 616 페이지
+==================================
+사진편집 - 반응형 웹에 사용할거
+pc용 1920px
+tap용 1000px
+mobile용 500px
+
+폴더 만들고 처음 생성하는 파일은 무조건->index.html
+===================================
+참고:
+bootstrap ui
+material ui
+semantic ui 이런거 쓰면 작업 빠름,,,
+==================================
+.hero-bg{
+            /*배경이미지는 height가 있어야 보인다*/
+            background-image: url('./images/pc-img.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+   height: 100vh;
+        }
+==================================
+메뉴 토글버튼 만들때 pc나 탭에선 안보여도 된다면
+display: none; 해주고 pc에 했으면 중복으로 안해도 됨
+
+mobile에서는 display: block; 이라 적어주면
+mobile( max-width: 500px )에서만 메뉴토글이 보임
+
+===================================
+.hero-content {
+        color: #fff;
+        background-color: tomato;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 60px); ->공식
+      } 
+======================================
+letter-spacing: 2px; -> 글자 자간
+
+<td style="background-color: #000" colspan="5"></td>
+가로 꽉채우기 colspan
+세로 꽉채우기 rowspan
+
+==========================
+open sans
+=============================
+입력하는 애들 input, select등
+form이 있어야한다
+================
+.paging > span
+.paging span 의 차이

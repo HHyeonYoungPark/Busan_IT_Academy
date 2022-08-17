@@ -1,0 +1,71 @@
+08월 11일 목요일 - 데이터베이스 구현
+
+01-install.txt
+02-workFlow.txt
+두개 참고..
+
+cmd
+
+Ctrl+c -> 서버중지
+
+mysql -uroot -p로 드가서
+수정해줘야 함
+alter user'busanit'@'%'identified with mysql_native_password by '1234';
+flush privileges;
+
+===========================================
+
+ 서버설정, 디비설정
+ 주소설정, 화면에 표시
+
+ -회원가입
+ -회원목록
+
+==========================================
+node.js
+
+1. 작업패키지
+2. vscode - 폴더 import
+3. views 폴더 server.js 파일 만들기
+4. npm init -y : 환경설정 파일 생성
+5. npmjs.com 필요한 프로그램 install -> ejs, mysql,express 등
+6. sever.js -> 상단에 필요한 라이브러리 require -> nodejs.org에서 설치 방법 참고
+7. port 설정
+  ---> cmd 켜서 작업폴더로 이동 후 node server.js 로 서버 실행
+        서버 중지 : Ctrl + c
+8. db 연결 설정 : localhost, 3306, user, password, database 유의해서 작성
+9. html 파싱 라이브러리 설정 : app.set('view engine','ejs');
+10 middleware : app.use() -> unlendcode, json 설정
+11. 주소설정 (url)
+12. veiws 폴더에 html 생성 -> 파일명.ejs 로 설정
+13. 생성된 html의 폼을 보고 table 작성해서 vscode 저장 - tb_user.sql, tb_user.db
+
+const form = {
+userid:
+}
+
+<%= %>  노드에서 사용하는 명령어..?
+안에 변수들을 넣는듯하다..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

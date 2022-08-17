@@ -1,0 +1,133 @@
+07월 08일 금요일 ui구현 수업
+
+가로배치
+1. float 배치 -> float 해제
+2. display:inline-block; 사이에 여백 : margin-left : -4px;
+3. flex -> 반응형 처리하려고 씀
+4. grid layout
+* inline 타입 : span, a 가로배치임
+
+inline 타입 : a, span, form, input 등...
+block 타입 : 위를 제외한 나머지
+
+<span>은 딱 적은부분까지만 나오고 띄고 그 다음 컨텐츠가 나옴(space-between)
+<block>은 하나만 적어놔도 100%로 나옴
+
+========================================
+로그인창 만들때 가운데로 오게 하는거
+
+
+가로, 세로 가운데 두는 방법 두가지가 있다.
+1. flex
+2. position
+
+배경 위에 글자나 이미지 배치하는 방법
+1. background 처리
+2. position : 절대위치, 상대위치, 상단에 메뉴바같은거 고정-fixed?
+
+div는 block타입인데 바꾸고싶으면 display: inline-block; ->인라인타입으로
+또는 div를 span으로 바꿔도 됨
+
+box를 가운데로 보내고 싶으면
+display: flex;
+justify-content: center;
+align-items: center;
+/*background-color: tomato;*/
+height: 100vh; -> viewport 100 당신이 보는 화면의 100%(이렇게 하면 박스가 세로 이동가능)
+
+==============================
+
+position: absolute;
+top: calc(50% - 125px); ->상자크기(세로)의 반을 뺌,이때 빼기 띄워써야함
+left: calc(50% - 200px); ->상자크기(가로)의 반을 뺌
+/* right: 0;
+bottom: 0; */
+
+==========================
+<input
+ type="text" ->비번은 "password"
+ required  -> 꼭 넣어야하는지
+ name="userid" class는 같게하면 좋음
+ class="userid"
+ id="userid"
+ maxlength="12" ->몇자리까지 쓸수있는지
+ disabled -> 이건 창에 입력이 안되게 하는거 (ex 비번찾기하면 id부분)
+ placeholder="Insert ID..." -> 입력창에 문구넣는거 
+  />
+
+==================================
+
+input, btn -> reset <style>
+
+input, button {
+ border: 0;
+ outline: 0;
+  }
+
+======================================
+
+<span>을 쓸수도 있는데 <label for="">을 쓸수도있음
+
+======================================
+
+<from> : input, radio, checkbox, textarea 
+method 
+ - get : 속도우선 url에 포함된다
+ - post : 보안을 우선
+
+action : 입력 내용을 처리하는 페이지
+
+encType : multipart/form-data -> 첨부파일 (꼭 있어야 넣을 수 있다)
+enc ->인코딩
+=============================================
+
+Login, Logout, Register -> 보안(auth)
+
+Insert.do List.do View.do Update.do Delete.do 
+===============================
+table 만들기
+table 표전체
+     tr 줄    (쓰고싶은만큼 쓰면 됨)
+         td 칸
+============================
+td:first-child {
+        width: 20%;
+      }
+      td:nth-child(2) {
+        width: 60%;
+      }
+td:last-child {
+        width: 20%;
+      }                          ------->등으로 100% 맞춰서 쓰면됩니다
+====================================
+<td style="text-align: left"> ->inline타입으로 줄 수 도있다
+
+=============================
+<select>
+            <option>제목</option>
+            <option>제목+내용</option>
+            <option>글쓴이</option>
+          </select>
+
+ <input type="radio" name="open" />공개게시물
+            <input type="radio" name="open" />비공개게시물
+하나만 골라야 하는것, name이 같아야 하나만 체크가 됨
+
+<input type="checkbox" name="fishing" />낚시
+            <input type="checkbox" name="clibming" />등산
+            <input type="checkbox" name="reading" />독서
+checkbox는 여러개 중복으로 선택 가능한거, name이 달라야 함
+
+===================================
+tr:nth-child(even) ->even 홀수
+tr:nth-child(odd) ->odd 짝수 (하나씩 노가다 안해도 됨)
+집에서 페이지 밑에 검색 글쓰기 페이지넘기기 만들어보기
+========================================
+
+owlcarousel
+background img 로 사진위에 글자넣기
+width: 100vw;
+        height: 100vh;  ->차이 헷갈리지 않기
+============================================
+
+잘 이해 안될때 background컬러 넣어서 확인해보기

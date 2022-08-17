@@ -1,0 +1,48 @@
+07월 28일 목요일 - 프로그래밍 언어 응용
+
+다음주 중에 자바스크립트 평가(프로젝트 제출)
+====================================
+
+오늘 수업 내용
+click, submit(e) => e.preventDefault(); return false ,
+mouseover, mouse
+select, radio button
+
+======================================
+
+mouse over/out - 마우스 올렸다 뗏다하면 효과
+
+create - creatTextNode (html 요소 내에 글자를 만들어 낼 때)
+
+select - 아무것도 고르지 않고, 입력하지 않으면 alert뜨게하고
+           alert창 : 검색타입을 고르세요, 검색어를 입력하세요
+
+radio button - 선택을 안하면 alert창 뜨게, 선택 후 버튼 누르면 완료창
+	       ( 하나만 선택해야하는 ex>남자,여자 등 )
+
+checkbox - 체크 안하고 버튼 누르면 alert뜨고 체크 후 누르면 페이지 넘김
+
+multi-check - 다중셀렉트(전체 선택 및 여러개 선택할 때)
+
+========================================
+sir.kr 들어가서 관리자 데모 페이지 한번 보기
+=======================================
+node.js
+
+server 생성
+localhost:5000
+
+
+- server.create();
+ - URL(주소 : localhost:5000/login -> login.html)
+ - PORT : 3000~ : listen
+==========================================
+
+cmd, console - cd 로 이동
+	      - ../ 하위 폴더로 이동
+	      - dir 로 찾고싶은 파일 확인
+	      - tab : 자동완성기능 활용하기
+
+
+
+

@@ -1,0 +1,84 @@
+07월06일 수요일 - UI구현 수업
+
+h, p, background
+
+관리자 관리페이지 한번 참고해보기
+groupware - 관리자 데모=intranet
+sir.kr
+makeshop
+erp
+==================================
+
+윈도우 + e = 윈도우 탐색기
+================================
+
+index.html는 생략가능 - https//:www.naver.com/index.html<-원래 이럼
+================================================
+
+1. 파일이름
+2. ! +탭 -> 기본태그
+   viewport : 반응형사이트(접속 디바이스에 따라 페이지가 다르게 보이는)
+    - title : 페이지제목
+    - link favicon : 16x16, 32x32(pixel)
+3. link폰트  https://fonts.google.com
+4. link 폰트어썸(아이콘) : cdn, https://fontawesome.com/icons
+5. 
+<style>
+  *{초기화 작업} ->기본적으로 생기는 여백제거
+    폰트설정
+</style>
+6. html~~~
+===========================================
+
+<h1> ==>h는 heading 제목 (중요한 내용)
+<p> ==p는 paragraph 문단 (많은 내용)
+==============================
+
+폰트컬러 설정할때 color: rgba(0, 0, 0, 0.5);  =>rgba로 설정해도 됨
+=======================================
+<style>        
+        text-align: center;
+        width: 1280px;
+        max-width: 100%; 모바일로 볼때 화면이 줄여지면
+        margin: 0 auto;
+=============================================
+
+pc => 1400px
+tab => 800px
+mobile => 400px
+===============================
+<header>
+중요한거 h
+문장 p
+메뉴만들때 - ( ul + li )
+div
+box1 box2 box3
+=======================
+images 삽입
+1. 단순 이미지 삽입 : <img>
+2. 이미지 위에 글자도 넣을거면 : background
+.hero {
+ background-image: url("./images/cook.jpg");
+ background-repeat: no-repeat; <==사진이 작으면 이미지가 반복됨,,을 no              
+   }
+================================
+background-color: transparent; => transparent =>배경투명처리
+/*radius 테두리 둥글게 보통 3~5px씀*/
+
+==========================================
+login.html  =>> 
+<form>
+input&buuton
+</from>
+
+버튼 2종류가 있다
+type = submit -> 엔터
+   "     button -> 클릭만
+
+<form method="" >
+1. get : 보안x 속도우선 (그냥 검색같은거, 남들이 봐도 되는거)
+2. post : 보안o  (로그인 등, 남들이 보면 안되는거)
+
+<form action="처리할 파일 이름">
+
+input -> name 변수이름(중복x)

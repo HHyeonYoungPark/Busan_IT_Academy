@@ -1,0 +1,9 @@
+08월 09일 화요일
+
+GUI로 Writer, Reader...
+저장,불러오기
+
+JOptionPane.showMessageDialog(this, "이미 있는 번호입니다!");
+
+ImageIcon img = new ImageIcon("coffee.jpg");
+		JLabel lbl = new JLabel(img);

@@ -1,0 +1,33 @@
+07월 26일 화요일
+
+책 7-1 상속 다시 읽어보기
+
+=============================
+상속하는 이유 - 동일한 작업을 묶어서 재사용이 가능하다
+                  -이 작업이 필요한 다른 더 큰 클래스에서 가져다 쓴다.
+
+책 332p 333p 334p
+책 336-337p 예제 형변환
+337p~ 필드의 다형성
+340p 예제
+345p 매개 변수의 다형성
+348p 
+353-356p 문제
+=================================
+문제
+
+3가지 타입의 JButton을 만들어서 - JButton을 상속 받은 메서드 3개 만들기
+
+AButton = new AButton();
+BButton = new BButton();
+CButton = new CButton();
+
+public void addButton (JButton btn){ //매개변수의 다형성
+      xxx <= JFrame을 상속받았다면 this. 직접생성했다면 JFrame 변수
+      xxx.add(btn);  
+}
+
+xxx.addButton(btn1);
+xxx.addButton(btn2);
+xxx.addButton(btn3);
+======================================
