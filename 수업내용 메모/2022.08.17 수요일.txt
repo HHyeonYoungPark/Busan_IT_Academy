@@ -188,6 +188,29 @@ GitHub 토큰
 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
 
 
+ORDER BY
+오름차순 : ASC  12345 abcde
+내림차순 : desc  54321 edcba
 
+DISTINCT 중복 데이터 제거
+ex) addr 서울서울서울
+distinct addr OR distinct(addr)
+
+SELECT COUNT(*) FROM userTBL WHERE addr = '서울';
+SELECT DISTINCT(addr) FROM userTBL ORDER BY addr ASC limit 3;
+
+limit : 보여줄 개수 지정
+ex) limit 10 = 10개만 보여주기
+     limit 0, 10 = 0번부터 10개
+     limit 10, 10 = 10번부터 10개
+
+userTBL에서 중복되는 데이터를 하나만 표시하고 addr을 기준으로
+내림차순 정렬하고 한 페이지에 2개만 표시하시오
+SELECT DISTINCT(addr) FROM userTBL ORDER BY addr limit 2;
+
+SELECT * FROM userTBL ORDER BY addr DESC limit 2;
+
+buyTBL 기본키를 기준으로 내림차순으로 정렬하고 한페이지에 10개만 표시하시오
+SELECT * FROM buyTBL ORDER BY num DESC limit 10;
 
 
