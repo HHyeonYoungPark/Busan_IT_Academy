@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <link rel="stylesheet" href="./views/css/memberList.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-wrap">
+        <h2><a href="/">Busanit Academy</a></h2>
+        <div class="top-menu">
+          <ul>
+            <li><a href="/">홈으로</a></li>
+            <li><a href="/memberList">회원목록</a></li>
+            <li><a href="/">게시판관리</a></li>
+            <li><a href="/">환경설정</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="memberList">
+        <div class="memberList-top">
+          <div class="top-left">
+            <i class="fa-solid fa-user-group"></i><span style="margin:0 5px;">Home > 회원목록</span>
+          </div>
+          <div class="top-right">
+            <p>전체회원수:10명</p>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr>
+              <td>번호</td>
+              <td>회원이름</td>
+              <td>아이디</td>
+              <td>비밀번호</td>
+              <td>이메일</td>
+              <td>전화번호</td>
+              <td>성별</td>
+              <td>가입일</td>
+              <td>비고</td>
+            </tr>
+            <% if(users ==''){ %>
+              <tr>
+                <td colspan="9">등록된 사용자가 없습니다.</td>
+              </tr>
+              <% } else { users.forEach((user) =>{ %>
+              <tr>
+                <td><%= user.num %></td>
+                <td><%= user.username %></td>
+                <td><%= user.userid %></td>
+                <td><%= user.passwd %></td>
+                <td><%= user.email %></td>
+                <td>전화번호</td>
+                <td>성별</td>
+                <td><%= user.regdate %></td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <% }); } %>
+            <tr>
+                <td>10</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+            <tr>
+              <td>5</td>
+              <td>부산아이티</td>
+              <td>busanit</td>
+              <td>******</td>
+              <td>email@email.com</td>
+              <td>010-1234-5678</td>
+              <td>여자</td>
+              <td>2022.08.12</td>
+              <td>
+                <button type="submit">
+                  <i class="fa-solid fa-pen-to-square"></i>수정
+                </button>
+                <button type="submit">
+                  <i class="fa-solid fa-trash-can"></i>삭제
+                </button>
+              </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>부산아이티</td>
+                <td>busanit</td>
+                <td>******</td>
+                <td>email@email.com</td>
+                <td>010-1234-5678</td>
+                <td>여자</td>
+                <td>2022.08.12</td>
+                <td>
+                  <button type="submit">
+                    <i class="fa-solid fa-pen-to-square"></i>수정
+                  </button>
+                  <button type="submit">
+                    <i class="fa-solid fa-trash-can"></i>삭제
+                  </button>
+                </td>
+              </tr>
+          </table>
+        </div>
+        <div class="bottom-wrap">
+            <div class="numBtn">
+              <div class="num"><i class="fa-solid fa-angles-left"></i></div>
+              <div class="num"><i class="fa-solid fa-angle-left"></i></div>
+              <div class="num">1</div>
+              <div class="num">2</div>
+              <div class="num">3</div>
+              <div class="num">4</div>
+              <div class="num">5</div>
+              <div class="num"><i class="fa-solid fa-angle-right"></i></div>
+              <div class="num"><i class="fa-solid fa-angles-right"></i></div>
+            </div>
+            <div class="search-wrap">
+                <form action="search.do" id="frm">
+                    <div class="search">
+                        <select id="sel" class="sel">
+                            <option value="">선택하세요</option>
+            
+                            <option value="1">회원이름</option>
+                            <option value="2">아이디</option>
+                            <option value="3">이메일</option>
+                            <option value="4">전화번호</option>
+                            <option value="5">가입일</option>
+                          </select>
+                          <input type="text" id="search" class="search" autofocus required/>
+                          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i>검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+@charset 'utf-8';
+
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background-color: #f9f9f9;
+}
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.signin-box-wrap {
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 200px);
+}
+.signin-box {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.header {
+  padding: 20px 40px;
+  border-bottom: 1px solid rgb(33, 37, 173);
+}
+.form {
+  padding: 30px 40px;
+}
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  /* 기준점 변경*/
+  position: relative;
+}
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.form-control input:focus {
+  outline: none;
+  border-color: #777;
+}
+.form-control i {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  /*display: none; 하는건 평소에 안나와있다가 오류뜰때 나와야 함*/
+  display: none;
+}
+.form-control small {
+  display: none;
+}
+.form-control.error small {
+  display: block;
+}
+
+/*class List*/
+.form-control.success input {
+  border: 2px solid #2ecc71;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  display: block;
+}
+
+.form-control.error input {
+  border: 2px solid #e74c3c;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  display: block;
+}
+
+.form .loginBtn {
+  background-color: rgb(33, 37, 173);
+  border: 2px solid rgb(33, 37, 173);
+  border-radius: 4px;
+  color: #fff;
+  font-family: inherit;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.regi {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.regi a {
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+}
+.regi a:hover {
+  color: rgb(33, 37, 173);
+}
+
+/* 기본 css이외 더 추가되는 내용들*/
+.register-wrap {
+  position: absolute;
+  top: calc(50% - 450px);
+  left: calc(50% - 200px);
+}
+.signin-box {
+  margin-bottom: 30px;
+}
+.dupl-btn {
+  background-color: rgb(33, 37, 173);
+  border: 2px solid rgb(33, 37, 173);
+  border-radius: 4px;
+  color: #fff;
+  font-family: inherit;
+  width: 30%;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  position: absolute;
+  top: 16%;
+  left: 60%;
+}
+.form-control .gender,
+.hobby {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 8px;
+  width: 100%;
+}
+.gender input {
+  width: 60px;
+}
+.form-control select {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.form-control select:focus {
+  outline: none;
+  border-color: #777;
+}
+.hobby input {
+  width: 30px;
+}
+
+textarea {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 100px;
+  font-family: inherit;
+  outline: none;
+}
+textarea:focus {
+  outline: none;
+  border-color: #777;
+}
+
+/*//////////////추가되는 항목들error, success/////////////*/
+.form-control.success select {
+  border: 2px solid #2ecc71;
+}
+.form-control.error select {
+  border: 2px solid #e74c3c;
+}
+.form-control.success textarea {
+  border: 2px solid #2ecc71;
+}
+.form-control.error textarea {
+  border: 2px solid #e74c3c;
+}
+.form-control.success .gender {
+  border: 2px solid #2ecc71;
+}
+.form-control.error .gender {
+  border: 2px solid #e74c3c;
+}
+.form-control.success .hobby {
+  border: 2px solid #2ecc71;
+}
+.form-control.error .hobby {
+  border: 2px solid #e74c3c;
+}
+
+.form-control i {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  display: none;
+}
+.form-control small {
+  display: none;
+}
+.form-control.error small {
+  display: block;
+}
+
+/*class List*/
+.form-control.success input {
+  border: 2px solid #2ecc71;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  display: block;
+}
+
+.form-control.error input {
+  border: 2px solid #e74c3c;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  display: block;
+}
+/* ///////////////////////////////////////////// */
+.form button a {
+  text-decoration: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 18px;
+}
