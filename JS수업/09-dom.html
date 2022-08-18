@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>radio - e.currentTarget.checked</title>
+    <!-- radio name값은 모두 동일해야 함, value는 달라도 됨 -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        //querySelectorAll을 쓴다면 객체,배열array -> 반복문, forEach 이다.
+        const radios = document.querySelectorAll("[name=books]");
+        const p = document.querySelector("p");
+
+        radios.forEach((radio) => {
+          // 당신이 선택한게 누구인지.. -> e.currentTarget
+          radio.addEventListener("change", (e) => {
+            if (e.currentTarget.checked) {
+              p.textContent = `${e.currentTarget.value}`;
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>it 서적을 선택하세요</h2>
+    <input type="radio" name="books" value="java" />Java
+    <input type="radio" name="books" value="spring" />Spring Framework
+    <input type="radio" name="books" value="node" />NodeJS
+    <input type="radio" name="books" value="react" />ReactJS
+    <p></p>
+  </body>
+</html>

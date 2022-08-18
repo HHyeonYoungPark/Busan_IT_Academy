@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      DomContentLoaded - 페이지를 완전히 생성한 후 자바스트립트 실행
+    </title>
+    <script>
+      // function domHTML(text){
+      //    이렇게 쓸 수도 있음
+      // }
+
+      //const domHTML = (파라미터) => {}
+
+      // document.addEventListener(이벤트,동작(메소드))
+      document.addEventListener("DOMContentLoaded", () => {
+        // const domHTML() => console.log('ok');
+        const domHTML = (text) => `<h1>${text}</h1>`;
+        document.body.innerHTML = domHTML("Busan IT Academy");
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

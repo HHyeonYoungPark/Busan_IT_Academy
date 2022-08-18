@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>counter</title>
+    <script>
+      // const는 변하는 값을 넣으면 안됌
+      document.addEventListener("DOMContentLoaded", () => {
+        let count = 0;
+        const h1 = document.querySelector("h1");
+
+        h1.addEventListener("click", () => {
+          count++;
+          h1.textContent = `Click count : ${count}`;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Click counter : 0</h1>
+  </body>
+</html>

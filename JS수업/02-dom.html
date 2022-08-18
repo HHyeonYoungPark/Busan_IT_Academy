@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DomContentLoaded</title>
+    <script>
+      //<body> 위에서 실행할 수 있게 "DOMContentLoaded"를 씀!!!
+      document.addEventListener("DOMContentLoaded", () => {
+        /*
+        const headings = document.querySelector("h1");
+        
+        headings.textContent = "Busan IT Academy";
+        headings.style.color = "white";
+        headings.style.backgroundColor = "blue";
+        headings.style.padding = "20px";
+        */
+
+        /*배열명s.forEach((별명,배열명에서 s를 뻄) => {})   querySelectorAll All을 써야함 복수니까*/
+        // Object(객체,배열) 타입으로 저장 = querySelectorAll
+        const headings = document.querySelectorAll("h1");
+        headings.forEach((heading) => {
+          heading.textContent = "Busan IT";
+          heading.style.color = "white";
+          heading.style.backgroundColor = "blue";
+          heading.style.borderRadius = "10px";
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 글자,색깔,배경색,패딩 설정해보기 -->
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+  </body>
+</html>
