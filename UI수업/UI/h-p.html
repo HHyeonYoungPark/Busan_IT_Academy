@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>h1~h6(제목),p(문단) 예제</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0; /*안쪽여백*/
+        margin: 0; /*바깥여백*/
+        box-sizing: border-box;
+      }
+
+      .box-wrap {
+        background-color: #eee;
+        padding: 50px 0;
+      }
+      .box {
+        text-align: center;
+        width: 1280px;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .box > .subtitle {
+        font-size: 24px;
+      }
+      .box > h3 {
+        font-size: 45px;
+        margin: 10px 0;
+      }
+      .box > .content {
+        /* color: #aaa; */
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .icon-box-wrap {
+        /*사각형을 가로로 방향 전환할 때*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .icon-box {
+        width: 32%;
+      }
+      i {
+        font-size: 60px;
+      }
+      .icon-box-wrap h4 {
+        font-size: 22px;
+        margin: 10px 0;
+      }
+      .icon-box-wrap p {
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      /*pc style 끝*/
+
+      /*mobile style*/
+      @media (max-width: 400px) {
+        .box-wrap {
+          padding: 50px 20px;
+        }
+
+        .box > .subtitle {
+          font-size: 16px;
+        }
+        .box > h3 {
+          font-size: 25px;
+          margin: 10px 0;
+        }
+        .box > .content {
+          /* color: #aaa; */
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+      /*mobile style 끝*/
+    </style>
+  </head>
+  <body>
+    <div class="box-wrap">
+      <div class="box">
+        <p class="subtitle">What We Do</p>
+        <h3>We have the knowledge and experience</h3>
+        <p class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
+          quidem? Temporibus, et laudantium ullam atque amet minus hic. Est
+          ipsam repellendus voluptatum aut temporibus aperiam quam saepe quae
+          quibusdam consectetur!
+        </p>
+        <!-- icon box -->
+        <div class="icon-box-wrap">
+          <div class="icon-box">
+            <div class="icons">
+              <span class="icon-wrap">
+                <i class="fa-brands fa-apple"></i>
+              </span>
+            </div>
+            <h4>Visualize It</h4>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat
+              repellendus numquam inventore aliquam eum.
+            </p>
+          </div>
+
+          <div class="icon-box">
+            <div class="icons">
+              <span class="icon-wrap">
+                <i class="fa-brands fa-app-store-ios"></i>
+              </span>
+            </div>
+            <h4>Visualize It</h4>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat
+              repellendus numquam inventore aliquam eum.
+            </p>
+          </div>
+
+          <div class="icon-box">
+            <div class="icons">
+              <span class="icon-wrap">
+                <i class="fa-brands fa-app-store"></i>
+              </span>
+            </div>
+            <h4>Visualize It</h4>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat
+              repellendus numquam inventore aliquam eum.
+            </p>
+          </div>
+        </div>
+        <!-- icon box 끝-->
+      </div>
+    </div>
+  </body>
+</html>

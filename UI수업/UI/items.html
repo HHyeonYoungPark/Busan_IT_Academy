@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home > 상품소개</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./images/favicon/favicon1.png"
+      type="image/x-icon"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      a:hover {
+        color: blue;
+      }
+
+      .title {
+        /* background-color: aqua; */
+        width: 70%;
+        margin: 0 auto; /*사각형 가운데 정렬*/
+        text-align: center;
+      }
+      .title h3 {
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+      .content {
+        /* background-color: brown; */
+        width: 70%;
+        margin: 0 auto; /*사각형 가운데 정렬*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .content-box {
+        width: 30%;
+      }
+      .content-box-img {
+        overflow: hidden;
+      }
+      .content-box-img img {
+        width: 100%;
+      }
+      .content-box-img img:hover {
+        transform: scale(1.2);
+        transition: 0.3s; /*부드럽게 처리 - 속도 s*/
+        cursor: pointer;
+      }
+
+      .content-box-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
+      .content-box-text-in h4 {
+        margin-top: -10px;
+        margin-bottom: 10px;
+      }
+      .content-box-text-icon {
+        background-color: #000;
+        color: #fff;
+        padding: 8px 16px;
+        margin-bottom: 25px;
+        border-radius: 5px;
+        font-size: 20px;
+      }
+      .content-box-text-icon:hover {
+        cursor: pointer;
+        background-color: transparent;
+        color: tomato;
+        border: 1px solid tomato;
+        transition: 0.5s;
+      }
+
+      @media (max-width: 800px) {
+        .content-box-text-icon {
+          background-color: #000;
+          color: #fff;
+          padding: 8px 16px;
+          margin-bottom: 50px;
+          border-radius: 5px;
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        body {
+          font-family: "Poppins", sans-serif;
+        }
+
+        .title {
+          /* background-color: aqua; */
+          width: 80%;
+        }
+        .title h3 {
+          font-size: 20px;
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+        .content {
+          /* background-color: brown; */
+          width: 80%;
+          margin: 0 auto; /*사각형 가운데 정렬*/
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .content-box {
+          width: 100%;
+          margin-bottom: 50px;
+        }
+
+        .content-box-text-in h4 {
+          margin-top: -10px;
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="title">
+        <h3>Shop Products</h3>
+      </div>
+
+      <div class="content">
+        <div class="content-box">
+          <div class="content-box-img">
+            <img src="./images/s1.jpg" alt="" />
+          </div>
+          <div class="content-box-text">
+            <div class="content-box-text-in">
+              <a href="#"><h4>NAVY SHIRT - OverFit</h4></a>
+              <p>$74</p>
+            </div>
+
+            <div class="content-box-text-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="content-box-img">
+            <img src="./images/s2.jpg" alt="" />
+          </div>
+          <div class="content-box-text">
+            <div class="content-box-text-in">
+              <a href="#"><h4>WHITE SHIRT - OverFit</h4></a>
+              <p>$74</p>
+            </div>
+            <div class="content-box-text-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="content-box-img">
+            <img src="./images/s3.jpg" alt="" />
+          </div>
+          <div class="content-box-text">
+            <div class="content-box-text-in">
+              <a href="#"><h4>SKYBLUE SHIRT - OverFit</h4></a>
+              <p>$74</p>
+            </div>
+            <div class="content-box-text-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

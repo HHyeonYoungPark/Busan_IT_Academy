@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kristi&family=Lato&family=Lora:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      body {
+        background-color: #e7e7e7;
+        font-family: "Lato", sans-serif;
+      }
+      .signIn-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+      }
+      .signIn-box {
+        box-shadow: 0 0 10px 3px cornflowerblue;
+        background-color: #fff;
+        padding: 70px 50px;
+        border: 1px solid rgba(34, 36, 38, 0.2);
+        border-radius: 7px;
+        width: 500px;
+        /* background-color: aqua; */
+      }
+      .signIn-box h1 {
+        margin-bottom: 30px;
+        /* background-color: aqua; */
+      }
+      .signIn-box .UserName,
+      .Identification,
+      .Password,
+      .Re-Password {
+        margin-bottom: 10px;
+      }
+      label {
+        font-weight: bold;
+      }
+
+      input {
+        border: 0;
+        outline: 0;
+        border: 1px solid #d1d1d1;
+        border-radius: 5px;
+        width: 100%;
+        padding: 12px 10px;
+        margin-top: 8px;
+      }
+      .already {
+        color: dodgerblue;
+      }
+      .already:hover {
+        color: indianred;
+        transition: 0.5s;
+        /* text-decoration: underline; */
+      }
+      .btn {
+        border: 0;
+        background-color: indianred;
+        color: #fff;
+        padding: 12px 16px;
+        font-size: 18px;
+        border-radius: 5px;
+        float: right;
+        cursor: pointer;
+      }
+      .btn:hover {
+        transition: 0.5s;
+        background-color: dodgerblue;
+        color: #fff;
+      }
+      ::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signIn-wrap">
+      <div class="signIn-box">
+        <h1>Sign In</h1>
+        <form
+          method="post"
+          action="./login.html"
+          enctype="multipart/form-data"
+          name=""
+          id=""
+        >
+          <div class="UserName">
+            <label>UserName</label>
+            <p id="text" class="text"></p>
+            <input
+              type="text"
+              name="UserName"
+              id="UserName"
+              class="UserName"
+              placeholder="UserName"
+              required
+            />
+          </div>
+          <div class="Identification">
+            <label>Identification</label>
+            <p id="text" class="text"></p>
+            <input
+              type="text"
+              name="Identification"
+              id="Identification"
+              class="Identification"
+              placeholder="Identification"
+              required
+            />
+          </div>
+          <div class="Password">
+            <label>Password</label>
+            <p id="text" class="text"></p>
+            <input
+              type="password"
+              name="Password"
+              id="Password"
+              class="Password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="Re-Password">
+            <label>Re-Password</label>
+            <p id="text" class="text"></p>
+            <input
+              type="password"
+              name="Re-Password"
+              id="Re-Password"
+              class="Re-Password"
+              placeholder="Re-Password"
+              required
+            />
+          </div>
+          <a href="https://www.naver.com">
+            <b class="already">Already registered sign in?</b>
+          </a>
+          <div>
+            <button type="submit" class="btn" id="btn">
+              <a href="#" style="color: #fff">Sign in</a>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

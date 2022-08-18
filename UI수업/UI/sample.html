@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .div-align-center {
+            /*박스 하나 * 4 + 박스간격(margin 3개)=전체크기*/
+            /* 400px    * 4 +   10px     *3      = 1630px */
+            width: 1630px;
+            margin: 0px auto;
+        }
+
+        .box-wrap {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .box {
+            width: 400px;
+            margin-bottom: 10px;
+            
+        }
+
+        .box img img {
+            width: 100%;
+        }
+
+        .old-price {
+            color: red;
+            font-size: 12px;
+        }
+
+        .new-price {
+            font-size: 18px;
+            font-weight: 100;
+        }
+
+        .right-icon {
+            background-color: red;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            /*height값을 알 떄 height 값과 동일*/
+            line-height: 30px;
+            border-radius: 3px;
+            float: right;
+
+        }
+
+        .right-icon:hover {
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .right-icon:hover i {
+          background-color: red;
+        }
+
+        .right-icon i {
+            font-size: 18px;
+            color: #fff
+        }
+
+        .item- @media(max-width:400px) {
+
+            .div-align-center {
+                /*박스 하나 * 4 + 박스간격(margin 3개)=전체크기*/
+                /* 400px    * 4 +   10px     *3      = 1630px */
+                width: 1630px;
+                margin: 0px auto;
+            }
+
+            .box-wrap {
+                display: flex;
+                /*flex-direction:row 0> column
+                  flaex-wpew*/
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+
+            .box {
+                background-color: green;
+                width: 400px;
+                margin-bottom: 10px;
+                height: 300px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div-align-center">
+        <!--화면 넓이 지정 & div(사각형)을 가운데로 이동-->
+        <div class="box-wrap">
+            <!--display:flex;
+                flex-direction:row;
+                flex-wrap:wrap;
+                flex 설정을 위한(가로 배치를 위한)-->
+            <div class="box">
+                <div class="box-img">
+                    <img src="./images/f1.jpg" alt="f1">
+                </div>
+                <div class="box-detail">
+                    <div class="item-title">상품제목</div>
+                    <div class="item-price">
+                        <span class="old-price"><del>$99.00</span></del>
+                        <!--<del>글자 중간에 줄 긋기-->
+                        <span class="new-price">$88.00</span>
+                        <!--인라인:flex 없이 가로배치-->
+                        <span class="right-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <!-- box 넓이(width)-->
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+            <div class="box">이미지</div>
+        </div>
+    </div>
+</body>
+
+</html>

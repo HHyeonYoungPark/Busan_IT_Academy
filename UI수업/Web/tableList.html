@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TableList</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Nanum Gothic", sans-serif;
+        font-size: 14px;
+      }
+      .eng {
+        font-family: "Open Sans", sans-serif;
+      }
+      select, /*<- 버튼 등 초기화*/
+      button,
+      input {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+      }
+      select {
+        width: 120px;
+        height: 29px;
+        border: 1px solid #ccc;
+      }
+      input {
+        width: 150px;
+        height: 29px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #3a8afe;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 3px;
+        vertical-align: bottom;
+        cursor: pointer;
+      }
+      .tbl-wrap {
+        margin: 0 auto;
+        width: 97%;
+      }
+      .page-top {
+        display: flex;
+        justify-content: space-between;
+        height: 60px;
+        align-items: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      tr {
+        height: 60px;
+        border: 1px solid #ccc;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+      }
+      tr:nth-child(1) {
+        height: 3px;
+      }
+      tr:nth-child(2) {
+        background-color: #eee;
+        color: #000;
+      }
+
+      td {
+        border: 0px solid #ccc;
+      }
+      td:nth-child(1) {
+        width: 5%;
+      }
+      td:nth-child(2) {
+        width: 60%;
+      }
+      td:nth-child(3) {
+        width: 5%;
+      }
+      td:nth-child(4) {
+        width: 15%;
+      }
+      td:nth-child(5) {
+        width: 5%;
+      }
+      .page-bottom {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        width: 97%;
+        /* background-color: aqua; */
+        height: 60px;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tbl-wrap">
+      <div class="page-top">
+        <h4>Home > Group > BoardName</h4>
+        <div class="page-top-search">
+          <form
+            method="get"
+            action="boardSearch.do"
+            name="frm"
+            id="frm"
+            class="frm"
+          >
+            <select>
+              <option>검색조건</option>
+              <option>제목+내용</option>
+              <option>글쓴이</option>
+            </select>
+            <input type="text" required />
+            <button type="submit">search</button>
+          </form>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <td style="background-color: #000" colspan="5"></td>
+        </tr>
+        <tr class="eng">
+          <td>No.</td>
+          <td>Subject</td>
+          <td>Name</td>
+          <td>Registration Date</td>
+          <td>Count</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="text-align: left">게시판 테스트입니다.</td>
+          <td>관리자</td>
+          <td>2022.07.11</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td style="text-align: left">게시판 테스트입니다.</td>
+          <td>관리자</td>
+          <td>2022.07.11</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </div>
+    <div class="page-bottom">
+      <span class="star-num">1</span>
+      <button type="button">write</button>
+    </div>
+  </body>
+</html>

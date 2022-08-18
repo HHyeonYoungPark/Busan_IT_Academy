@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex Layout01</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <style>
+      .container {
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: flex-start; /*flex-start 왼쪽정렬하는 정확한 법*/
+        justify-content: flex-end;
+        justify-content: center;
+        justify-content: space-around;
+        justify-content: space-between;
+        height: 100vh; /*세로정렬하기 위해서는 높이값을 꼭 줘야한다.*/
+        align-items: center; /*세로정렬*/
+        align-items: flex-end;
+        align-items: flex-start; /*세로의 시작이냐 끝이냐,,*/
+
+        flex-direction: row-reverse; /*박스 안의 글자가 3,2,1로 바뀌어서 나옴*/
+        flex-direction: column; /*세로배치*/
+        flex-direction: row; /*가로배치*/
+      }
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: steelblue;
+        color: #fff;
+        /* margin: 10px; */
+        padding: 20px;
+      }
+
+      .item:first-child {
+        /* align-self: flex-end; /*혼자만 보낼수도 있음*/
+        /* order: 3; /*순서를 바꾼다 first-child를 3번째로 보냈다 */
+      }
+      .item:nth-child(2) {
+        /* order: 1; */
+      }
+      .item:last-child {
+        /* align-self: center; /*혼자만 보낼수도 있음*/
+        /* order: 2; */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- .container>.item*3{box $} - 여기서 $하면 숫자가 매겨짐-->
+    <div class="container">
+      <div class="item">box 1</div>
+      <div class="item">box 2</div>
+      <div class="item">box 3</div>
+    </div>
+  </body>
+</html>

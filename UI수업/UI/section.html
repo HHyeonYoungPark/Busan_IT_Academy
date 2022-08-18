@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home > Our Facilities</title>
+    <link
+      rel="shortcut icon"
+      href="./images/favicon/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      a {
+      }
+      .title {
+        /* background-color: aqua; */
+        width: 80%;
+        margin: 0 auto; /*사각형 가운데 정렬*/
+        text-align: center;
+        padding: 50px 0;
+      }
+      .title h3 {
+        font-size: 30px;
+        text-transform: uppercase;
+        text-transform: capitalize;
+        margin-bottom: 30px;
+      }
+      .title p {
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .content {
+        /* background-color: brown; */
+        width: 80%;
+        margin: 0 auto; /*사각형 가운데 정렬*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .content-box {
+        width: 500px;
+        /* background-color: aquamarine; */
+      }
+      .content-box-img {
+        overflow: hidden;
+      }
+      .content-box-img img {
+        width: 100%;
+      }
+      .content-box-img img:hover {
+        transform: scale(1.2);
+        transition: 0.3s; /*부드럽게 처리 - 속도 s*/
+        cursor: pointer;
+      }
+      .content-box-text h4 {
+        margin: 5px 0;
+        text-transform: uppercase;
+      }
+      .content-box-text p {
+        color: rgba(0, 0, 0, 0.4);
+      }
+
+      /*media query mobile css : 500px*/
+
+      @media (max-width: 500px) {
+        body {
+          font-family: "Poppins", sans-serif;
+        }
+        a {
+        }
+        .title {
+          /* background-color: aqua; */
+          width: 80%;
+          min-width: 500px;
+          margin: 0 auto; /*사각형 가운데 정렬*/
+          text-align: center;
+          padding: 50px 0;
+        }
+        .title h3 {
+          font-size: 30px;
+          text-transform: uppercase;
+          text-transform: capitalize;
+          margin-bottom: 30px;
+        }
+        .title p {
+          color: rgba(0, 0, 0, 0.4);
+        }
+        .content {
+          /* background-color: brown; */
+          width: 80%;
+          min-width: 500px;
+          margin: 0 auto; /*사각형 가운데 정렬*/
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .content-box {
+          width: 500px;
+          /* background-color: aquamarine; */
+        }
+        .content-box-img {
+          overflow: hidden;
+        }
+        .content-box-img img {
+          width: 100%;
+        }
+        .content-box-img img:hover {
+          transform: scale(1.2);
+          transition: 0.3s; /*부드럽게 처리 - 속도 s*/
+          cursor: pointer;
+        }
+        .content-box-text h4 {
+          margin: 5px 0;
+          text-transform: uppercase;
+        }
+        .content-box-text p {
+          color: rgba(0, 0, 0, 0.4);
+        }
+      }
+      /*media query mobile css : 500px 끝*/
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="title">
+        <h3>Our Facilities</h3>
+        <p>
+          The GNU General Public License is a free, copyleft license for
+          software and other kinds of works.<br />The licenses for most software
+          and other practical works are designed to take away your freedom to
+          share and change the works.
+        </p>
+      </div>
+      <div class="content">
+        <div class="content-box">
+          <div class="content-box-img">
+            <a href="http://www.naver.com" target="_blank"
+              ><img src="./images/f1.jpg" alt=""
+            /></a>
+          </div>
+          <div class="content-box-text">
+            <h4>World Class Library</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+              dicta totam at aliquam numquam maiores!
+            </p>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="content-box-img">
+            <a href="http://www.naver.com" target="_blank"
+              ><img src="./images/f2.jpg" alt=""
+            /></a>
+          </div>
+          <div class="content-box-text">
+            <h4>World Class Library</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+              dicta totam at aliquam numquam maiores!
+            </p>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="content-box-img">
+            <a href="http://www.naver.com" target="_blank"
+              ><img src="./images/f3.jpg" alt=""
+            /></a>
+          </div>
+          <div class="content-box-text">
+            <h4>World Class Library</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+              dicta totam at aliquam numquam maiores!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home > 게시판 > 공지사항 > 목록보기</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-size: 14px;
+        font-family: "Nanum Gothic", sans-serif;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+
+        /*두줄을 한줄로 보이게 함*/
+      }
+      select,
+      button,
+      input {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+      }
+
+      .tbl-wrap {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .page-top {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        margin-bottom: 5px;
+      }
+
+      .page-top h2 {
+        font-size: 14px;
+      }
+      tr:first-child {
+        height: 50px;
+        text-align: center;
+        font-weight: bold;
+        background-color: #fa4521;
+        color: #fff;
+      }
+      tr:nth-child(2) {
+        /*제목줄을 만든 후 복붙 후 수정*/
+        height: 50px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        color: #000;
+      }
+      tr:nth-child(2):hover {
+        background-color: rgba(255, 255, 0, 0.5);
+        cursor: pointer;
+      }
+
+      td {
+        /* border: 1px solid #ccc; */
+      }
+
+      td:first-child {
+        width: 10%;
+      }
+      td:nth-child(2) {
+        width: 60%;
+      }
+      td:nth-child(3) {
+        width: 10%;
+      }
+      td:nth-child(4) {
+        width: 10%;
+      }
+      td:last-child {
+        width: 10%;
+      }
+
+      .start-num {
+        background-color: #3a8afe;
+        color: #fff;
+        /* 인라인 블록타입처럼 사용할 때 */
+        /* 인라인은 width height 설정이 안됨 */
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px; /*중간으로 조절*/
+        border-radius: 3px;
+        cursor: pointer;
+        border: 1px solid transparent; /*커서 올렸을때 border 1px를 줬기때문에 테두리 1px 투명으로 줌*/
+      }
+      .start-num:hover {
+        color: #3a8afe;
+        border: 1px solid #3a8afe; /*border를 줬을때 30px에서 1px씩 +되서 32px가 됨 그래서 커서 올릴때 움찔거림*/
+        transition: 0.3s;
+        background-color: #fff;
+      }
+      .page-bottom {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+      }
+      select {
+        width: 120px;
+        height: 29px;
+        border: 1px solid #ccc;
+      }
+      input {
+        width: 150px;
+        height: 29px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #3a8afe;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 3px;
+        vertical-align: bottom;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tbl-wrap">
+      <div class="page-top">
+        <h2>부산it > 게시판 > 공지사항</h2>
+        <span class="total"> 전체게시물 : <strong>10,000</strong>건 </span>
+      </div>
+      <table>
+        <tr>
+          <td>번호</td>
+          <td>제목</td>
+          <td>글쓴이</td>
+          <td>조회</td>
+          <td>날짜</td>
+        </tr>
+
+        <!-- for을 이용해서 반복문 -->
+        <tr>
+          <td>1</td>
+          <td style="text-align: left">
+            <strong>안녕하세요. 부산아이티아카데미입니다.</strong>
+          </td>
+          <td>관리자</td>
+          <td>10</td>
+          <td>2022.07.07</td>
+        </tr>
+        <!-- /for -->
+      </table>
+      <div class="page-bottom">
+        <div class="page-wrap">
+          <!-- paging, pagination이라고 함 -->
+          <span class="start-num">1</span>
+        </div>
+        <form
+          method="get"
+          action="boardSearch.do"
+          name="frm"
+          id="frm"
+          class="frm"
+        >
+          <div class="page-search">
+            <!-- <input type="radio" name="open" />공개게시물
+            <input type="radio" name="open" />비공개게시물
+
+            <input type="checkbox" name="fishing" />낚시
+            <input type="checkbox" name="clibming" />등산
+            <input type="checkbox" name="reading" />독서 -->
+            <select>
+              <option>제목</option>
+              <option>제목+내용</option>
+              <option>글쓴이</option>
+            </select>
+            <input type="text" required />
+            <button type="submit">검색</button>
+          </div>
+        </form>
+
+        <div class="page-btn">
+          <button type="button">글쓰기</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

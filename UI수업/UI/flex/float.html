@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <style>
+      .container {
+        background-color: #f4f4f4;
+      }
+      /*가상클래스*/
+      .container::after {
+        content: ""; /*무조건 사용해야함*/
+        clear: both;
+        display: block;
+      }
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: steelblue;
+        color: #fff;
+        margin: 10px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">item 1</div>
+      <div class="item">item 2</div>
+      <div class="item">item 3</div>
+    </div>
+    <!-- float clear -> ::after -->
+    <h1>부산아이티아카데미</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, consequatur?
+    </p>
+  </body>
+</html>

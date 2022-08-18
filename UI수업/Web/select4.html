@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* +: 내가 지정한 태그 다음 태그에 설정*/
+      ul ~ p {
+        color: red;
+        font-weight: bold;
+      }
+      h1::after {
+        content: "";
+        width: 50px;
+        height: 1px;
+        background-color: red;
+        display: inline-block;
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <p>부산광역시청 메뉴</p>
+      <ul>
+        <li>메뉴1</li>
+        <li>메뉴2</li>
+      </ul>
+      <p>오늘 하루 이 창을 띄우지 않음1</p>
+      <p>오늘 하루 이 창을 띄우지 않음2</p>
+      <p>오늘 하루 이 창을 띄우지 않음3</p>
+      <p>오늘 하루 이 창을 띄우지 4</p>
+    </div>
+    <p></p>
+    <hr />
+    <p></p>
+    <h1>Website Title</h1>
+  </body>
+</html>

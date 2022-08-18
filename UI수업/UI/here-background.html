@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hero-backGround</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kristi&family=Lato&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 auto;
+        width: 80%;
+        font-family: "Lato", sans-serif;
+        /* background-color: aquamarine; */
+      }
+      .logo h2 {
+        color: #fff;
+        font-size: 40px;
+        /* background-color: aqua; */
+      }
+      .menu-list ul {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        list-style: none;
+
+        /* background-color: aqua; */
+      }
+      .menu-list ul li {
+        margin-left: 70px;
+        color: #fff;
+        font-size: 20px;
+        margin-top: 15px;
+        /* background-color: aqua; */
+      }
+
+      .hero-title-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .hero-title span {
+        font-family: "Kristi", cursive;
+        color: #fff;
+        font-size: 200px;
+        /* background-color: aqua; */
+      }
+      .hero-title p {
+        font-family: "Kristi", cursive;
+        color: #fff;
+        text-align: center;
+        font-size: 50px;
+      }
+      .hero-img {
+        background-image: url("./images/spagetti.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-img">
+      <header>
+        <section>
+          <div class="logo">
+            <h2>TASTY</h2>
+          </div>
+          <div class="menu-list">
+            <ul>
+              <li>HOME</li>
+              <li>RESTO</li>
+              <li>SPECIAL</li>
+              <li>RESERVATION</li>
+              <li>GALLERY</li>
+              <li>CONTACT</li>
+            </ul>
+          </div>
+        </section>
+      </header>
+
+      <div class="hero-title-flex">
+        <div class="hero-title">
+          <span>delicious italian food</span>
+          <p>sadasdsadasdasdasas</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

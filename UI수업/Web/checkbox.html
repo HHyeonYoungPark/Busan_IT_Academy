@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All check, All unCheck</title>
+  </head>
+  <body>
+    <div>
+      <input
+        type="checkbox"
+        class=""
+        id="chkAll"
+        onClick="selectAll();"
+      />전체선택
+    </div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+    <div><input type="checkbox" class="chk" id="" /></div>
+
+    <script>
+      const str = document.querySelectorAll(".chk"); //중복되는 코드가 있으면 변수를 줘서 길이를 줄임
+
+      function selectAll() {
+        //alert("ok");
+        //== true는 생략해도 되고 false하려면 앞에 !붙이기
+        if (document.querySelector("#chkAll").checked) {
+          //alert(document.querySelectorAll(".chk").length);
+          for (let i = 0; i < str.length; i++) {
+            document.getElementsByClassName("chk")[i].checked = true;
+          }
+        } else {
+          for (let i = 0; i < str.length; i++) {
+            document.getElementsByClassName("chk")[i].checked = false; //값만 false로 바꾸면 됨
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
