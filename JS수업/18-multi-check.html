@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>다중셀렉트</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .container {
+        padding: 20px;
+      }
+      h4 {
+        margin-bottom: 5px;
+      }
+      h5 {
+        background-color: #eee;
+      }
+      .chk {
+        display: flex;
+        align-items: center;
+        height: 50px;
+      }
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+      }
+      .chk span {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+      button {
+        background-color: #db2828;
+        color: white;
+        cursor: pointer;
+        border-radius: 3px;
+        padding: 6px 12px;
+        border: 0;
+        font-size: 16px;
+        font-family: inherit;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4>선택한 게시물을 삭제합니다.(전체 또는 여러 개)</h4>
+      <h5>
+        <input type="checkbox" onclick="selectAll(this);" /><span
+          >전체선택</span
+        >
+      </h5>
+      <form id="frm">
+        <div class="chk">
+          <!-- 전체선택해서 (삭제할 때) 배열[]를 넣어야함 -->
+          <input type="checkbox" name="delete[]" value="5" /><span
+            >5번째 게시물입니다.</span
+          >
+        </div>
+        <div class="chk">
+          <input type="checkbox" name="delete[]" value="4" /><span
+            >4번째 게시물입니다.</span
+          >
+        </div>
+        <div class="chk">
+          <input type="checkbox" name="delete[]" value="3" /><span
+            >3번째 게시물입니다.</span
+          >
+        </div>
+        <div class="chk">
+          <input type="checkbox" name="delete[]" value="2" /><span
+            >2번째 게시물입니다.</span
+          >
+        </div>
+        <div class="chk">
+          <input type="checkbox" name="delete[]" value="1" /><span
+            >1번째 게시물입니다.</span
+          >
+        </div>
+        <button>선택한 내용을 삭제합니다.</button>
+      </form>
+    </div>
+    <script>
+      // delete[] : 1개 이상 삭제할 때 배열[]을 붙인다
+      function multiCheckboxValidate() {
+        let chk = document.querySelector("input[name='delete[]']:checked");
+        if (!chk) {
+          alert("삭제할 게시물을 선택해주세요.");
+          return flase;
+        } else {
+          alert("선택한 게시물을 삭제합니다.");
+          location.href = "delete.do"; //삭제 후 다음 화면으로 넘어감
+          //   return true;
+        }
+      }
+
+      // this : 내가 선택한 개수만큼 (한개를 선택할 수도, 여러개를 선택할 수 도)
+      // querySelectorAll : 여러개 선택
+      // 배열명.forEach(별명=> )
+      function selectAll(selectAll) {
+        let arrays = document.querySelectorAll("input[name='delete[]']");
+        arrays.forEach((array) => {
+          array.checked = selectAll.checked;
+        });
+      }
+
+      document.getElementById("frm").addEventListener("submit", (e) => {
+        e.preventDefault(); // 페이지 전환X
+        multiCheckboxValidate();
+      });
+    </script>
+  </body>
+</html>

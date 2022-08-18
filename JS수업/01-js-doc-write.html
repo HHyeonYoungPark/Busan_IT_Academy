@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document.write</title>
+  </head>
+  <body>
+    <h2>Welcome Hello World</h2>
+    <script>
+      //   let username = prompt("이름을 입력하세요.");
+      //   document.write("안녕하세요. " + username + "님 환영합니다.");
+      //   document.write(`안녕하세요. <strong><u>${username}</u></strong>님 환영합니다!`);
+
+      // let list = "";
+      // += : append (이어서 작업하기)
+      // list += "<ul>";
+      //  list += "<li>메뉴1</li>";
+      // list += "<li>메뉴2</li>";
+      //  list += "<li>메뉴3</li>";
+      //  list += "</ul>";
+      //변수로도 리스트 만들 수 있다.
+      //  document.write(list);
+
+      /*
+      let numbers = Number(prompt("숫자를 입력하세요.")); //그냥 냅두면 글자로 인식해서 반드시 숫자로 초기화시켜줘야함
+      // alert(typeof numbers);
+      switch (numbers % 2) {
+        case 0:
+          document.write("짝수입니다.");
+          break;
+        case 1:
+          document.write("홀수입니다.");
+          break;
+        default:
+          document.write("유효값이 아닙니다..");
+          break;
+        }
+        */
+
+      let numbers = Number(prompt("숫자를 입력하세요."));
+      // 0보다 이상이면 양수, 미만은 음수
+      let result = numbers >= 0 ? "양수" : "음수";
+      document.write(result);
+      // let result = 조건 ? "참" : "거짓"
+    </script>
+  </body>
+</html>

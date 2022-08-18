@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="heading" class="heading">여기를 클릭하세요.</div>
+    <script>
+      const heading = document.querySelector("#heading");
+      heading.onclick = function () {
+        //document.querySelector("#heading").style.color = "red";
+        heading.style.backgroundColor = "red";
+        heading.style.color = "white";
+      };
+      /*
+      document.getElementById("heading").addEventListener("click", function () {
+        document.getElementById("heading").style.color = "red";
+        document.getElementById("heading").style.backgroungColor = "steelblue";
+      });
+      */
+    </script>
+  </body>
+</html>

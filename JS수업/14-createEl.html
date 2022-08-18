@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>createElement - 없는 요소를 생성(이벤트 사용시)</title>
+  </head>
+  <body>
+    <h2>creatTextNode(html 요소 내에 글자를 만들어 낼 때)</h2>
+    <form>
+      <input type="text" autofocus id="subject" />
+      <button onclick="addList(); return false;">목록추가</button>
+    </form>
+    <hr />
+    <ul id="itemList"></ul>
+
+    <script>
+      function addList() {
+        // 요소 노드 추가
+        let addItem = document.createElement("li");
+        let val = document.getElementById("subject").value;
+        let addText = document.createTextNode(val); //긴 코드를 변수줘서 짧게 줄임
+
+        //append 붙이다, <li>addText</li>
+        addItem.appendChild(addText);
+
+        //<ul><li>addText</li></ul>
+        document.getElementById("itemList").appendChild(addItem);
+
+        //내용을 입력하고 내용이 추가된 후에 input창의 내용이 지워지게 함
+        document.getElementById("subject").value = "";
+      }
+    </script>
+  </body>
+</html>
