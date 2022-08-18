@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busan Metropolitan City</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul li {
+        list-style: none;
+      }
+      a {
+        color: #222;
+        text-decoration: none;
+      }
+      input,
+      button,
+      select {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+      }
+      /*reset*/
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 40px;
+      }
+      header {
+        /* background-color: cadetblue; */
+        height: 160px;
+      }
+      .top-wrap {
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+      }
+      .top-menu ul {
+        display: flex;
+        flex-direction: row;
+      }
+      .top-menu ul li a {
+        margin-right: 30px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      select {
+        border: 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 4px 7px;
+      }
+      .search-wrap {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #d1d1d1;
+        height: 85px;
+      }
+      .logo-img {
+        margin-top: 10px;
+      }
+      .search input {
+        border: 3px solid rgb(33, 37, 173);
+        padding: 12px 130px 12px 8px;
+      }
+
+      .search-btn {
+        background-color: rgb(33, 37, 173);
+        border: 0;
+        color: #fff;
+        padding: 15px;
+      }
+      .search-btn:hover {
+        cursor: pointer;
+      }
+      .covid-btn {
+        background-color: rgb(33, 37, 173);
+        border: 0;
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 15px;
+      }
+      .covid-btn:hover {
+        cursor: pointer;
+      }
+      .menu ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        height: 70px;
+      }
+      .menu ul li a {
+        font-weight: bold;
+        font-size: 22px;
+        margin-left: 50px;
+      }
+      .menu ul li a:hover {
+        color: rgb(33, 37, 173);
+        transition: 0.2s;
+      }
+      main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        height: 420px;
+      }
+      .box1 {
+        grid-column: 1/3;
+        grid-row: 1/3;
+
+        background-image: url(./images/busan_lct.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .box2 {
+        grid-column: 3/4;
+        grid-row: 1/3;
+
+        background-image: url(./images/gentlemen.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .box2-content {
+        color: #fff;
+        margin-left: 20px;
+        /* background-color: aqua; */
+        margin: 20px 0 0 20px;
+      }
+      .box2-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 260px;
+      }
+      .box2-btn button {
+        background-color: tan;
+        border-radius: 20px;
+        padding: 10px 25px;
+        margin: 0 15px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .box2-btn button:hover {
+        cursor: pointer;
+        background-color: antiquewhite;
+        transition: 0.3s;
+      }
+      section {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
+        height: 300px;
+      }
+      .notice {
+        padding: 5px;
+      }
+      .notice-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        /* background-color: blue; */
+        height: 50px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #d1d1d1;
+      }
+      .notice-top button {
+        font-size: 20px;
+        border: 1px solid #d1d1d1;
+        padding: 4px 6px;
+      }
+      .notice-top button:hover {
+        cursor: pointer;
+      }
+
+      .notice-top h3 {
+        font-size: 22px;
+      }
+      .notice-content ul li {
+        height: 45px;
+      }
+      .notice-content ul li a {
+        font-size: 16px;
+      }
+      .service-top {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #d1d1d1;
+      }
+      .srvice-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .srvice-content div {
+        padding: 0 8px;
+        width: 170px;
+        height: 40px;
+        margin: 2px;
+        font-weight: bold;
+      }
+      footer {
+        height: 170px;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        border-bottom: 1px solid #d1d1d1;
+        align-items: center;
+      }
+      .copyright ul {
+        display: flex;
+      }
+      .copyright ul li a {
+        margin-right: 20px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      .icons {
+        font-size: 30px;
+        margin-left: 20px;
+      }
+      .icons a {
+        margin-left: 5px;
+      }
+      .footer-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 120px;
+      }
+      .busanlogo-info {
+        display: flex;
+        align-items: center;
+      }
+      .info {
+        padding: 0 20px;
+        margin-left: 20px;
+        height: 90px;
+        border-left: 1px solid #d1d1d1;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      /*////////////////////반응형//////////////////*/
+      @media (max-width: 500px) {
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="top-wrap">
+          <h3 class="logo2-img">
+            <a href="#">
+              <img style="margin-top: 5px" src="./images/busan_logo2.PNG"
+            /></a>
+          </h3>
+          <div class="top-menu" id="top-menu">
+            <ul>
+              <li>
+                <a href="#"><b>청사안내</b></a>
+              </li>
+              <li>
+                <a href="#"><b>로그인</b></a>
+              </li>
+              <li>
+                <a href="#"><b>회원가입</b></a>
+              </li>
+              <li>
+                <a href="#"><b>사이트맵</b></a>
+              </li>
+              <form action="result.do" method="post">
+                <select name="language" id="language">
+                  <option>English</option>
+                  <option>Korean</option>
+                </select>
+              </form>
+            </ul>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <h1 class="logo-img">
+            <a href="#"><img src="./images/busan_logo.PNG" /></a>
+          </h1>
+          <div class="search">
+            <form method="post" action="result.do">
+              <input type="text" placeholder="검색어를 입력하세요." />
+              <button class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div>
+          <button class="covid-btn">코로나19 현황</button>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="#">부산민원</a></li>
+            <li><a href="#">부산소식</a></li>
+            <li><a href="#">통합예약</a></li>
+            <li><a href="#">정보공개</a></li>
+            <li><a href="#">부산소개</a></li>
+            <li><a href="#">분야별정보</a></li>
+          </ul>
+        </div>
+      </header>
+      <main>
+        <div class="box1">
+          <p>이미지슬라이드넣기</p>
+        </div>
+        <div class="box2">
+          <div class="box2-content">
+            <h4>부산광역시장</h4>
+            <h3 style="font-size: 33px">오세훈</h3>
+          </div>
+          <div class="box2-btn">
+            <button type="button">
+              도시비전 <i class="fa-solid fa-angle-right"></i>
+            </button>
+            <button type="button">
+              국민청원 <i class="fa-solid fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+      <section>
+        <div class="notice">
+          <div class="notice-top">
+            <h3>공지사항</h3>
+            <form method="post" action="">
+              <button><i class="fa-solid fa-plus"></i></button>
+            </form>
+          </div>
+          <div class="notice-content">
+            <ul>
+              <li>
+                <a href=""
+                  >(부산청년정책연구원) 2022 부산 청렴 반부패 정책 탐방</a
+                >
+              </li>
+              <li><a href="">(수영구) 청년 창업오피스 입주자 모집</a></li>
+              <li><a href="">(부산대학교) 대학일자리플러스센터 프로그램</a></li>
+              <li><a href="">2022년 제 10회 건축위원회 심의결과 게시</a></li>
+              <li>
+                <a href="">[부산문화재단] 2022년도 문화다양성 감수성 교육</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="notice">
+          <div class="notice-top">
+            <h3>행사 및 축제</h3>
+            <form method="post" action="">
+              <button><i class="fa-solid fa-plus"></i></button>
+            </form>
+          </div>
+          <div class="notice-content">
+            <ul>
+              <li>
+                <a href="">[부산예술대학교] 제17회 부산국제매직페스티벌</a>
+              </li>
+              <li><a href="">[BEXCO] 2022 부산국제모터쇼</a></li>
+              <li><a href="">[부산시청] 2022 부산역사 학술대회</a></li>
+              <li>
+                <a href="">[부산박물관] 2022 특별기획전(부처, 치유의 시간)</a>
+              </li>
+              <li>
+                <a href="">2022 광안리 M 드론라이트쇼 상설 공연 개최 알림</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="notice" style="background-color: #eff4fa">
+          <div class="service-top">
+            <h3 style="font-size: 22px">자주 찾는 서비스</h3>
+          </div>
+          <div class="srvice-content">
+            <div><a href="#">지방세납부</a></div>
+            <div><a href="#">법무행정(자치법규)</a></div>
+            <div><a href="#">공공서비스예약</a></div>
+            <div><a href="#">부산청년지원</a></div>
+            <div><a href="#">내손안에부산</a></div>
+            <div><a href="#">부산안전누리</a></div>
+            <div><a href="#">전자책(e-book)</a></div>
+            <div><a href="#">평생학습포털</a></div>
+            <div><a href="#">부산일자리포털</a></div>
+            <div><a href="#">오시는길</a></div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div class="footer-wrap">
+          <div class="footer-top">
+            <div class="copyright">
+              <ul>
+                <li><a href="">정책약관</a></li>
+                <li><a href="">저작권</a></li>
+                <li><a href="">개인정보처리방침</a></li>
+                <li><a href="">행정서비스</a></li>
+                <li><a href="">뷰어다운로드</a></li>
+                <li><a href="">도움말</a></li>
+              </ul>
+            </div>
+            <div class="icons">
+              <a href=""><i class="fa-brands fa-instagram-square"></i></a>
+              <a href=""><i class="fa-brands fa-facebook-square"></i></a>
+              <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+              <a href=""><i class="fa-solid fa-square-rss"></i></a>
+              <a href=""><i class="fa-brands fa-youtube-square"></i></a>
+              <a href=""><i class="fa-brands fa-microblog"></i></a>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="busanlogo-info">
+              <div class="busanlogo">
+                <a href="#"><img src="./images/busan_logo.PNG" /></a>
+              </div>
+              <div class="info" style="font-size: 15px">
+                <p>(우 47545) 부산광역시 연제구 중앙대로 1001(연산동)</p>
+                <p>대표전화 : 051-120 또는 051-731-2120</p>
+                <p>콜센터 운영 : 평일 08:30 ~ 18:30</p>
+                <p>Copyright © Busan Metropolitan City. All rights reserved.</p>
+              </div>
+            </div>
+            <div class="footerlogo"><img src="./images/footer_logo.PNG" /></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

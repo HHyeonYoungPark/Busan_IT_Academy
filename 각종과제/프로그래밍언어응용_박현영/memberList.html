@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원리스트</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/memberList.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="memberList">
+        <div class="top">
+          <div class="top-left">
+            <h2>회원관리</h2>
+          </div>
+          <div class="top-right">
+            <button>선택수정</button>
+            <button>선택삭제</button>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <form action="search.do" id="form">
+            <div class="search">
+              <select id="sel" class="sel">
+                <option value="">선택하세요</option>
+
+                <option value="1">아이디</option>
+                <option value="2">이름</option>
+                <option value="3">이메일</option>
+                <option value="4">주소</option>
+                <option value="5">번호</option>
+                <option value="6">회원등급</option>
+              </select>
+              <input type="text" id="search" class="search" autofocus />
+              <button type="submit">검색</button>
+            </div>
+          </form>
+        </div>
+        <div class="info">
+          <p>
+            회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록
+            회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다.
+          </p>
+        </div>
+        <div class="tbl-warp">
+          <table>
+            <tr>
+              <td><input type="checkbox" onclick="selectAll(this);" /></td>
+              <td>No.</td>
+              <td>가입일</td>
+              <td>아이디</td>
+              <td>이름</td>
+              <td>이메일</td>
+              <td>주소</td>
+              <td>번호</td>
+              <td>적립금</td>
+              <td>내역</td>
+              <td>회원등급</td>
+              <td>최근접속</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="20" /></td>
+              <td>328</td>
+              <td>2022.07.29</td>
+              <td>aud8637282</td>
+              <td>박현영</td>
+              <td>aud8637282@naver.com</td>
+              <td>경기도 화성시 동탄1동</td>
+              <td>010-6436-4837</td>
+              <td>2000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.31</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="19" /></td>
+              <td>327</td>
+              <td>2022.02.15</td>
+              <td>wnsdud1</td>
+              <td>김준영</td>
+              <td>jykim1334@naver.com</td>
+              <td>부산광역시 수영구 광안1동</td>
+              <td>010-9733-6825</td>
+              <td>6000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.08.03</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="18" /></td>
+              <td>326</td>
+              <td>2022.04.15</td>
+              <td>asdfgh</td>
+              <td>홍길동</td>
+              <td>asdfgh@nate.com</td>
+              <td>부산광역시 금정구 구서동</td>
+              <td>010-7796-1663</td>
+              <td>0p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.22</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="17" /></td>
+              <td>325</td>
+              <td>2020.12.25</td>
+              <td>likky1226</td>
+              <td>김이나</td>
+              <td>likky1226@nate.com</td>
+              <td>경기도 수원시 권선구</td>
+              <td>010-3336-5678</td>
+              <td>900p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.01.16</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="16" /></td>
+              <td>324</td>
+              <td>2020.10.06</td>
+              <td>wlqrkrh5</td>
+              <td>이서</td>
+              <td>iseo@naver.com</td>
+              <td>서울특별시 송파구 문정동</td>
+              <td>010-1446-9923</td>
+              <td>5000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.10</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="15" /></td>
+              <td>323</td>
+              <td>2019.03.05</td>
+              <td>rladlqkr</td>
+              <td>김현희</td>
+              <td>khh0008@naver.com</td>
+              <td>경기도 오산시 원동</td>
+              <td>010-7793-1288</td>
+              <td>16000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2021.10.08</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="14" /></td>
+              <td>322</td>
+              <td>2020.06.14</td>
+              <td>hosiccc</td>
+              <td>임호식</td>
+              <td>hosiccc@naver.com</td>
+              <td>서울특별시 서초구 내곡동</td>
+              <td>010-3378-1664</td>
+              <td>20000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2021.12.30</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="13" /></td>
+              <td>321</td>
+              <td>2021.11.01</td>
+              <td>loveyu96</td>
+              <td>유주연</td>
+              <td>loveyu96@naver.com</td>
+              <td>서울특별시 강남구 도곡동</td>
+              <td>010-2224-6681</td>
+              <td>0p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.08.03</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="12" /></td>
+              <td>320</td>
+              <td>2021.11.22</td>
+              <td>alstjr1999</td>
+              <td>김민석</td>
+              <td>alstjr1999@naver.com</td>
+              <td>경기도 화성시 반송동</td>
+              <td>010-1778-6423</td>
+              <td>800p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.03.16</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="11" /></td>
+              <td>319</td>
+              <td>2021.05.04</td>
+              <td>gywjd95</td>
+              <td>최효정</td>
+              <td>gywjd95@naver.com</td>
+              <td>전라남도 목포시 하당동</td>
+              <td>010-7796-5883</td>
+              <td>0p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2021.12.06</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="10" /></td>
+              <td>318</td>
+              <td>2021.09.28</td>
+              <td>juu996</td>
+              <td>주현우</td>
+              <td>juu996@naver.com</td>
+              <td>강원도 강릉시 초당동</td>
+              <td>010-9956-7241</td>
+              <td>500p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.08.04</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="9" /></td>
+              <td>317</td>
+              <td>2020.03.29</td>
+              <td>youtezzz</td>
+              <td>유용철</td>
+              <td>youtezzz@google.com</td>
+              <td>충청남도 천안시 동남구 불당동</td>
+              <td>010-3580-0824</td>
+              <td>600p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.01.12</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="8" /></td>
+              <td>316</td>
+              <td>2021.09.10</td>
+              <td>kimbyon</td>
+              <td>김병연</td>
+              <td>kimbyon@naver.com</td>
+              <td>경기도 남양주시 진접읍</td>
+              <td>010-5824-0842</td>
+              <td>9000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.06.23</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="7" /></td>
+              <td>315</td>
+              <td>2020.08.15</td>
+              <td>jeong111</td>
+              <td>정호연</td>
+              <td>jeong111@google.com</td>
+              <td>경기도 수원시 팔달구 인계동</td>
+              <td>010-2558-6366</td>
+              <td>4100p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2021.10.30</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="6" /></td>
+              <td>314</td>
+              <td>2021.04.16</td>
+              <td>jinnne09</td>
+              <td>서이진</td>
+              <td>jinnne09@naver.com</td>
+              <td>부산광역시 해운대구 우동</td>
+              <td>010-3664-9111</td>
+              <td>650p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.05</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="5" /></td>
+              <td>313</td>
+              <td>2022.06.29</td>
+              <td>youdi</td>
+              <td>허유진</td>
+              <td>youdi@naver.com</td>
+              <td>서울특별시 광진구 자양동</td>
+              <td>010-0553-4119</td>
+              <td>8100p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.06.22</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="4" /></td>
+              <td>312</td>
+              <td>2022.07.12</td>
+              <td>foooo11</td>
+              <td>서장훈</td>
+              <td>foooo11@naver.com</td>
+              <td>부산광역시 해운대구 좌동</td>
+              <td>010-6663-5255</td>
+              <td>200p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.06.10</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="3" /></td>
+              <td>311</td>
+              <td>2022.04.25</td>
+              <td>hou93883</td>
+              <td>최승호</td>
+              <td>hou93883@naver.com</td>
+              <td>경상남도 김해시 내외동</td>
+              <td>010-1466-5820</td>
+              <td>5300p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.14</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="2" /></td>
+              <td>310</td>
+              <td>2019.03.15</td>
+              <td>jyp087789</td>
+              <td>박진영</td>
+              <td>jyp087789@ggogle.com</td>
+              <td>대구광역시 수성구 범어동</td>
+              <td>010-3442-4201</td>
+              <td>12000p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.05.26</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="delete[]" value="1" /></td>
+              <td>309</td>
+              <td>2021.12.05</td>
+              <td>tani199604</td>
+              <td>김효석</td>
+              <td>tani199604@naver.com</td>
+              <td>대구광역시 수성구 고산동</td>
+              <td>010-9666-8580</td>
+              <td>40600p</td>
+              <td><a href="#">구매내역</a></td>
+              <td>
+                <select>
+                  <option>새싹</option>
+                  <option>브론즈</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                </select>
+              </td>
+              <td>2022.07.30</td>
+            </tr>
+          </table>
+          <div class="numBtn">
+            <div class="paging">
+              <div class="num"><i class="fa-solid fa-angle-left"></i></div>
+              <div class="num">1</div>
+              <div class="num">2</div>
+              <div class="num">3</div>
+              <div class="num">4</div>
+              <div class="num">5</div>
+              <div class="num">
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/select.js"></script>
+    <script src="./js/multiCheckBox.js"></script>
+  </body>
+</html>

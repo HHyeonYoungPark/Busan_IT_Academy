@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - multiCheckBox</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul li {
+        list-style: none;
+      }
+      a {
+        color: #222;
+        text-decoration: none;
+      }
+      input,
+      button,
+      select {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+      }
+      /*reset*/
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      header {
+        height: 190px;
+      }
+      .top-wrap {
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 35px;
+      }
+      .top-menu ul {
+        display: flex;
+        flex-direction: row;
+      }
+      .top-menu ul li a {
+        margin-right: 30px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      .top-wrap select {
+        border: 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 4px 7px;
+      }
+      .search-wrap {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #d1d1d1;
+        height: 85px;
+      }
+      .logo-img {
+        margin-top: 10px;
+      }
+      .search input {
+        border: 3px solid rgb(33, 37, 173);
+        padding: 12px 130px 12px 8px;
+      }
+      .search-btn {
+        background-color: rgb(33, 37, 173);
+        border: 0;
+        color: #fff;
+        padding: 15px;
+      }
+      .search-btn:hover {
+        cursor: pointer;
+      }
+      .covid-btn {
+        background-color: rgb(33, 37, 173);
+        border: 0;
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 15px;
+      }
+      .covid-btn:hover {
+        cursor: pointer;
+      }
+      .menu ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        height: 70px;
+      }
+      .menu ul li a {
+        font-weight: bold;
+        font-size: 22px;
+        margin-left: 50px;
+      }
+      .menu ul li a:hover {
+        color: rgb(33, 37, 173);
+        transition: 0.2s;
+      }
+      /*//////////////////////////////////////////////////////*/
+      .agree-wrap {
+        padding: 20px;
+      }
+      .agree-wrap h1 {
+        margin-bottom: 30px;
+      }
+      .agree {
+        width: 100%;
+        height: auto;
+        background-color: #f1f1f1;
+        border: 1px solid #c1c1c1;
+        padding: 10px;
+      }
+      h4 {
+        margin: 10px;
+      }
+      h5 {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin: 10px;
+        background-color: #c1c1c1;
+      }
+      h5 span {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+      .chk {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin: 10px;
+      }
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+      }
+      .chk span {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+
+      .agrBtn {
+        background-color: rgb(33, 37, 173);
+        color: white;
+        cursor: pointer;
+        border-radius: 3px;
+        padding: 6px 12px;
+        border: 0;
+        font-size: 16px;
+        font-family: inherit;
+        outline: none;
+        margin: 10px 0;
+      }
+      /*//////////////////////////////////////////////////////*/
+      footer {
+        height: 170px;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50px;
+        border-bottom: 1px solid #d1d1d1;
+        align-items: center;
+      }
+      .copyright ul {
+        display: flex;
+      }
+      .copyright ul li a {
+        margin-right: 20px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      .icons {
+        font-size: 30px;
+        margin-left: 20px;
+      }
+      .icons a {
+        margin-left: 5px;
+      }
+      .footer-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 120px;
+      }
+      .busanlogo-info {
+        display: flex;
+        align-items: center;
+      }
+      .info {
+        padding: 0 20px;
+        margin-left: 20px;
+        height: 90px;
+        border-left: 1px solid #d1d1d1;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="top-wrap">
+          <h3 class="logo2-img">
+            <a href="#">
+              <img style="margin-top: 5px" src="./images/busan_logo2.PNG"
+            /></a>
+          </h3>
+          <div class="top-menu" id="top-menu">
+            <ul>
+              <li>
+                <a href="#"><b>청사안내</b></a>
+              </li>
+              <li>
+                <a href="#"><b>로그인</b></a>
+              </li>
+              <li>
+                <a href="#"><b>회원가입</b></a>
+              </li>
+              <li>
+                <a href="#"><b>사이트맵</b></a>
+              </li>
+              <form action="result.do" method="post">
+                <select name="language" id="language">
+                  <option>English</option>
+                  <option>Korean</option>
+                </select>
+              </form>
+            </ul>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <h1 class="logo-img">
+            <a href="#"><img src="./images/busan_logo.PNG" /></a>
+          </h1>
+          <div class="search">
+            <form method="post" id="frm0" action="result.do">
+              <input
+                input
+                type="text"
+                id="search"
+                class="search"
+                autofocus
+                placeholder="검색어를 입력하세요."
+              />
+              <button class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div>
+          <button class="covid-btn">코로나19 현황</button>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="#">부산민원</a></li>
+            <li><a href="#">부산소식</a></li>
+            <li><a href="#">통합예약</a></li>
+            <li><a href="#">정보공개</a></li>
+            <li><a href="#">부산소개</a></li>
+            <li><a href="#">분야별정보</a></li>
+          </ul>
+        </div>
+      </header>
+      <!-- 여기서부터 -->
+      <main>
+        <div class="agree-wrap">
+          <h1>회원가입 : 이용약관 등 동의</h1>
+          <div class="agree">
+            제1조(목적) <br />이 약관은 부산광역시(이하 "부산시"라 합니다)가
+            제공하는 웹 서비스(이하 "서비스"라 합니다)를 이용함에 있어 부산시와
+            이용자 간의 권리·의무 및 책임사항과 기타 필요한 사항을 규정함을
+            목적으로 합니다. <br />
+            제2조(정의) <br />이 약관에서 사용하는 용어의 정의는 다음 각 호와
+            같습니다. <br />1. 이용자 본 약관에 따라 부산시가 제공하는 서비스를
+            받는 자 <br />2. 부산시 패밀리사이트 부산시 및 산하 기관이 운영하는
+            인터넷 웹사이트에서 대표 웹사이트(www.busan.go.kr)로 회원가입하면
+            통합회원으로 가입되며, 이 통합회원 아이디로 이용이 가능한 각각의
+            웹사이트(패밀리사이트 목록은 회원가입 화면에 공지) <br />3.
+            이용계약서비스 이용과 관련하여 부산시와 이용자 간에 체결하는 계약
+            <br />4. 가입 부산시가 제공하는 신청서 양식에 해당 정보를 기입하고,
+            본 약관에 동의하여 서비스 이용 계약을 완료시키는 행위 <br />5. 회원
+            당 사이트의 회원가입에 필요한 개인정보(실명확인)를 제공하여 회원
+            등록을 한 자 <br />6. 본인확인계정 본인확인기관을 통해 본인임이
+            인증된 계정 <br />7. ID(회원번호) 회원 식별과 회원의 서비스 이용을
+            위하여 이용자가 선정하고 부산시가 승인하는 영문자와 숫자의
+            조합(하나의 본인확인계정에 하나의 ID만 발급 가능함) <br />8.
+            PASSWORD(비밀번호) 회원의 정보 보호를 위해 이용자 자신이 설정한
+            영문자와 숫자의 조합 <br />9. 이용해지 부산시 또는 회원이 서비스
+            이용계약을 종료시키는 의사표시 v10. 비회원 본인확인계정을 통해 당
+            사이트에 로그인 할 수 있는 자 <br />11. 소셜 로그인 이용자
+            포털사이트 및 사회관계망서비스 등에 가입한 기존 ID를 활용하여
+            부산시에 로그인 하는 이용자 <br />제3조(약관의 효력과 변경)<br />
+            1. 이 약관은 서비스 화면에 게시하거나 기타의 방법으로 공지함으로써
+            이용자에게 공시하고, 이에 이용자가 동의함으로써 효력이 발생합니다.
+            <br />2. 부산시는 필요하다고 인정되는 경우 이 약관의 내용을 변경할
+            수 있습니다. 변경된 약관은 서비스 화면에 공지하며, 공지 후 7일
+            이내에 거부의사를 표시하지 아니하고 서비스를 계속 사용할 경우 약관의
+            변경 사항에 동의한 것으로 간주합니다. <br />3. 이용자가 변경된
+            약관에 동의하지 않는 경우 서비스 이용을 중단하고 본인의 동의를
+            철회할 수 있으며, 계속 사용하시는 경우에는 약관 변경에 동의한 것으로
+            간주하며 변경된 약관은 전항과 같은 방법으로 효력이 발생합니다.
+          </div>
+          <h4>위의 내용에 동의하십니까?</h4>
+          <h5>
+            <input type="checkbox" onclick="selectAll(this)" /><span
+              >전체동의</span
+            >
+          </h5>
+          <form id="frm">
+            <div class="chk">
+              <input type="checkbox" name="agree[]" value="5" /><span
+                >이용약관에 동의합니다</span
+              >
+            </div>
+            <div class="chk">
+              <input type="checkbox" name="agree[]" value="4" /><span
+                >개인정보 보호법에 동의합니다</span
+              >
+            </div>
+            <div class="chk">
+              <input type="checkbox" name="agree[]" value="3" /><span
+                >개인정보 제3자 공유에 동의합니다</span
+              >
+            </div>
+            <div class="chk">
+              <input type="checkbox" name="agree[]" value="2" /><span
+                >위치기반서비스 이용약관에 동의합니다</span
+              >
+            </div>
+            <div class="chk">
+              <input type="checkbox" name="agree[]" value="1" /><span
+                >마케팅수신에 동의합니다(선택)</span
+              >
+            </div>
+            <button class="agrBtn">다음단계</button>
+          </form>
+        </div>
+      </main>
+      <!-- 여기까지 -->
+      <footer>
+        <div class="footer-wrap">
+          <div class="footer-top">
+            <div class="copyright">
+              <ul>
+                <li><a href="">정책약관</a></li>
+                <li><a href="">저작권</a></li>
+                <li><a href="">개인정보처리방침</a></li>
+                <li><a href="">행정서비스</a></li>
+                <li><a href="">뷰어다운로드</a></li>
+                <li><a href="">도움말</a></li>
+              </ul>
+            </div>
+            <div class="icons">
+              <a href=""><i class="fa-brands fa-instagram-square"></i></a>
+              <a href=""><i class="fa-brands fa-facebook-square"></i></a>
+              <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+              <a href=""><i class="fa-solid fa-square-rss"></i></a>
+              <a href=""><i class="fa-brands fa-youtube-square"></i></a>
+              <a href=""><i class="fa-brands fa-microblog"></i></a>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="busanlogo-info">
+              <div class="busanlogo">
+                <a href="#"><img src="./images/busan_logo.PNG" /></a>
+              </div>
+              <div class="info" style="font-size: 15px">
+                <p>(우 47545) 부산광역시 연제구 중앙대로 1001(연산동)</p>
+                <p>대표전화 : 051-120 또는 051-731-2120</p>
+                <p>콜센터 운영 : 평일 08:30 ~ 18:30</p>
+                <p>Copyright © Busan Metropolitan City. All rights reserved.</p>
+              </div>
+            </div>
+            <div class="footerlogo"><img src="./images/footer_logo.PNG" /></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="./js/multi-check.js"></script>
+    <script src="./js/search.js"></script>
+  </body>
+</html>

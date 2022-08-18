@@ -1,0 +1,153 @@
+@charset 'utf-8';
+
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Nanum Gothic", sans-serif;
+}
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.memberList {
+  position: absolute;
+  top: 1%;
+  left: calc(50% - 750px);
+  width: 1500px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.top-left {
+  font-size: 20px;
+}
+.top-right button {
+  background-color: steelblue;
+  border: 1px solid steelblue;
+  border-radius: 4px;
+  color: #fff;
+  font-family: inherit;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.search-wrap {
+  padding: 10px 0;
+  align-items: center;
+}
+.search select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+}
+.search input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+}
+.search button {
+  border: 0;
+  background-color: steelblue;
+  color: #fff;
+  border-radius: 3px;
+  padding: 6px 15px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.info {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  height: 30px;
+  border: 1px solid #ccc;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
+tr:nth-child(1) {
+  height: 50px;
+  background-color: steelblue;
+  border: 1px solid #aaa;
+  color: #f1f1f1;
+}
+td {
+  border: 1px solid #aaa;
+}
+td:nth-child(1) {
+  width: 3%;
+}
+td:nth-child(2) {
+  width: 4%;
+}
+td:nth-child(3) {
+  width: 9%;
+}
+td:nth-child(4) {
+  width: 9%;
+}
+td:nth-child(5) {
+  width: 6%;
+}
+td:nth-child(6) {
+  width: 15%;
+}
+td:nth-child(7) {
+  width: 16%;
+}
+td:nth-child(8) {
+  width: 11%;
+}
+td:nth-child(9) {
+  width: 7%;
+}
+td:nth-child(10) {
+  width: 6%;
+}
+td:nth-child(11) {
+  width: 6%;
+}
+td:nth-child(12) {
+  width: 9%;
+}
+td a {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.paging {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+.paging .num {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 2px;
+  text-align: center;
+  cursor: pointer;
+}
+.paging .num:hover {
+  background-color: #f8f8f8;
+}

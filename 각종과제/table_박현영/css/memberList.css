@@ -1,0 +1,137 @@
+@charset 'utf-8';
+
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  background-color: #f9f9f9;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+input,
+button,
+select {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.top-wrap {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+  padding: 0 30px;
+}
+.top-wrap h2 a {
+  color: aliceblue;
+}
+.top-menu ul {
+  display: flex;
+  flex-direction: row;
+}
+.top-menu ul li a {
+  color: aliceblue;
+  margin-left: 50px;
+}
+.memberList {
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 900px);
+  width: 1800px;
+}
+.memberList-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
+tr:hover {
+  background-color: #f9f9f9;
+}
+tr:nth-child(1) {
+  background-color: steelblue;
+  color: #f1f1f1;
+}
+.tbl-wrap button {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  padding: 5px;
+  cursor: pointer;
+}
+.tbl-wrap button:hover {
+  background-color: #f9f9f9;
+}
+.bottom-wrap {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.numBtn {
+  display: flex;
+  flex-direction: row;
+}
+.num {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  text-align: center;
+  width: 30px;
+  padding: 5px;
+  margin: 0 1px;
+  cursor: pointer;
+}
+.num:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #f9f9f9;
+}
+.search-wrap {
+  padding: 10px 0;
+  align-items: center;
+}
+.search select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+}
+.search input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+}
+.search button {
+  background-color: steelblue;
+  color: #fff;
+  border-radius: 3px;
+  padding: 6px;
+  cursor: pointer;
+}
