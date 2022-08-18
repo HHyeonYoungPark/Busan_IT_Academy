@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+        - {회원1}
+            {"변수" : 값}
+
+
+      - 사용자 -> 데이터 전송 -> (json변환) -> 서버
+                                   haeder값에 json을 설정해서 보냄
+                                    (Contant-Type:application/json)
+                                   JSON.stringify();
+
+     - 사용자 <- 데이터 전송 <- (json변환) <- 서버
+                               JSON.parse();
+             
+     -->
+    <script>
+      /*
+           1. 상품등록 : Javascript Object -> Json Object로 변환해서 전송
+                         product : "book"    "product" : "book"
+           2. 객체생성{} : 변수명 - Items_Create
+           3. 세부정보 : items_Name(S)-상품이름, item_Price(n)-상품가격, item_Count(n)-상품재고
+           4. client => server : JSON.stringify();
+           5. client <= server : JSON.parse();
+           6. print : console.log();
+       */
+      const Items_Create = {
+        items_Name: "Shop Clothes",
+        item_Price: 10000,
+        item_Count: 9999,
+      };
+
+      /* 
+      서버로 js -> json 변환 후 출력
+      */
+      const result = JSON.stringify(Items_Create, null, 2);
+      console.log(result);
+
+      /* 
+      서버로 js <- json 변환 후 출력(역변환)
+      */
+      console.log(JSON.parse(result));
+    </script>
+  </body>
+</html>

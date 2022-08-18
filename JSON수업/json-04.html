@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            1. 회원가입 객체생성 : 여러명 - user_insert
+                - 세부정보 : html 작업할 때 없어도 id 설정해야 함(primary key)
+                              - 중복되면 안됨, 숫자 형태로
+                  - userid(S) - 사용자아이디
+                  - passwd(S) - 사용자 비밀번호
+                  - username(S) - 사용자 이름
+        */
+
+      /* htnl 폼에서 넘어오는 변수 값 */
+      /*
+        한명일 떄
+      const user_insert = {
+        id: 1,
+        userid: "busanit1111",
+        passwd: "12345",
+        username: "홍길동",
+      };
+
+      if (user_insert.userid === "busanit" && user_insert.passwd === "12345") {
+        console.log("로그인 되었습니다.");
+      } else {
+        console.log("아이디와 비밀번호를 확인하세요.");
+      }
+      */
+
+      /* 여러명일때 */
+      const user_insert = [
+        {
+          id: 1, // id값이 중복되면 안됨
+          userid: "seoulit",
+          passwd: "123456",
+        },
+        {
+          id: 2,
+          userid: "dongtanit",
+          passwd: "qwert",
+        },
+        {
+          id: 3,
+          userid: "suwonit",
+          passwd: "asd123",
+        },
+      ];
+
+      console.log(user_insert[0].userid); //배열이니까 [배열번호]로 해야함
+      console.log(user_insert[1].userid);
+      console.log(user_insert[2].userid);
+
+      /*
+        객체, 배열 -> 루프
+        데이터 전체 출력 : loop 
+        - for (초기값, 조건, 증감값)
+        - 배열이름.forEach((별명) => { });
+      */
+
+      for (let i = 0; i < user_insert.length; i++) {
+        console.log(user_insert[i]);
+        console.log(user_insert[i].id);
+        console.log(user_insert[i].userid);
+        console.log(user_insert[i].passwd);
+      }
+
+      //자바스크립트 {} -> 중괄호를 쓸땐 데이터 2개 이상일 때 쓴다
+      user_insert.forEach((user) => {
+        console.log(user);
+        console.log(user.id);
+        console.log(user.userid);
+        console.log(user.passwd);
+      });
+
+      // 간략하게 뽑아서 쓸 수 있음
+      const { id, passwd } = user_insert[2];
+      console.log(id);
+      console.log(passwd);
+      console.log(`${id} - ${passwd}`);
+
+      console.log(JSON.stringify(user_insert, null, 2));
+      console.log(JSON.parse(JSON.stringify(user_insert), null, 2));
+    </script>
+  </body>
+</html>
