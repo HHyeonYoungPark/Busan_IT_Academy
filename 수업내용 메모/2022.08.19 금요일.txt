@@ -1,0 +1,258 @@
+08월 19일 금요일 (코로나로 인한 재택 공부 뻑)
+
+
+SELECT COUNT(emp_no) FROM employees WHERE hire_date >= '1990-01-01';
+
+hire_date가 날짜형식이기 때문에 where 문 안에 1990-01-01에 '' 따옴표로 묶어야 제대로 필터링 됩니다..........
+
+desc buyTBL_copy;
+-> copy를 할때 primary key 복사 안됨 책(210페이지 참고)
+===========================================================
+
+***select * from 테이블명 (where ~)(group by~)(order by~)(limit 개수);
+
+** select 컬럽 1, 집계함수 from 테이블명 group by 컬럼명;
+
+** select 컬럼명1,컬럼명2,집계함수 from 테이블명 group by 컬럼명1, 컬럼명2;
+
+이름 인구
+----------
+              
+서울 100
+대전 50
+경남 10
+부산 100
+서울 200
+부산 200
+서울 300
+     .
+     .
+     .
+----------
+서울 600
+부산 300
+     .
+     .
+     .
+ 묶어서 합계 내기
+
+
+테이블 이름은 buytbl, 아이디,수량을 출력하시오.
+
+select userid , amount from buytbl; ->12개
+
+select distinct(userid) from buytbl;  ->중복제거 후 5개
+
+select userid, amount from buytbl;
++--------+--------+
+| userid | amount |
++--------+--------+
+| KBS    |      2 |
+| KBS    |      1 |
+| JYP    |      1 |
+| BBK    |      5 |
+| KBS    |      3 |
+| BBK    |     10 |
+| SSK    |      5 |
+| EJW    |      2 |
+| EJW    |      1 |
+| BBK    |      2 |
+| EJW    |      1 |
+| BBK    |      2 |
++--------+--------+
+
+group by 는 이렇게 흩어져 있는 데이터를 묶어서 집계하여 보여줌.
+
+buytbl에서 userid, amount  를 출력하시오. 단, 이름으로 묶어서 amount의 전체의 합을 구하시오.
+
+
+집계함수 : sum,avg,max,min,count
+select 일반컬럼1,(일반컬럼2),집계함수  from 테이블이름 group by 일반컬럼1, (일반컬럼2);
+
+select userid, sum(amount) from buytbl group by userid;
+        일반컬럼  집계함수
+
+select userid ,sum(amount) as total from buytbl group by userid;
+
+select userid, avg(amount) from buytbl; ->이렇게하면 하나밖에 안나옴;
++--------+-------------+
+| userid | avg(amount) |
++--------+-------------+
+| KBS    |      2.9167 |
++--------+-------------+
+
+select userid, avg(amount) from buytbl group by userid;
++--------+-------------+
+| userid | avg(amount) |
++--------+-------------+
+| BBK    |      4.7500 |
+| EJW    |      1.3333 |
+| JYP    |      1.0000 |
+| KBS    |      2.0000 |
+| SSK    |      5.0000 |
++--------+-------------+
+
+select userid, round(avg(amount),1) from buytbl group by userid; ->소수점 한자리까지 표시
+
++--------+----------------------+
+| userid | round(avg(amount),1) |
++--------+----------------------+
+| BBK    |                  4.8 |
+| EJW    |                  1.3 |
+| JYP    |                  1.0 |
+| KBS    |                  2.0 |
+| SSK    |                  5.0 |
++--------+----------------------+
+
+
+소수점 없이 정수 표현 : 0
+
+select userid, round(avg(amount),0) as avg from buytbl group by userid;
+
++--------+------+
+| userid | avg  |
++--------+------+
+| BBK    |    5 |
+| EJW    |    1 |
+| JYP    |    1 |
+| KBS    |    2 |
+| SSK    |    5 |
++--------+------+
+
+======================================================
+
+**********group by
+제조사 , 차종 , 금액 , 재고수량
+
+create table company(
+comp_name varchar(20),
+como_cars varchar(20),
+cars_price int,
+cars_stock int
+);
+
+insert into company values('현대차','아반떼',2000,10);
+insert into company values('현대차','아반떼',1500,5);
+insert into company values('현대차','아반떼',3000,1);
+
+insert into company values('기아차','모닝',1000,2);
+insert into company values('기아차','모닝',2000,7);
+
+insert into company values('기아차','k3',3000,11);
+insert into company values('기아차','k7',3000,77);
+insert into company values('기아차','k7',5000,22);
+
+insert into company values('쌍용','코란도',3000,77);
+insert into company values('쌍용','코란도',5000,22);
+
+
+select comp_name,sum(cars_stock)as stock from company;
++-----------+-------+
+| comp_name | stock |
++-----------+-------+
+| 현대차    |   135 |
++-----------+-------+
+
+select comp_name,sum(cars_stock)as stock from company group by comp_name;
+
++-----------+-------+
+| comp_name | stock |
++-----------+-------+
+| 현대차    |    16 |
+| 기아차    |   119 |
+| 쌍용      |    99 |
++-----------+-------+
+
+company 테이블에서 회사이름,차종,가격,재고를 출력하시오.
+(단,금액의 총합, 재고의 총합을 그룹화하여 출력)
+
+select comp_name, como_cars,sum(cars_price),sum(cars_stock) from
+company group by comp_name,como_cars;
+
++-----------+-----------+-----------------+-----------------+
+| comp_name | como_cars | sum(cars_price) | sum(cars_stock) |
++-----------+-----------+-----------------+-----------------+
+| 현대차    | 아반떼    |            6500 |              16 |
+| 기아차    | 모닝      |            3000 |               9 |
+| 기아차    | k3        |            3000 |              11 |
+| 기아차    | 코란도    |            8000 |              99 |
+| 쌍용      | 코란도    |            8000 |              99 |
++-----------+-----------+-----------------+-----------------+
+앞에서 일반컬럼 2개 사용 -> 뒤에서도 2개사용
+
+group by ~~~~~~~~~~~~~~~ 그룹화한 자료를 조건처리
+
+group by ~having
+
+buytbl 테이블에서 사용자아이디, 가격*수량의 합을 그룹화하여 표시하시오.
+
+desc buytbl;
+
++-----------+----------+------+-----+---------+----------------+
+| Field     | Type     | Null | Key | Default | Extra          |
++-----------+----------+------+-----+---------+----------------+
+| num       | int      | NO   | PRI | NULL    | auto_increment |
+| userID    | char(8)  | NO   | MUL | NULL    |                |
+| prodName  | char(6)  | NO   |     | NULL    |                |
+| groupName | char(4)  | YES  |     | NULL    |                |
+| price     | int      | NO   |     | NULL    |                |
+| amount    | smallint | NO   |     | NULL    |                |
++-----------+----------+------+-----+---------+----------------+
+
+select userid,(price*amount) as 총구매액 from buytbl;
++--------+----------+
+| userid | 총구매액 |
++--------+----------+
+| KBS    |       60 |
+| KBS    |     1000 |
+| JYP    |      200 |
+| BBK    |     1000 |
+| KBS    |      150 |
+| BBK    |      800 |
+| SSK    |       75 |
+| EJW    |       30 |
+| EJW    |       50 |
+| BBK    |       60 |
+| EJW    |       15 |
+| BBK    |       60 |
++--------+----------+
+
+select userid,sum(price*amount) as 총구매액 from buytbl
+group by userid;
+
++--------+----------+
+| userid | 총구매액 |
++--------+----------+
+| BBK    |     1920 |
+| EJW    |       95 |
+| JYP    |      200 |
+| KBS    |     1210 |
+| SSK    |       75 |
++--------+----------+
+
+위 조건 + 총구매액이 1000이상인것만 출려하시오.
+
+select userid,sum(price*amount) as 총구매액 from buytbl
+group by userid having sum(price*amount) >1000;
+
++--------+----------+
+| userid | 총구매액 |
++--------+----------+
+| BBK    |     1920 |
+| KBS    |     1210 |
++--------+----------+
+
+
+****select *from 테이블명(where~)(group by~ having)(order by~)(limit 개수);
+
+select userid,sum(price*amount) as 총구매액 from buytbl
+group by userid having sum(price*amount) >1000
+order by userid desc limit 1;
+
++--------+----------+
+| userid | 총구매액 |
++--------+----------+
+| KBS    |     1210 |
++--------+----------+
+
+
