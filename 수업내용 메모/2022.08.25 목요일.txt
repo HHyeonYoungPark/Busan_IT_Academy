@@ -1,0 +1,42 @@
+08월 25일 목요일
+
+javaswing 팀플 과제함
+
+comboPayments.setEnabled(true);
+comboBankSelect.setEnabled(true);
+comboInstallment.setEnabled(true);
+tfCardNum.setEnabled(true);
+passwdNum.setEnabled(true);
+cvcNum.setEnabled(true);
+
+
+
+String[] header = {"항목","정보"};
+String[][] contents = new String[4][2];
+
+contents[0][0] = "결제 수단";
+contents[1][0] = "카드사";
+contents[2][0] = "카드 번호";
+contents[3][0] = "할부";
+
+modelReserveInfo = new DefaultTableModel(contents,header);
+tblReserveInfo.getColumn("항목").setPreferredWidth(90);
+tblReserveInfo.getColumn("정보").setPreferredWidth(173);
+tblReserveInfo.setRowHeight(30);
+
+
+spReserveInfo.setBounds(30, 60, 263, 150);
+spReserveInfo.setBounds(293, 60, 262, 150);
+
+parent.setPaymentInfo(payment);
+
+
+	total[0] = PaymentsCard;
+	total[1] = Company;
+	total[2] = Installment;
+	total[3] = CardNum;
+//	total[4] = "";
+//	total[5] = roomchoice;
+//	total[6] = num;
+//	total[7] = pleasemsg;
+//	total[8] = totalprice;

@@ -1,0 +1,21 @@
+08월 26일 금요일
+
+java swing 팀프로젝트함
+
+total = new String[13];
+			
+			total[0] = PaymentsCard;
+			total[1] = Company;
+			total[2] = CardNum;
+			total[3] = Installment;
+			
+			total[4] = PaymentsAccount;
+			total[5] = BankName;
+			total[6] = AccountNum;
+			total[7] = CashReceipt;
+			total[8] = PhoneNum1;
+
+			total[9] = PaymentsPhone;
+			total[10] = PhoneNum2;
+			
+			total[11] = PaymentsVisit;
