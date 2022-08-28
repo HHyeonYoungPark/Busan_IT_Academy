@@ -1,0 +1,936 @@
+package pay;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import designUtil.RoundedButton;
+import main.Reservation;
+import main.Reservation.PanelName;
+import memberInterface.PaymentInfo;
+import memberInterface.ReserveInfo;
+
+/**
+ * @author 박현영
+ * @contents 결제정보 페이지(6)를 구현하기 위한 클래스 
+ */
+
+public class PayForm extends JPanel implements ItemListener, ActionListener,ComponentListener{
+	Reservation parent;
+	
+	RoundedButton btnMain, btnToBack, btnPay;
+	JLabel lblReserveInfo, lblPayments, lblPaymentInfo, lblBankSelect, lblInstallment, lblCardNum, lblPasswd, 
+	 lblAccountPwNum, lblCvc, lblAccountNum, lblCashReceipt, lblPhoneNum, lblPhoneNum2, lblAgree, lblVisitInfo,
+	 lblPhonePayInfo;
+	JTextArea taVisitInfo, taPhonePayInfo;
+	JScrollPane spReserveInfo, spReserveInfo2, spPayInfo, spPhonePayInfo, spVisitInfo , spPay1Info, spPay2Info, spPay3Info, spPay4Info;
+	JComboBox comboPayments, comboBankSelect, comboInstallment, comboAccountSelect;
+	JTextField tfCardNum, tfPhoneNum, tfPhoneNum2, tfAccount;
+	JPasswordField passwdNum, AccontpasswdNum, cvcNum;
+	JRadioButton radioBtnYes, radioBtnNo;
+	ButtonGroup radioGroup;
+	JPanel pnlPay, pnlPay1, pnlPay2, pnlPay3, pnlPay4, pnlAgree;
+	JTable tblReserveInfo, tblReserveInfo2, tblPaymentInfo, tblPayInfo, tblPay1Info, tblPay2Info, tblPay3Info, tblPay4Info;
+	JCheckBox checkBoxAgree;
+	DefaultTableModel modelReserveInfo, modelReserveInfo2, modelPaymentInfo, modelPay1Info, modelPay2Info, modelPay3Info, modelPay4Info;
+	
+	String[] payments = {"결제수단 선택","신용/체크카드","간편 계좌 결제","휴대폰 결제","현장 결제"};
+	String[] BankSelect = {"카드사 선택","신한","국민","비씨","우리","외환","하나","NH","현대","삼성","롯데","씨티"};
+	String[] Installment = {"할부 선택","일시불","2개월","3개월","4개월","5개월","6개월"};
+	String[] accountSelect = {"은행 선택","신한","국민","우리","외환","하나","NH"};
+	String[] total;
+	
+	public PayForm(Reservation parent){
+		// 여기에 기본 소스코드 구현
+		// 내부에 구현하는 GUI는 JPanel 단위로 클래스를 만들어서 붙여넣으면 좋습니다.
+		this.parent = parent;
+		this.addComponentListener(this);
+		this.setBackground(new Color(204, 229, 255));
+		
+		// Button 설정(메인버튼,전단계버튼,결제버튼)	
+		btnMain = new RoundedButton("메인으로");
+		btnToBack = new RoundedButton("뒤로가기");
+		btnPay = new RoundedButton("결제하기");
+		btnMain.setForeground(Color.WHITE);
+		btnToBack.setForeground(Color.WHITE);
+		btnPay.setForeground(Color.WHITE);
+	
+		btnMain.setBackground(new Color(0, 102, 204));
+		btnToBack.setBackground(new Color(0, 102, 204));
+		btnPay.setBackground(new Color(0, 102, 204));
+		btnMain.addActionListener(this);
+		btnToBack.addActionListener(this);
+		btnPay.addActionListener(this);
+		
+		
+		// Label설정(예약정보,결제수단,결제정보)
+		lblReserveInfo = new JLabel("예약정보");
+		lblPayments = new JLabel("결제수단선택");
+		lblPaymentInfo = new JLabel("결제정보요악");
+		lblReserveInfo.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblPayments.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblPaymentInfo.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		
+		// JTable(예약정보,결제정보) - ScrollPane 추가
+//		String[] header = {"예약자명","지역1","지역2","예약날짜","선택한 룸","인원","요청사항","총액"};
+//		String[][] contents = new String[1][8];		
+//		modelReserveInfo = new DefaultTableModel(contents, header);
+//		tblReserveInfo = new JTable(modelReserveInfo);
+//		spReserveInfo = new JScrollPane(tblReserveInfo);
+		
+		// 예약내용을 담을 table 설정(왼쪽 table)
+		String[] header = {"항목","정보"};
+		String[][] contents = new String[4][2];	
+		contents[0][0] = "예약자명";
+		contents[1][0] = "지역1";
+		contents[2][0] = "지역2";
+		contents[3][0] = "예약날짜";
+		modelReserveInfo = new DefaultTableModel(contents, header);
+		//테이블 임의 수정불가능 기능
+		modelReserveInfo = new DefaultTableModel(contents, header) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		tblReserveInfo = new JTable(modelReserveInfo);
+		// 테이블 열,행 선택불가능 기능
+		tblReserveInfo.setFocusable(false);
+		tblReserveInfo.setRowSelectionAllowed(false);
+		tblReserveInfo.getColumn("항목").setPreferredWidth(87);
+		tblReserveInfo.getColumn("정보").setPreferredWidth(165);
+		tblReserveInfo.setRowHeight(32);
+		
+		spReserveInfo = new JScrollPane(tblReserveInfo);
+		
+		// 예약내용을 담을 table 설정(오른쪽 table)
+		String[] header2 = {"항목","정보"};
+		String[][] contents2 = new String[4][2];	
+		contents2[0][0] = "선택한 룸";
+		contents2[1][0] = "인원";
+		contents2[2][0] = "요청사항";
+		contents2[3][0] = "총액";
+		modelReserveInfo2 = new DefaultTableModel(contents2, header2);
+		//테이블 임의 수정불가능 기능
+		modelReserveInfo2 = new DefaultTableModel(contents2, header2) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+		tblReserveInfo2 = new JTable(modelReserveInfo2);
+		// 테이블 열,행 선택불가능 기능
+		tblReserveInfo2.setFocusable(false);
+		tblReserveInfo2.setRowSelectionAllowed(false);
+		tblReserveInfo2.getColumn("항목").setPreferredWidth(88);
+		tblReserveInfo2.getColumn("정보").setPreferredWidth(165);
+		tblReserveInfo2.setRowHeight(32);
+		
+		spReserveInfo2 = new JScrollPane(tblReserveInfo2);
+		
+		tblPaymentInfo = new JTable();
+		spPayInfo = new JScrollPane(tblPaymentInfo);
+		
+		
+		// 결제 수단 선택 ComboBox	
+		comboPayments = new JComboBox(payments);
+		comboPayments.addItemListener(this);
+		
+		// 결제 수단 선택에 따른 pnl
+		pnlPay = new JPanel();
+		pnlPay.setLayout(null);
+		pnlPay.setBorder(new LineBorder(Color.GRAY));
+		
+		// 1.신용/체크카드 결제
+		pnlPay1 = new JPanel();		
+		
+//		lblBankSelect = new JLabel("카드사 선택");
+//		lblInstallment = new JLabel("할부 선택");
+		lblCardNum = new JLabel("카드 번호");
+		lblPasswd = new JLabel("비밀 번호");
+		lblCvc = new JLabel(" cvc");
+		lblCardNum.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblPasswd.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblCvc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		
+		comboBankSelect = new JComboBox(BankSelect);
+		comboInstallment = new JComboBox(Installment);
+		comboBankSelect.addItemListener(this);
+		comboInstallment.addItemListener(this);
+		tfCardNum = new JTextField();
+		passwdNum = new JPasswordField();
+		cvcNum = new JPasswordField();
+		
+//		lblBankSelect.setBounds(10, 10, 80, 25);
+//		lblInstallment.setBounds(10, 42, 80, 25);
+		lblCardNum.setBounds(10, 74, 80, 25);
+		lblPasswd.setBounds(10, 105, 80, 25);
+		lblCvc.setBounds(10, 137, 80, 25);
+		comboBankSelect.setBounds(10, 10, 220, 25);
+		comboInstallment.setBounds(10, 42, 220, 25);
+		tfCardNum.setBounds(95, 74, 135, 25);
+		passwdNum.setBounds(95, 105, 48, 25);
+		cvcNum.setBounds(95, 137, 48, 25);
+		
+		pnlPay1.setLayout(null);
+		pnlPay1.setBorder(new LineBorder(Color.GRAY));
+		
+//		pnlPay1.add(lblBankSelect);
+//		pnlPay1.add(lblInstallment);
+		pnlPay1.add(lblCardNum);
+		pnlPay1.add(lblPasswd);
+		pnlPay1.add(lblCvc);
+		pnlPay1.add(comboBankSelect);
+		pnlPay1.add(comboInstallment);
+		pnlPay1.add(tfCardNum);
+		pnlPay1.add(passwdNum);
+		pnlPay1.add(cvcNum);
+		
+		
+		// 2.간편계좌 결제
+		pnlPay2 = new JPanel();
+		
+		lblAccountNum = new JLabel("계좌 번호");
+		lblCashReceipt = new JLabel("현금 영수증");
+		lblPhoneNum = new JLabel("휴대폰 번호");
+		lblAccountPwNum = new JLabel("비밀 번호");
+		lblAccountNum.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblCashReceipt.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblPhoneNum.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblAccountPwNum.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		
+		comboAccountSelect = new JComboBox(accountSelect);
+		comboAccountSelect.addItemListener(this);
+		
+		AccontpasswdNum = new JPasswordField();
+		
+		radioBtnYes = new JRadioButton("신청");
+		radioBtnNo = new JRadioButton("미신청");
+		radioGroup = new ButtonGroup();
+		radioGroup.add(radioBtnYes);
+		radioGroup.add(radioBtnNo);
+		
+		tfAccount = new JTextField();
+		tfPhoneNum = new JTextField();
+
+		comboAccountSelect.setBounds(10, 10, 220, 25);
+		lblAccountNum.setBounds(10, 42, 60, 25);
+		lblAccountPwNum.setBounds(10, 74, 75, 25);
+		lblCashReceipt.setBounds(10, 105, 80, 25);
+		lblPhoneNum.setBounds(10, 137, 70, 25);
+		tfAccount.setBounds(90, 42, 140, 25);
+		AccontpasswdNum.setBounds(90, 74, 48, 25);
+		radioBtnYes.setBounds(90, 105, 50, 25);
+		radioBtnNo.setBounds(140, 105, 65, 25);
+		tfPhoneNum.setBounds(90, 137, 140, 25);
+		
+		pnlPay2.setLayout(null);
+		pnlPay2.setBorder(new LineBorder(Color.GRAY));
+		
+		pnlPay2.add(comboAccountSelect);
+		pnlPay2.add(lblAccountNum);
+		pnlPay2.add(lblAccountPwNum);
+		pnlPay2.add(lblCashReceipt);
+		pnlPay2.add(AccontpasswdNum);
+		pnlPay2.add(radioBtnYes);
+		pnlPay2.add(radioBtnNo);
+		pnlPay2.add(lblPhoneNum);
+		pnlPay2.add(tfPhoneNum);
+		pnlPay2.add(tfAccount);
+		
+		
+		// 3.휴대폰 결제
+		pnlPay3 = new JPanel();
+		
+		lblPhoneNum2 = new JLabel("휴대폰 번호");
+		lblPhonePayInfo = new JLabel("휴대폰 결제 안내");
+		lblPhoneNum2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lblPhonePayInfo.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		
+		tfPhoneNum2 = new JTextField();
+		
+		taPhonePayInfo = new JTextArea();
+		taPhonePayInfo.setText("휴대폰 결제 이용시 결제대금은 당월 \r\n"
+							 + "통신요금에 포함되어 청구됩니다.\r\n"+"\n"
+							 + "통신 요금에 대해서 미납을 하거나 \r\n"
+							 + "체납이 되어 있는 경우 결제서비스를 \r\n"
+							 + "이용하실 수 없습니다.");
+		
+		taPhonePayInfo.setEditable(false);
+		spPhonePayInfo = new JScrollPane(taPhonePayInfo,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		lblPhoneNum2.setBounds(10, 10, 70, 25);
+		tfPhoneNum2.setBounds(90, 10, 140, 25);
+		lblPhonePayInfo.setBounds(10, 42, 120, 25);
+		spPhonePayInfo.setBounds(10, 74, 220, 75);
+		
+		pnlPay3.setLayout(null);
+		pnlPay3.setBorder(new LineBorder(Color.GRAY));
+		
+		pnlPay3.add(lblPhoneNum2);
+		pnlPay3.add(tfPhoneNum2);
+		pnlPay3.add(lblPhonePayInfo);
+		pnlPay3.add(spPhonePayInfo);
+		
+		// 4.현장 결제
+		pnlPay4 = new JPanel();
+		
+		lblVisitInfo = new JLabel("현장 결제 안내");
+		lblVisitInfo.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		
+		taVisitInfo = new JTextArea();
+		taVisitInfo.setText("현장 결제를 선택하셨습니다.\r\n"+"\n"
+				+ "호텔 방문 시 직원의 안내에 따라 \r\n"
+				+ "현장에서 결제해주십시오. \r\n"+"\n"
+				+ "노쇼 발생시 패널티와 위약금이 \r\n"
+				+ "청구됨을 알려드립니다.");
+		taVisitInfo.setEditable(false);
+		spVisitInfo = new JScrollPane(taVisitInfo,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
+		pnlPay4.setLayout(null);
+		pnlPay4.setBorder(new LineBorder(Color.GRAY));
+		
+		lblVisitInfo.setBounds(10, 10, 220, 25);
+		spVisitInfo.setBounds(10, 42, 220,100);
+		
+		pnlPay4.add(lblVisitInfo);
+		pnlPay4.add(spVisitInfo);
+		
+		// 결제시 개인정보 동의 pnl
+		
+		pnlAgree = new JPanel();
+		
+		lblAgree = new JLabel("예약 내용을 확인, 정보 제공 등에 동의");
+		lblAgree.setFont(new Font("맑은 고딕", Font.BOLD, 11));
+		
+		checkBoxAgree = new JCheckBox();
+		checkBoxAgree.addItemListener(this);
+				
+		lblAgree.setBounds(10, 10, 210, 30);
+		checkBoxAgree.setBounds(210, 10, 20, 30);
+		
+		pnlAgree.setLayout(null);
+		pnlAgree.setBorder(new LineBorder(Color.GRAY));
+		
+		pnlAgree.add(lblAgree);
+		pnlAgree.add(checkBoxAgree);
+		
+		
+		// 결제 정보받아오는 JTable
+		
+		// 1.카드결제 정보 tbl
+		
+		String[] Pay1header = {"항목","정보"};
+		String[][] Pay1contents = new String[5][2];
+		
+		Pay1contents[0][0] = "결제 수단";
+		Pay1contents[1][0] = "카드사";
+		Pay1contents[2][0] = "카드 번호";
+		Pay1contents[3][0] = "할부";
+		Pay1contents[4][0] = "총 가격";
+		
+		modelPay1Info = new DefaultTableModel(Pay1contents,Pay1header) {
+			// 테이블 임의 수정불가능 기능
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+		
+		tblPay1Info = new JTable(modelPay1Info);
+		// 테이블 열,행 선택 불가능 기능
+		tblPay1Info.setFocusable(false);
+		tblPay1Info.setRowSelectionAllowed(false);
+		tblPay1Info.getColumn("항목").setPreferredWidth(80);
+		tblPay1Info.getColumn("정보").setPreferredWidth(160);
+		tblPay1Info.setRowHeight(30);
+			
+		spPay1Info = new JScrollPane(tblPay1Info);
+		spPay1Info.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		
+		// 2.계좌결제 정보 tbl
+		
+		String[] Pay2header = {"항목","정보"};
+		String[][] Pay2contents = new String[6][2];
+		
+		Pay2contents[0][0] = "결제 수단";
+		Pay2contents[1][0] = "은행";
+		Pay2contents[2][0] = "계좌 번호";
+		Pay2contents[3][0] = "현금영수증";
+		Pay2contents[4][0] = "휴대폰 번호";
+		Pay2contents[5][0] = "총 가격";
+		
+		modelPay2Info = new DefaultTableModel(Pay2contents,Pay2header) {
+			// 테이블 임의 수정불가능 기능
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+		
+		tblPay2Info = new JTable(modelPay2Info);
+		tblPay2Info.setFocusable(false);
+		tblPay2Info.setRowSelectionAllowed(false);
+		tblPay2Info.getColumn("항목").setPreferredWidth(80);
+		tblPay2Info.getColumn("정보").setPreferredWidth(160);
+		tblPay2Info.setRowHeight(30);
+		// 테이블 열,행 선택 불가능 기능
+		spPay2Info = new JScrollPane(tblPay2Info);
+		spPay2Info.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		
+		// 3.휴대폰결제 정보 tbl
+		
+		String[] Pay3header = {"항목","정보"};
+		String[][] Pay3contents = new String[3][2];
+		
+		Pay3contents[0][0] = "결제 수단";
+		Pay3contents[1][0] = "휴대폰 번호";
+		Pay3contents[2][0] = "총 금액";
+		
+		modelPay3Info = new DefaultTableModel(Pay3contents,Pay3header) {
+			// 테이블 임의 수정불가능 기능
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+		
+		tblPay3Info = new JTable(modelPay3Info);
+		// 테이블 열,행 선택 불가능 기능
+		tblPay3Info.setFocusable(false);
+		tblPay3Info.setRowSelectionAllowed(false);
+		tblPay3Info.getColumn("항목").setPreferredWidth(80);
+		tblPay3Info.getColumn("정보").setPreferredWidth(160);
+		tblPay3Info.setRowHeight(30);
+			
+		spPay3Info = new JScrollPane(tblPay3Info);
+		spPay3Info.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+		
+		// 4.현장결제 정보 tbl
+		
+		String[] Pay4header = {"항목","정보"};
+		String[][] Pay4contents = new String[2][2];
+		
+		Pay4contents[0][0] = "결제 수단";
+		Pay4contents[1][0] = "총 금액";
+		
+		modelPay4Info = new DefaultTableModel(Pay4contents,Pay4header) {
+			// 테이블 임의 수정불가능 기능
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+
+		tblPay4Info = new JTable(modelPay4Info);
+		// 테이블 열,행 선택 불가능 기능
+		tblPay4Info.setFocusable(false);
+		tblPay4Info.setRowSelectionAllowed(false);
+		tblPay4Info.getColumn("항목").setPreferredWidth(80);
+		tblPay4Info.getColumn("정보").setPreferredWidth(160);
+		tblPay4Info.setRowHeight(30);
+			
+		spPay4Info = new JScrollPane(tblPay4Info);
+		spPay4Info.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		
+		// 각 요소 위치지정
+		btnToBack.setBounds(0, 0, 90, 25);
+		btnMain.setBounds(100, 0, 90, 25);
+		lblReserveInfo.setBounds(30, 40, 70, 20);
+//		spReserveInfo.setBounds(30, 60, 525, 150);
+		spReserveInfo.setBounds(30, 60, 262, 151);
+		spReserveInfo2.setBounds(292, 60, 263, 151);
+		lblPayments.setBounds(30, 230, 80, 20);
+		comboPayments.setBounds(30, 250, 240, 30);
+		pnlPay.setBounds(30, 290, 240, 172);
+		pnlAgree.setBounds(30, 480, 240, 50);
+		lblPaymentInfo.setBounds(315, 230, 80, 20);
+		spPayInfo.setBounds(315, 250, 240, 212);
+		btnPay.setBounds(315, 480, 240, 50);
+			
+		this.setLayout(null);
+		this.add(btnMain);
+		this.add(btnToBack);
+		this.add(lblReserveInfo);
+		this.add(spReserveInfo);
+		this.add(spReserveInfo2);
+		this.add(lblPayments);
+		this.add(comboPayments);
+		this.add(pnlPay);
+		this.add(pnlAgree);
+		this.add(lblPaymentInfo);
+		this.add(spPayInfo);
+		this.add(btnPay);
+	
+	}
+	
+	
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		
+		// 결제수단 combo선택시 - 각 결제수단 세부정보 입력 pnl로 변경, 동의 체크 초기화, 입력되어 있던 정보 초기화
+		if(e.getSource()==comboPayments) {
+			if((String)comboPayments.getSelectedItem()==("결제수단 선택")) {
+				// 동의 체크박스 초기화, pnl에 입력값 초기화
+				checkBoxAgree.setSelected(false);
+				pnlPay.removeAll();
+				spPayInfo.removeAll();
+				
+			}else if((String)comboPayments.getSelectedItem()==("신용/체크카드")) {
+				// 동의 체크박스 초기화, pnl에 입력값 초기화
+				checkBoxAgree.setSelected(false);
+				comboBankSelect.setSelectedItem("카드사 선택");
+				comboInstallment.setSelectedItem("할부 선택");
+				tfCardNum.setText("");
+				passwdNum.setText("");
+				cvcNum.setText("");
+				modelPay1Info.setValueAt("", 0, 1);
+				modelPay1Info.setValueAt("", 1, 1);
+				modelPay1Info.setValueAt("", 2, 1);
+				modelPay1Info.setValueAt("", 3, 1);
+				modelPay1Info.setValueAt("", 4, 1);
+				
+				// 카드결제 입력폼 pnl로 변경
+				pnlPay.removeAll();
+				pnlPay1.setBounds(0, 0, 240, 172);
+				pnlPay.add(pnlPay1);
+				
+				// 카드결제정보 요약폼 table로 변경
+				spPayInfo.removeAll();
+				spPay1Info.setBounds(0, 0, 240, 212);
+				spPayInfo.add(spPay1Info);
+			
+				
+			}else if((String)comboPayments.getSelectedItem()==("간편 계좌 결제")) {
+				// 동의 체크박스 초기화, pnl에 입력값 초기화
+				checkBoxAgree.setSelected(false);
+				comboAccountSelect.setSelectedItem("은행 선택");
+				tfAccount.setText("");
+				AccontpasswdNum.setText("");
+				radioGroup.clearSelection();
+				tfPhoneNum.setText("");
+				modelPay2Info.setValueAt("", 0, 1);
+				modelPay2Info.setValueAt("", 1, 1);
+				modelPay2Info.setValueAt("", 2, 1);
+				modelPay2Info.setValueAt("", 3, 1);
+				modelPay2Info.setValueAt("", 4, 1);
+				modelPay2Info.setValueAt("", 5, 1);
+				
+				// 계좌결제 입력폼 pnl로 변경
+				pnlPay.removeAll();
+				pnlPay2.setBounds(0, 0, 240, 172);
+				pnlPay.add(pnlPay2);
+				
+				// 계좌결제정보 요약폼 table로 변경
+				spPayInfo.removeAll();
+				spPay2Info.setBounds(0, 0, 240, 212);
+				spPayInfo.add(spPay2Info);
+			
+				
+			}else if((String)comboPayments.getSelectedItem()==("휴대폰 결제")) {
+				// 동의 체크박스 초기화, pnl에 입력값 초기화
+				checkBoxAgree.setSelected(false);
+				tfPhoneNum2.setText("");
+				modelPay3Info.setValueAt("", 0, 1);
+				modelPay3Info.setValueAt("", 1, 1);
+				modelPay3Info.setValueAt("", 2, 1);
+				
+				// 휴대폰결제 입력폼 pnl로 변경
+				pnlPay.removeAll();
+				pnlPay3.setBounds(0, 0, 240, 172);
+				pnlPay.add(pnlPay3);
+				
+				// 휴대폰결제정보 요약폼 table로 변경
+				spPayInfo.removeAll();
+				spPay3Info.setBounds(0, 0, 240, 212);
+				spPayInfo.add(spPay3Info);
+			
+				
+			}else if((String)comboPayments.getSelectedItem()==("현장 결제")) {
+				// 동의 체크박스 초기화, pnl에 입력값 초기화
+				checkBoxAgree.setSelected(false);
+				modelPay4Info.setValueAt("", 0, 1);
+				modelPay4Info.setValueAt("", 1, 1);
+				
+				// 현장결제 입력폼 pnl로 변경
+				pnlPay.removeAll();
+				pnlPay4.setBounds(0, 0, 240, 172);
+				pnlPay.add(pnlPay4);
+				
+				// 현장결제정보 요약폼 table로 변경
+				spPayInfo.removeAll();
+				spPay4Info.setBounds(0, 0, 240, 212);
+				spPayInfo.add(spPay4Info);
+		
+				
+			}
+			this.repaint();
+			this.validate();
+		}
+			//결제정보 입력 후 동의체크하면 입력내용이 결제요약폼에 전달됨
+			if(e.getSource()==checkBoxAgree) {
+				if(checkBoxAgree.isSelected()) {
+					if((String)comboPayments.getSelectedItem()==("결제수단 선택")) {
+						JOptionPane.showMessageDialog(null, "결제수단을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+					}
+					
+					else if((String)comboPayments.getSelectedItem()==("신용/체크카드")) {
+						
+						String PaymentsCard = ((String)comboPayments.getSelectedItem());
+						String Company = ((String)comboBankSelect.getSelectedItem());
+						String Installment = ((String)comboInstallment.getSelectedItem());
+						String CardNum = tfCardNum.getText();
+						
+						if((String)comboBankSelect.getSelectedItem()==("카드사 선택")) {
+							JOptionPane.showMessageDialog(null, "카드사를 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if((String)comboInstallment.getSelectedItem()==("할부 선택")) {
+							JOptionPane.showMessageDialog(null, "할부기간을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(tfCardNum.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "카드번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(passwdNum.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(cvcNum.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "cvc번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(!checkBoxAgree.isSelected()) {
+								JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+						}else {
+							// 입력한 카드결제정보 넘겨받기
+							modelPay1Info.setValueAt(PaymentsCard, 0, 1);
+							modelPay1Info.setValueAt(Company, 1, 1);
+							modelPay1Info.setValueAt(CardNum, 2, 1);
+							modelPay1Info.setValueAt(Installment, 3, 1);
+							modelPay1Info.setValueAt(parent.getReserveInfo().payment, 4, 1);
+						}
+					}
+						
+					else if((String)comboPayments.getSelectedItem()==("간편 계좌 결제"))	{
+						
+						String PaymentsAccount = ((String)comboPayments.getSelectedItem());
+						String  BankName = ((String)comboAccountSelect.getSelectedItem());
+						String AccountNum = tfAccount.getText();
+						String CashReceipt = "";
+						String PhoneNum = tfPhoneNum.getText();
+						
+						if(radioBtnYes.isSelected()==true) {
+							CashReceipt = radioBtnYes.getText();
+						}else if(radioBtnNo.isSelected()==true) {
+							CashReceipt = radioBtnNo.getText();
+						}
+						
+						if((String)comboAccountSelect.getSelectedItem()==("은행 선택")) {
+							JOptionPane.showMessageDialog(null, "은행을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(tfAccount.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "계좌번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(AccontpasswdNum.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(tfPhoneNum.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "휴대폰 번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(!checkBoxAgree.isSelected()) {
+							JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+						}else {
+							// 입력한 계좌결제정보 넘겨받기
+							modelPay2Info.setValueAt(PaymentsAccount, 0, 1);
+							modelPay2Info.setValueAt(BankName, 1, 1);
+							modelPay2Info.setValueAt(AccountNum, 2, 1);
+							modelPay2Info.setValueAt(CashReceipt, 3, 1);
+							modelPay2Info.setValueAt(PhoneNum, 4, 1);
+							modelPay2Info.setValueAt(parent.getReserveInfo().payment, 5, 1);
+						}					
+					}
+					
+					else if((String)comboPayments.getSelectedItem()==("휴대폰 결제")) {
+						
+						String PaymentsPhone = ((String)comboPayments.getSelectedItem());
+						String PhoneNum = tfPhoneNum2.getText();
+						
+						if(tfPhoneNum2.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "휴대폰 번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+						}else if(!checkBoxAgree.isSelected()) {
+							JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+						}else{
+							// 입력한 휴대폰결제정보 넘겨받기
+							modelPay3Info.setValueAt(PaymentsPhone, 0, 1);
+							modelPay3Info.setValueAt(PhoneNum, 1, 1);	
+							modelPay3Info.setValueAt(parent.getReserveInfo().payment, 2, 1);	
+						}				
+					}
+					
+					else if((String)comboPayments.getSelectedItem()==("현장 결제")) {		
+						
+						String PaymentsVisit = ((String)comboPayments.getSelectedItem());
+						
+						if(!checkBoxAgree.isSelected()) {
+							JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+						 }else{
+							// 입력한 현장결제정보 넘겨받기
+							 modelPay4Info.setValueAt(PaymentsVisit, 0, 1);		
+								modelPay4Info.setValueAt(parent.getReserveInfo().payment, 1, 1);
+						 }
+					}	
+				}			
+			}
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()== btnMain) {
+			//메인으로 버튼을 눌렀을때 메인화면으로 이동
+			 parent.changePanel(PanelName.Intro);
+		}
+		
+		if(e.getSource()== btnToBack) {
+			//뒤로가기 버튼을 눌렀을때 이전 단계인 예약페이지으로 이동
+			 parent.changePanel(PanelName.Reserve);
+		}
+		
+		if(e.getSource()==btnPay) {
+			//결제하기 버튼을 눌렀을 때
+			int price = parent.getReserveInfo().payment;
+			
+			// 총가격은 getReserveInfo에서 import
+			String StringPrice = Integer.toString(price);
+			
+			// 입력받은 카드결제 정보
+			String PaymentsCard = ((String)comboPayments.getSelectedItem());
+			String Company = ((String)comboBankSelect.getSelectedItem());
+			String Installment = ((String)comboInstallment.getSelectedItem());
+			String CardNum = tfCardNum.getText();
+			
+			// 입력받은 계좌결제 정보
+			String PaymentsAccount = ((String)comboPayments.getSelectedItem());
+			String  BankName = ((String)comboAccountSelect.getSelectedItem());
+			String AccountNum = tfAccount.getText();
+			String CashReceipt ="";
+				if(radioBtnYes.isSelected()==true) {
+				CashReceipt = radioBtnYes.getText();
+				}else if(radioBtnNo.isSelected()==true) {
+				CashReceipt = radioBtnNo.getText();
+				}
+			String PhoneNum1 = tfPhoneNum.getText();
+			
+			// 입력받은 휴대폰결제 정보
+			String PaymentsPhone = ((String)comboPayments.getSelectedItem());
+			String PhoneNum2 = tfPhoneNum2.getText();
+			
+			// 입력받은 현장결제 정보
+			String PaymentsVisit = ((String)comboPayments.getSelectedItem());
+			
+			
+			
+			total = new String[13];
+			
+			//카드결제
+			total[0] = PaymentsCard;
+			total[1] = Company;
+			total[2] = CardNum;
+			total[3] = Installment;
+			
+			//계좌결제
+			total[4] = PaymentsAccount;
+			total[5] = BankName;
+			total[6] = AccountNum;
+			total[7] = CashReceipt;
+			total[8] = PhoneNum1;
+			
+			//휴대폰결제
+			total[9] = PaymentsPhone;
+			total[10] = PhoneNum2;
+			
+			//현장결제
+			total[11] = PaymentsVisit;
+			
+			//총가격, getReserveInfo에서 import
+			total[12] = StringPrice;
+			
+			//결제하기 버튼을 누를시 결제수단 combo는 결제수단선택 으로 선택되어 있을때
+			if((String)comboPayments.getSelectedItem()==("결제수단 선택")) {
+				JOptionPane.showMessageDialog(null, "결제수단을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+			
+				//결제하기 버튼을 누를시 결제수단 combo는 카드결제로 선택되어 있을때
+			}else if((String)comboPayments.getSelectedItem()==("신용/체크카드")) {
+				//1. 카드결제 선택 후 정보입력을 안했을 때 경고창
+				if((String)comboBankSelect.getSelectedItem()==("카드사 선택")) {
+					JOptionPane.showMessageDialog(null, "카드사를 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if((String)comboInstallment.getSelectedItem()==("할부 선택")) {
+					JOptionPane.showMessageDialog(null, "할부기간을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(tfCardNum.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "카드번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(passwdNum.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(cvcNum.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "cvc번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(!checkBoxAgree.isSelected()) {
+						JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+				}else{
+					JOptionPane.showMessageDialog(null, "결제가 곧 완료됩니다.", "결제완료", JOptionPane.INFORMATION_MESSAGE );
+					
+					// 이때 결제정보 요약의 내용들이 setPayment()에 저장됨
+					PaymentInfo payInfo = new PaymentInfo(0);
+					//payInfo.whatPay = 0;		
+					payInfo.card.PaymentsCard = total[0];
+					payInfo.card.Company = total[1];
+					payInfo.card.CardNum = total[2];
+					payInfo.card.Installment = total[3];
+					payInfo.card.StringPrice = total[12];
+					parent.setPaymentInfo(payInfo);
+					
+					// 결제완료 창으로 넘어감
+					parent.changePanel(PanelName.Result);
+//					System.out.println(payInfo.StringPrice);
+
+				}
+				
+				//결제하기 버튼을 누를시 결제수단 combo는 계좌결제로 선택되어 있을때
+			}else if((String)comboPayments.getSelectedItem()==("간편 계좌 결제")) {
+				//2. 계좌 결제 선택 후 정보입력을 안했을 때 경고창
+				if((String)comboAccountSelect.getSelectedItem()==("은행 선택")) {
+					JOptionPane.showMessageDialog(null, "은행을 선택하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(tfAccount.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "계좌번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(AccontpasswdNum.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(tfPhoneNum.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "휴대폰 번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(!checkBoxAgree.isSelected()) {
+					JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+				}else{
+					JOptionPane.showMessageDialog(null, "결제가 곧 완료됩니다.", "결제완료", JOptionPane.INFORMATION_MESSAGE );
+					
+					// 이때 결제정보 요약의 내용들이 setPayment()에 저장됨
+					PaymentInfo payInfo = new PaymentInfo(1);
+					//payInfo.whatPay = 1;
+					payInfo.account.PaymentsAccount = total[4];
+					payInfo.account.BankName = total[5];
+					payInfo.account.AccountNum = total[6];
+					payInfo.account.CashReceipt = total[7];
+					payInfo.account.PhoneNum1 = total[8];
+					payInfo.account.StringPrice = total[12];			
+					parent.setPaymentInfo(payInfo);
+					
+					// 결제완료 창으로 넘어감
+					parent.changePanel(PanelName.Result);
+
+				}
+					
+				//결제하기 버튼을 누를시 결제수단 combo는 휴대폰결제로 선택되어 있을때
+			}else if((String)comboPayments.getSelectedItem()==("휴대폰 결제")) {
+				//3. 휴대폰 결제 선택 후 정보입력을 안했을 때 경고창
+				if(tfPhoneNum2.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "휴대폰 번호를 입력하세요.", "정보 미입력", JOptionPane.ERROR_MESSAGE );
+				}else if(!checkBoxAgree.isSelected()) {
+					JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+				}else{
+					JOptionPane.showMessageDialog(null, "결제가 곧 완료됩니다.", "결제완료", JOptionPane.INFORMATION_MESSAGE );
+
+					// 이때 결제정보 요약의 내용들이 setPayment()에 저장됨
+					PaymentInfo payInfo = new PaymentInfo(2);
+//					payInfo.whatPay = 2;
+					payInfo.phone.PaymentsPhone = total[9];
+					payInfo.phone.PhoneNum2 = total[10];
+					payInfo.phone.StringPrice = total[12];
+					parent.setPaymentInfo(payInfo);
+					
+					// 결제완료 창으로 넘어감
+					parent.changePanel(PanelName.Result);
+				}
+				
+				//결제하기 버튼을 누를시 결제수단 combo는 현장결제로 선택되어 있을때
+			}else if((String)comboPayments.getSelectedItem()==("현장 결제")) {
+				//4. 현장 결제 선택 후 정보입력을 안했을 때 경고창
+				 if(!checkBoxAgree.isSelected()) {
+					JOptionPane.showMessageDialog(null, "약관에 동의해주세요.", "약관 미동의", JOptionPane.ERROR_MESSAGE );
+				 }else{
+					JOptionPane.showMessageDialog(null, "결제가 곧 완료됩니다.", "결제완료", JOptionPane.INFORMATION_MESSAGE );
+					
+					// 이때 결제정보 요약의 내용들이 setPayment()에 저장됨
+					PaymentInfo payInfo = new PaymentInfo(3);
+					payInfo.visit.PaymentsVisit = total[11];
+					payInfo.visit.StringPrice = total[12];	
+					parent.setPaymentInfo(payInfo);
+					
+					// 결제완료 창으로 넘어감
+					parent.changePanel(PanelName.Result);
+
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void componentResized(ComponentEvent e) {
+		// 패널크기가 변경될때
+		
+	}
+
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// 패널이 움직일때
+		
+	}
+
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// 패널이 보여질때
+		System.out.println("payshow");
+		ReserveInfo reserveInfo = parent.getReserveInfo();
+		
+		// 예약내용 불러오기
+		modelReserveInfo.setValueAt(reserveInfo.booker, 0, 1);
+		modelReserveInfo.setValueAt(reserveInfo.address1, 1, 1);
+		modelReserveInfo.setValueAt(reserveInfo.address2, 2, 1);
+		modelReserveInfo.setValueAt(reserveInfo.date, 3, 1);
+		modelReserveInfo2.setValueAt(reserveInfo.roomInfo, 0, 1);
+		modelReserveInfo2.setValueAt(reserveInfo.personNum, 1, 1);
+		modelReserveInfo2.setValueAt(reserveInfo.request, 2, 1);
+		modelReserveInfo2.setValueAt(reserveInfo.payment, 3, 1);
+		
+		// 페이지가 새로 뜰때 선택&입력내용들 초기화
+		comboPayments.setSelectedItem("결제수단 선택");
+		checkBoxAgree.setSelected(false);
+		pnlPay.removeAll();
+		spPayInfo.removeAll();
+	}
+
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// 패널이 숨겨질때
+		
+	}
+}
