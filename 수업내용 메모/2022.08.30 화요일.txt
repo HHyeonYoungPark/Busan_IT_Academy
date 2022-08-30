@@ -1,0 +1,73 @@
+08월 30일 화요일
+
+Exception
+
+예외처리는 직접처리 - 현재 그 메서드에서 예외를 처리함
+try{ } catch( ){ }
+
+
+가상머신에게 대신 처리를 맡김 - 예외를 던져버림
+throws IOException
+
+===============================================
+기본 API 클래스 - 책465p
+
+자바 프로그램 작성에서 클래스가 필요하면 직접 만들거나 외부-내부
+클래스를 가져와서 사용함. -> import
+
+System.out.println() -> System클래스를 통해서 out객체를 가져오고
+                             그 안에 있는 println() 메서드를 사용함. 
+                             하지만 System을 import하지않음.
+=> 내부적으로 눈에 보이진 않지만 무조건 import 되어 있는 패키지가 있음
+=> 이 패키지에 기본 클래스들이 다 들어있다. Java.lang패키지
+
+Object, System, String, Math 등등
+그리고 Warpper 클래스를 가지고 있다
+
+책471p Object클래스
+ex)
+Jtable에서 값 가져오기 => 테이블.getValueAt(행,열); =>행,열에 있는 값 가져옴
+=> Object 타입으로 가져오지만 싱제값을 우리가 알 수 있으므로 그 타입에 맞게
+     형 변환을 해서 사용함. Object 모든 타입을 의미함. 하지만 이자체로 쓰기 어려움
+=> 모든 클래스는 Object로부터 상속받았으므로,
+     우리는 Object 클래스의 메서드를 사용 할 수 있다 ex) equals, toString
+
+481p 현재 시각 읽기
+
+482p class 클래스
+
+String 클래스는 일단 클래스임. 기본타입이 아님
+기본타입 : int, double, float, boolean - 메서드없고 생성도 필요없음
+
+클래스는 메서드를 포함하고 있다
+String 클래스는 엄밀히 따지면 문자배열이다
+ex) char[ ] <= 문자 배열이니까 위치값을 통해서 한글자씩 get 할 수 있다
+
+String str = "안녕하세여";
+str.indexOf(String s); // s의 위치를 가져온다
+str.charAt(int idx);
+
+책498p
+==========================================
+
+513p java.util 패키지
+
+Date 날짜 - new Date();  //오늘 날짜를 가져옴
+
+Calendar 캘린더 - Calendar.getInstance();  //오늘 날짜를 가져옴
+
+
+SimpleDteFormat 날짜,캘린더의 결과를 원하는 모양으로 출력
+
+기준은 내 컴퓨터의 시간을 기준으로 한다.
+
+자바 Calendar 다시 공부하기
+
+
+
+
+
+
+
+
+
