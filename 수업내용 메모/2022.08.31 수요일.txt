@@ -1,0 +1,242 @@
+08월 31일 수요일 - SQL활용
+bitc1175@
+=====================================
+
+1. mysql -uroot -p
+
+2. show databases; //mysql db는 지우면 안됨
+   drop database employees
+
+3. use mysql;
+   db , user table 확인
+
+   db = 폴더 > table = 파일
+   내용 확인 전에는 구조확인 먼저(볼 내용)
+   => desc 테이블명;
+        desc user;
+        SELECT host, user FROM user;
+
+        desc db;
+        SELECT db FROM db;
+
+======================================
+
+*** CREATE (없는걸 만들 때 : 생성)
+*** DROP (있는걸 없앨 때 : 제거)
+
+***** SELECT (자료 검색)
+***** INSERT (자료 삽입)
+***** UPDATE (자료 수정)
+***** DELETE (자료 삭제)
+
+=======================================
+작업순서 : 쇼핑몰 만들기
+1. 계정생성 (책170p)
+ - id, pwd : database(아이디와 동일하게 db생성)
+ - shop, shop (아이디, db)
+ 만들때 : CREATE user 'shop'@'%' identified by 'shop';
+ 지울때 : DROP user shop; ,DROP user shop@'localhost';
+
+2. 권한설정 : grant
+ GRANT all ON *.* TO 'shop'@'%' with grant option;
+
+3. mysql 새로고침
+ flush privileges;
+ exit; =>관리자 로그아웃 후 다시 접속
+ mysql -uroot -p
+ show databases; => 내가 만든 작업 디비
+ 옵션 : shop 데이터베이스가 없다면 CREATE databade shop;
+ use 테이터베이스이름 => 작업을 위한 디비선택
+
+작업 테이블(파일)이 있는지 확인
+ show tables;
+
+회원가입 테이블(파일) 만들기
+ - CREATE table 이름(변수명 타입);
+ - CREATE TABLE register(
+userid varchar(20) not null,
+passwd varchar(20) not null,
+username varchar(10) not null,
+hobby char(1),
+regdate date
+);
+
+테이블 만든 이후 desc register; /*테이블 확인*/
+
+SELECT userid, passwd, username FROM register;
+
+DROP TABLE register;
+show tables;
+========================================
+데이터 검색 (SELECT)
+SELECT * FROM 테이블명 (WHERE~) (GROUP BY~) (HAVING~) (ORDER BY~) (LIMIT~)
+	                       조건         그룹화       그룹조건       정렬      보여질 개수
+
+기본
+SELECT * FROM 테이블명 (전부를 볼때)
+SELECT (컬럼명) FROM 테이블명 (해당 컬럼명인 부분만 볼때)
+
+emp_no 컬럼이 10001인 사람을 출력하시오
+emp_no를 내림차순으로 정렬하시오
+내림차순 : DESC
+오름차순 : ASC 는 생략이 가능하나 그냥 입력하기
+
+SELECT from_date, to_date FROM titles WHERE emp_no=10001 ORDER BY emp_no DESC LIMIT 1;
+
+조건 검색 : titles 테이블
+            1990-01-01         2000-01-01
+from_date 1990이후 ~ to_date 2000 이전인 사람의 사원번호,제목을 출력하시오
+=>
+SELECT emp_no, title FROM titles 
+WHERE from_date >= 1960-01-01 AND to_date <= 2000-01-01;
+
+사용자 테이블에서 태어난 해가 1970년 이후이고 키가 182이상인 사람의
+아이디와 이름을 출력하시오
+이고,이면서 - AND
+이거나 - OR
+
+SELECT userID, name FROM usertbl 
+WHERE birthYear>=1970 AND height>=182 ORDER BY name ASC;
+
+BETWEEN 작은값 AND 큰값 = AND
+키가 180 이상 이면서 183 이하인 사람의 이름과 키를 출력하시오.
+SELECT name, height FROM usertbl WHERE height BETWEEN 180 AND 183;
+
+IN(값1, 값2) = OR
+지역이 경남이거나 경북인 사람의 이름과 지역을 출력하시오
+SELECT name, addr FROM usertbl WHERE addr='경남' OR addr='경북';
+SELECT name, addr FROM usertbl WHERE addr IN('경남','경북','경기') ORDER BY name DESC;
+
+LIKE : 유사어 조건 검색
+- WHERE 컬럼명 LIKE 검색 조건
+- % : 글자수 제한 없고 _ 한 글자
+ex) 김%, %종%, %부산
+
+사용자 테이블에서 성이 김씨이면서 키가 175 이상인 사람의 이름과 키를 출력하시오
+SELECT name, height FROM usertbl WHERE name LIKE '김%' AND height>=175;
+
+SELECT count(userid) AS '전체 인원 수' FROM usertbl 
+WHERE name LIKE '%조%';
+
+지역이름이 중복된 값은 제거 한 후 전체를 출력하시오
+SELECT DISTINCT addr FROM usertbl;
+
+서브쿼리(김경호의 키를 모를때) - 쿼리문 안에 쿼리문을 한번 더 넣는다 => 쿼리문(쿼리문) 
+김경호보다 키 큰 사람의 이름과 키를 출력하시오
+
+SELECT height FROM usertbl WHERE name ='김경호';
+
+SELECT name, height FROM usertbl WHERE height > 
+(SELECT height FROM usertbl WHERE name ='김경호');
+
+use employees; 로 이동
+LIMIT 개수;
+LIMIT 시작번호, 개수; /* pagination */
+LIMIT 개수 OFFSET 5; /* 5개 건너뛰고 개수만큼 보여주세요 */
+
+========================================================
+
+테이블 복사 
+
+1. 내용까지 모두 복사
+ CREATE TABLE 이름 AS (복사할 내용)
+ CREATE TABLE buytbl_copy AS SELECT * FROM buytbl;
+ CREATE TABLE buytbl_copy2 AS SELECT userid,price,amount FROM buytbl;
+ show tables;
+ SELECT * FROM buytbl_copy; primary key 없어짐
+
+2. 구조만 복사 > WHERE 1<>1
+ CREATE TABLE buytbl_copy3 AS SELECT * FROM buytbl WHERE 1<>1;
+ SELECT * FROM buytbl_copy3;
+======================================================
+GROUP BY : 집계함수와 꼭 같이 사용
+ - 집계함수 : MAX, MIN, SUM, COUNT, AVG
+
+SELECT prodName, price FROM buytbl;
+
+SELECT prodName, SUM(price) FROM buytbl GROUP BY prodName;
+
+SELECT prodName, SUM(price) FROM buytbl GROUP BY prodName 
+HAVING SUM(price) >= 500;
+
+SELECT 일반컬럼1, 일반컬럼2, 집계함수 FROM 테이블명
+GROUP BY 일반컬럼1, 일반컬럼2
+HAVING 그룹함수 >= 조건;
+
+============================================
+board
+기본키 설정(자동 번호 부여) - 숫자 not null
+게시글 제목 - not null
+게시글 내용 - text  - not null
+글쓴이 - not null
+작성일 - date, datetime - not null
+비밀번호 - not null
+조회수 - int - default 0
+접속주소
+첨부파일
+
+CREATE TABLE rsgister(
+컬럼명 데이터 타입
+);
+숫자 형태 : tinyint(1), smallint(2), int(4) => int
+문자 형태 : char, varchar, text (html -> textarea)
+날짜 형태 : date, datetime, timestamp
+
+접속주소
+IPv4 : 000.000.000.000
+
+IPv6 : 
+=====================================================
+테이블 생성 - board
+
+use shop;
+CREATE TABLE board(
+board_id int not null auto_increment,
+board_subject varchar(200) not null,
+board_content text not null,
+board_writer varchar(10) not null,
+board_date date not null,
+board_pwd char(4) not null,
+board_visit int default 0,
+board_ip char(15),
+board_filename varchar(200),
+primary key(board_id)
+);
+
+데이터 삽입
+INSERT INTO 테이블이름 VALUES(데이터 타입 확인하고 컬럼 순서대로..)
+INSERT INTO board VALUES(NULL,'공지사항입니다.','게시물 내용입니다!','부산',NOW(),'1234',NULL,'223.130.195.95','employees.sql');
+INSERT INTO board VALUES(NULL,'치킨먹고 싶다','치킨시킴ㅅㄱ','현영',NOW(),'4567',NULL,'223.130.195.95',NULL);
+
+============================================
+내장함수
+
+SELECT IF(10>1,'TRUE','FALSE');
+
+use employees; 사용
+태어난 날이 1965년 이후 출생이면 60s 아니면 50s 로 표시하시오
+SELECT birth_date, IF(birth_date >= '1965-01-01', '60s', '50s') AS 'Generation' FROM employees LIMIT 20;
+
+NULL
+IFNULL
+SELECT IFNULL(컬럼명,바꿀값);
+
+use shop;
+show tables;
+CREATE TABLE users(userid varchar(10), passwd varchar(10));
+INSERT INTO users VALUES('busanit','1234');
+INSERT INTO users VALUES('seoulit',NULL);
+
+SELECT IFNULL(passwd, '11111') FROM users;
+
+CREATE TABLE order_price(
+price int,
+mount int
+);
+INSERT INTO order_price VALUES(1000, 10);
+INSERT INTO order_price VALUES(5000, NULL);
+
+SELECT (price*IFNULL(mount,0)) AS SUM FROM order_price;
+
+
+
