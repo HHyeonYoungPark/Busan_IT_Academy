@@ -1,0 +1,295 @@
+09월01일 목요일  DB수업 - mysql
+
+NodeJS : 자바스크립트(로컬+서버)
+
+====================================================
+
+mysql 구조+내용 백업
+mysqldump - u아이디 -p 백업할 DB이름 > 파일이름.dump 또는 sql
+
+ex)
+shop
+백업
+mysqldump - ushop -p > shop > 20220901_shop.dump 또는 sql
+
+복원
+mysql - ushop -p > shop < 20220901_shop.dump 또는 sql
+(화살표방향 반대로)
+
+===================================================
+책249p부터 
+
+concat(값1, 값2); ->데이터 연결
+
+날짜 연결
+ex) -> 2022 - 09 -01
+SELECT concat('2022','-','09','-','01') AS '날짜';
+
+전화번호 연결
+use shop;
+CREATE TABLE concat_t(tel1 char(3), tel2 char(4), tel3 char(4));
+INSERT INTO concat_t VALUES('010','1234','5678');
+SELECT * FROM concat_t;
+
+SELECT concat(tel1,'-',tel2,'-', tel3) AS 'Tel' FROM concat_t;
+010-1234-5678 : concat
+
+010-1234-**** : insert
+SELECT insert(컬럼명, 시작번호, 개수, 바꿀문자열);
+SELECT INSERT(concat(tel1, '-', tel2, '-', tel3), 10, 4, '****') AS 'Tel' FROM concat_t;
+
+LEFT(값,개수)
+SELECT LEFT('010-1234-5678', 3) AS '통신사';
+
+검색
+UPPER : UPPER(검색어)
+***LOWER : lower(검색어)
+
+TRIM - 좌우 공백제거
+***.trim();
+trim(***);
+SELECT ' 010';
+SELECT trim(' 010') AS '트림쓴거';
+
+replace 교체 
+ex) -> 영어 + 숫자 + !@#특수문자 => 아이디 사용으로 부적절한 것 -> 적절하게 
+ex) 아이디 만들때 & -> 공백으로 처리(교체)
+INSERT INTO users VALUES('busan&it','0000');
+
+SELECT replace(컬럼, '찾을문자', '교체할문자') FROM users;
+SELECT trim(replace(userid, '&', '')) AS 'replace' FROM users;  -> 교체하기 전에 공백 먼저 제거하고..
+
+first_name, last_name을 concat으로 이어붙여보기
+use employees;
+SELECT first_name, last_name FROM employees LIMIT 2;
+SELECT CONCAT(first_name, SPACE(1), last_name) AS FullName FROM employees LIMIT 2;
+=> 가운데에 SPACE(띄우고싶은 칸수) 하면 띄워쓰기 됨
+
+FORMAT
+천단위 쉼표
+SELECT format(값, 0);
+SELECT format(1234567.89, 0);
+
+소수점 만들기
+SELECT format(1234567.89, 1);
+
+===================================================
+
+컬럼추가
+ALTER TABLE 테이블명 ADD 추가할 컬럼명 데이터타입;
+desc 테이블명; 으로 테이블구조 먼저 확인
+
+ALTER TABLE users ADD regdate datetime;
+
+INSERT INTO users VALUES('aaa','bbb',now());
+SELECT * FROM users;
+
+UPDATE 테이블명 SET 바꿀컬럼 = 값 WHERE 찾을컬럼 = 값;
+UPDATE users SET regdate = curtime() WHERE userid = 'busanit';
+curtime() -> 현재 시간까지 다 나옴
+curdate() -> 현재 날짜에 시간은 00:00으로 나옴
+
+UPDATE users SET regdate = sysdate() WHERE userid = 'seoulit';
+sysdate() -> 시스템의 시간..? now()랑 차이가 없다함
+
+만들어진 컬럼의 타입이나 이름을 변경
+ex) 날짜와 시간까지 출력되는걸 날짜만 나오게 변경
+ALTER TABLE users MODIFY regdate date;
+desc users;
+SELECT * FROM users;
+
+자료삭제
+DELETE FROM 테이블명 WHERE 삭제할컬럼=값;
+DELETE FROM users WHERE userid = 'busanit';
+SELECT * FROM users;
+
+==============================================
+년월일시간 출력하기
+
+SELECT YEAR(now()) AS '년', 
+MONTH(now()) AS '월', 
+DAY(now()) AS '일', 
+HOUR(sysdate()) AS '시간', 
+MINUTE(now()) AS '분', 
+SECOND(now()) AS '초';
+
+년월일 (요일) - 한글 요일이름은 숫자로 표시 0~6(일 ~ 토)
+SELECT DAYNAME(now()) AS '오늘 요일'; 
+ => 얘는 영어로 나옴
+SELECT DAYOFWEEK(now());
+ => 얘는 숫자로 나옴
+SELECT DATE(now()), TIME(now());
+ => 날짜만, 시간만 나옴
+
+DATEDIFF : 날짜차이
+SELECT DATEDIFF(큰날짜, 작은날짜);
+SELECT DATEDIFF(now(), '2022-01-01');
+
+***date_format 날짜형식 : 2022-09-01 -> 2022/09/01 , 2022.09.01 날짜의 형식을 바꿀때
+DATE_FORMAT(날짜, '%Y-%m-%d');
+SELECT DATE_FORMAT(now(), '%Y/%m/%d');
+SELECT DATE_FORMAT(now(), '%Y.%m.%d');
+SELECT DATE_FORMAT(now(), '%Y-%m-%d');
+시간포맷
+SELECT DATE_FORMAT(now(), '%H:%i:%S');
+
+***** 파일업로드 : 파일이름 OR 폴더이름
+***** Log File : 접속한 날짜, 시간 + 무슨 작업을 했는지,,,
+
+-> 동일한 이름이 생길때 덮어쓰면 안되서
+SELECT UNIX_TIMESTAMP(now()); UNIX시간으로 표시됨
+SELECT UNIX_TIMESTAMP(current_timestamp());
+
+======================================
+Object 타입 (자바스크립트) : k, v (k=key, v=value)
+ex) => {userid: 'busanit', passwd: '1234'}
+            key     value      key     value
+
+JSON.stringify(result)
+         {"userid": "busanit", "passwd": "1234"}
+
+use employees;
+desc employees;
+SELECT emp_no, gender FROM employees LIMIT 5;
+컬럼(key), 값(value)
+
+MYSQL => OBJECT 방식으로 바꾸기
+SELECT emp_no, gender FROM employees LIMIT 5;
+
+-> JSON 타입으로
+SELECT 
+JSON_OBJECT('emp_no', emp_no, 'gender', gender) 
+FROM employees LIMIT 5;
+
+                      키        값          키         값
+JSON_OBJECT('emp_no', emp_no, 'gender', gender) 
+
+JSON_OBJECT = JSON.STRINGIFY
+
+==========================================
+
+JOIN : 불필요한 데이터를 분리시켜서 필요할 때만 연결해서 사용함 보통2~3개
+         정규화 - 그림으로 표시(ERD)
+
+PK : 유일하게 나를 구분해주는 키
+FK : 내가 필요한 테이블과 연결해서 사용할 때
+--------> pk - fk는 이름과 타입이 동일해야 함(복사해서사용)
+
+중요도에 따라서 pk와 fk로 나눔
+userTBL(Primary key), buyTBL(Foreign key)
+
+userid : pk
+CREATE TABLE userTBL(
+userid varchar(20) not null,
+username varchar(20) not null,
+height smallint,
+mDate date,
+primary key(userid)
+);
+
+CREATE TABLE buyTBL(
+prodID int not null auto_increment,
+userid varchar(20) not null,
+prodName varchar(100) not null,
+prodPrice int default 0,
+primary key(prodID),
+FOREIGN KEY(userid) references userTBL(userid)
+);
+
+=======================================
+
+ERD - Entity Relation Diagram
+
+==========================================
+
+오후
+
+use shop;
+show tables;
+
+연속된 데이터 2개를 넣을때 쉼표하고 이어서 쓸수있음
+INSERT INTO userTBL VALUES
+('busanit', '1234', 190, now()), ('seoulit', '4567', 200, sysdate());
+SELECT * FROM userTBL;
+
+INSERT INTO buyTBL VALUES(NULL, 'busanit', '가방', 5000000);
+INSERT INTO buyTBL VALUES(NULL, 'busanit', '시계', 8000000);
+INSERT INTO buyTBL VALUES(NULL, 'seoulit', '반지', 2000000);
+SELECT * FROM buyTBL;
+
+JOIN1 : 내부조인 - 테이블1 INNER JOIN 테이블2 ON( WHERE x )
+
+SELECT * FROM 중요도 높은 테이블 : 
+(아이디 상품이름 상품가격)
+
+-> SELECT U.userid, B.prodName, B.prodPrice 
+FROM userTBL AS U INNER JOIN buyTBL AS B ON U.userid = B.userid 
+WHERE U.userid = 'busanit';
+
+Join2 : 내부조인 - SELECT * FROM 테이블1, 테이블2 WHERE 조건;
+
+SELECT U.userid, B.prodName, B.prodPrice FROM userTBL AS U, buyTBL AS B 
+WHERE U.userid = B.userid AND U.userid = 'busanit';
+
+
+shop : 사용자, 상품, 카트정보
+CREATE TABLE cartTBL(
+cartID int not null auto_increment,
+userid varchar(20) not null,
+cart_prodName varchar(100) not null,
+cart_prodPrice int default 0,
+cart_regdate date,
+primary key(cartID),
+FOREIGN KEY (userid) references userTBL(userid)
+);
+
+INSERT INTO cartTBL VALUES(NULL, 'busanit', '카트옥션', 777777, now()),
+(NULL, 'seoulit', '카트지마켓', 22222, now());
+SELECT * FROM cartTBL;
+
+Join2 : 내부조인 - SELECT * FROM 테이블1, 테이블2 WHERE 조건;
+
+카트안에 있는거 : 상품번호, 상품제목, 가격, 등록일, 사용자아이디 등
+
+SELECT C.cartID AS '상품번호', 
+C.cart_prodName AS '상품제목', 
+C.cart_prodPrice AS '가격', 
+C.cart_regdate AS '등록일', 
+U.userid AS '사용자아이디' 
+FROM userTBL AS U, cartTBL AS C 
+WHERE U.userid = C.userid AND U.userid = 'seoulit';
+
+==============================================
+JOIN : 검색
+
+UPDATE, DELETE
+한쪽 테이블에서 수정, 삭제
+
+CREATE TABLE users(
+userid varchar(20) not null primary key, passwd varchar(20) not null
+);
+
+INSERT INTO users VALUES('red','12345'), ('blue','45678'), ('green','95123');
+
+UPDATE users SET userid = 'yellow' WHERE userid = 'red';
+
+CREATE TABLE carts(
+id int not null auto_increment primary key,
+userid varchar(20) not null,
+cart_productName varchar(20) not null,
+FOREIGN KEY (userid) references users(userid)
+ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO carts VALUES(NULL,'yellow','옥션'), (NULL,'green','지마켓'), (NULL,'blue','쿠팡');
+
+DELETE FROM users WHERE userid = 'yellow';
+
+CASCADE
+
+SELECT * FROM 테이블1, 테이블2 WHERE 테이블1.PK = 테이블2.FK
+AND 조건;
+
+SELECT * FROM users AS U, carts AS C 
+WHERE U.userid = C.userid AND U.userid = 'blue';
+
