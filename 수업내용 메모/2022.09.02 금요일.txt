@@ -1,0 +1,200 @@
+09월 02일 금요일  DB수업 (mysql)
+
+========================================
+책 313p부터 (mysql고급)
+
+*프로젝트할때 테이블이름 중복되지 않게...
+DROP DATABASE IF EXISTS shopdb; -> 만약 'shopdb' 존재하면 drop
+CREATE DATABASE shopdb;
+use shopdb; 
+
+*316p 예문에,,,
+백틱이 있는 경우 테이블이 안 만들어질 수도 있음
+-> 백틱지우고 복붙
+
+*Primary key : not null 중복되면 안됨
+*Unique : null 중복되면 안됨
+
+*323p
+primary key를 줄때 한줄에 이어써도 되지만 맨밑에 쓰는걸 추천
+CREATE TABLE 테이블명(
+id not null auto_increment,
+primary key(id)
+);
+
+*foreign key
+CREATE TABLE carts(
+id not null,
+foreign key(내꺼이름) references 부모테이블(pk)
+);
+
+*정리
+기본키(pk) ->  not null, 중복안됨, 유일하게 나를 구분해주는 것
+외래키(fk) ->  join
+Unique ->  null일 수 있지만 중복은 안됨
+check ->  ex) check(gender in('M','F'));
+default
+price int default 0 ->  안쓰면 0으로 default
+gender char(1) default 'F' ->  기본값으로 F
+visit int default 0 ->  방문횟수는 기본값 0부터 시작
+안쓰면 null, 꼭 넣어야 하면not null
+
+*327p 예문에 밑줄쳐져있는 부분
+CONSTRAINT PRIMARY KEY (id)~~~
+-> CONSTRAINT는 생략가능함
+
+*ALTER로 테이블을 수정하느니 테이블을 통쨰로 DROP하고
+내용을 수정해서 다시 CREATE 하는걸 추천 
+
+*354p View(뷰)
+VIEW : 보안 -> 복사X, 작업의 편리성
+1. 물리적 링크 : 원본에 수정/ 삭제 O
+2. 논리적 링크 : View
+
+mysql -uroot -p
+CREATE DATABASE erp;
+
+use erp;
+CREATE TABLE users(
+id int not null auto_increment,
+userid varchar(20),
+passwd varchar(20),
+zip char(5),
+addr varchar(100),
+primary key(id)
+);
+INSERT INTO users VALUES
+(NULL, 'busanit', '12345', '00000','부산광역시'),
+(NULL, 'seoulit', '12345', '55555','서울특별시'),
+(NULL, 'daejeonit', '12345', '78963','대전광역시');
+SELECT * FROM users;
+
+CREATE VIEW users_v AS SELECT id, zip, addr FROM users;
+SELECT * FROM users_v;
+
+*UPDATE, DELETE : WHERE 조건하고 작업
+UPDATE 테이블 SET 바꿀컬럼명 = 값 WHERE 찾을컬럼 = 값;
+UPDATE users_v SET zip='95885', addr='수원시' WHERE id =2;
+SELECT * FROM users_v;
+SELECT * FROM users;
+
+------ 조인---------
+CREATE TABLE carts(
+cart_id int not null auto_increment,
+id int not null,
+cart_prodName varchar(100),
+primary key(cart_id),
+foreign key (id) references users(id)
+);
+INSERT INTO carts VALUES(NULL, 2, '현대자동차 타이어');
+
+*두개의 테이블을 내부 조인
+users, carts
+SELECT * FROM 테이블1, 테이블2
+WHERE 테이블1.pk = 테이블2.fk AND 조건컬럼 = 값;
+
+SELECT C.cart_id, U.userid, C.cart_prodName FROM users as U, carts as C
+WHERE U.id = C.id AND U.userid = 'seoulit';
+
+VIEW 보안상 필요하거나 조인 때문에 사용하기도 함 - 원본에 링크
+CREATE VIEW prod_v AS SELECT C.cart_id, U.userid, C.cart_prodName FROM users as U, carts as C
+WHERE U.id = C.id AND U.userid = 'seoulit';
+
+테이블복사 : 사본
+CREATE TABLE prod_copy AS ~~~~~
+
+==============================================================
+
+CASCADE : 수정이나 삭제되었을 때 연결되어 있는 테이블을 어떻게?
+               부모가 바뀌거나 삭제가 되면 자식도 같이...
+               사용법 => FOREIGN KEY 맨 뒤에
+ - ON UPDATE CASE
+ - ON DELETE CASE
+
+use erp;
+CREATE TABLE userTBL(
+userid varchar(20) not null,
+username varchar(20) not null,
+primary key(userid)
+);
+
+INSERT INTO userTBL VALUES('busan', '부산광역시'),('seoul', '서울특별시');
+
+CREATE TABLE buyTBL(
+buy_id int not null auto_increment,
+userid varchar(20) not null,
+buy_prodName varchar(100),
+primary key(buy_id),
+foreign key(userid) references userTBL(userid) 
+ON UPDATE CASCADE 
+ON DELETE CASCADE 
+);
+
+INSERT INTO buyTBL VALUES
+(NULL, 'busan', '옥션'), (NULL, 'busan', '지마켓'), (NULL, 'seoul', '쿠팡');
+
+SELECT * FROM buyTBL;
+SELECT * FROM userTBL;
+
+UPDATE userTBL SET userid = 'busanit' WHERE userid = 'busan';
+SELECT * FROM buyTBL;
+SELECT * FROM userTBL;
+
+DELETE FROM userTBL WHERE userid = 'busanit';
+SELECT * FROM buyTBL;
+SELECT * FROM userTBL;
+
+연결된 테이블을 삭제할 때는 부모를 제일 마지막에 제거하면 됨
+
+==================================
+1. 프로젝트 이름에 맞게 계정이름 설정
+   (CREATE DATABASE DB이름 => 이름과 같은 DB생성)
+
+2. use DB이름;
+
+3. 테이블 작업 : 적절하게 테이블 분리 (필요시 조인)
+	         - pk, fk, cascade
+	         - 데이터 타입 설정 : varchar, char, int, date, text
+                    컬럼이름 : 테이블이름_컬럼이름
+                                  mem_userid
+                                  items_prodName
+                                  order_prodName
+
+4. 생성(CREATE), 제거(DROP)
+   SELECT ~ FROM, 
+   INSERT INTO, 
+   DELETE ~ WHERE,
+   UPDATE ~ WHERE
+
+=================================================
+
+오후 - Node 수업
+
+D드라이브에 폴더 생성
+폴더명 : NODEJS_TUT -> 01-start
+
+1. JavaScript(js) -> html 실행
+   => Client용
+2. NodeJS : NODEJS(html) -> js실행 -> 실행 : node 파일이름
+   JavaScropt Code : html
+   => Server, Client용
+
+vsCode로 수업
+01-install.js
+02-console.js
+03-console.js
+04-spread.js
+=================================================
+
+04-spread.js
+
+전개 연산자
+spread operator : 기존 자료를 불러오거나 = concat
+	           기존 자료+붙일 자료
+
+
+
+
+
+
+
