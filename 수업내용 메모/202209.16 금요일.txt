@@ -1,0 +1,25 @@
+09월 16일 금요일
+NodeJS
+
+
+18-findIndex.js
+01-fs-make.js
+02-fs-read.js
+03-fs-delete.js
+
+spread-operator, forEach, stringify, parse, date
+json 파일처리, 정규식, mkdir(첨부파일), rmdir, unlink
+return, 
+
+npmjs.com
+1. 서버
+ - 내장형 모듈
+ - 외장형 모듈 : expressjs .com
+2. node 설치 : npmjs.com > 검색 > 설치
+
+
+
+
+
+
+
