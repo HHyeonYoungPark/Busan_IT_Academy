@@ -1,5 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedReader;
@@ -11,10 +15,14 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -36,6 +44,9 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 	JLabel lblid;
 	JLabel lblip;
 	
+	JList<String> list;
+	DefaultListModel<String> model;
+	
 	
 	public ChatClientGUI1(){
 		
@@ -48,6 +59,10 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 		
+		model = new DefaultListModel<>();
+		list = new JList<>(model);
+		model.addElement("==접속자목록==");
+		
 		this.setSize(400, 600);
 		
 		tf = new JTextField(25);
@@ -55,6 +70,13 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 		btn.addActionListener(this);
 		ta = new JTextArea();
 		JScrollPane sp = new JScrollPane(ta);
+		sp.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {	
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				JScrollBar src = (JScrollBar)e.getSource();
+				src.setValue(src.getMaximum());			
+			}
+		});
 		JPanel pnl = new JPanel();
 		pnl.add(tf);
 		pnl.add(btn);
@@ -62,8 +84,8 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 		JPanel pnl2 = new JPanel();
 		lblid = new JLabel("아이디");
 		lblip = new JLabel("아이피");
-		tfip = new JTextField(10);
-		tfid = new JTextField(10);
+		tfip = new JTextField("localhost",10);
+		tfid = new JTextField("ㅇㅇㄷ",10);
 		btn2 = new JButton("연결");
 		btn2.addActionListener(this);
 		pnl2.add(lblip);
@@ -75,6 +97,7 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 		this.add(pnl2,"North");
 		this.add(sp);
 		this.add(pnl,"South");
+		this.add(list,"East");
 		this.setVisible(true);
 		
 		//this.setDefaultCloseOperation(3);
@@ -104,7 +127,17 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 			public void windowActivated(WindowEvent e) {}
 		});
 		
-		
+		this.addKeyListener(new KeyListener() {		
+			@Override
+			public void keyTyped(KeyEvent e) {				
+			}		
+			@Override
+			public void keyReleased(KeyEvent e) {			
+			}			
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		
 	}
 	
@@ -164,13 +197,45 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 					// 서버로 부터 들어오는 내용 읽어서 출력하기
 					String line = null;
 					while((line=br.readLine())!=null) {
-						ta.append(line+"\n");
+						
+						if(line.indexOf("/members ")==0) {							
+							model.removeAllElements();
+							model.addElement("==접속자목록==");							
+							String[] members = line.trim().split(" ")[1].split("#");
+							//   /members aaa#bb#ccc#
+							//  aaa bbb ccc
+							
+							for(int i=0;i<members.length;i++) {
+								model.addElement(members[i]);
+							}
+							
+						}else if(line.indexOf("/quit ")==0){
+							JOptionPane.showMessageDialog(ta, "님 강퇴됨");
+							sendMsg("/quit ");// 서버한테 종료한다고 알림
+							break;// 내가 종료	
+							
+						}else if(line.indexOf("/cl ")==0) {
+							JOptionPane.showMessageDialog(ta, "채팅창이 초기화 됩니다");
+							ta.setText("");
+						}else if(line.indexOf("/off ")==0) {
+							JOptionPane.showMessageDialog(ta, "채팅금지ㅅㄱ");
+							btn.setEnabled(false);
+						}else if(line.indexOf("/on ")==0) {
+							JOptionPane.showMessageDialog(ta, "채팅금지 풀림ㅊㅊ");
+							btn.setEnabled(true);
+						}else if(line.indexOf("/boom")==0){
+							JOptionPane.showMessageDialog(ta, "잘 가고");
+							sendMsg("/quit ");
+							break;
+							
+						}else {
+							ta.append(line+"\n");
+						}
 					}
+					System.exit(0);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-//					broadcast("[알림] "+id+ "님이 채팅방을 나갔습니다.");
-//					System.out.println(4444);
 				}				
 			}
 		});
@@ -186,6 +251,4 @@ public class ChatClientGUI1 extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 		new ChatClientGUI1();
 	}
-
 }
-
