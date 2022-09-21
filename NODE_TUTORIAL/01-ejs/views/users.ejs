@@ -1,0 +1,51 @@
+<%- include('inc/_header') %>
+<body>
+  <h1>Busan IT Academy 사원 등록</h1>
+  <%- include('inc/_menu') %>
+  <!-- 첨부파일을 저장하려면 enctype을 설정해줘야 함 -->
+  <form
+    autocomplete="off"
+    action="/addUser"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    아이디: <input type="text" name="userid" required /><br />
+    비밀번호: <input type="password" name="passwd" required /><br />
+    첨부파일: <input type="file" name="upload" /><br />
+    다중첨부파일: <input type="file" multiple name="upload" /><br />
+    <input type="submit" value="로그인" />
+  </form>
+
+  <div>
+    <table>
+      <tr>
+        <td>번호</td>
+        <td>아이디</td>
+        <td>이름</td>
+        <td>비밀번호</td>
+        <td>이메일</td>
+        <td>전화번호</td>
+        <td>접근권한</td>
+        <td>수정/삭제</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="update">UPDATE</button>
+          <a
+            href="/users/delete/5"
+            onclick="return confirm('삭제하면 복구못함 ㅇㅋ?')"
+            ><button class="delete">DELETE</button></a
+          >
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+<%- include('inc/_footer') %>

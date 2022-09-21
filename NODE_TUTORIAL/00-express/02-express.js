@@ -1,22 +1,13 @@
-/*
-1. npm init -y
-2. express module
-
-3. require();
-4.port number 3000
-5. 주소설정 후 html
-*/
 const express = require("express");
 const app = express();
+const usersRoute = require("./routes/usersRoute");
+const itmesRoute = require("./routes/itemsRoute");
 
-app.get("/", (req, res) => {
-  res.send("<h1>방문을 환영합니다</h1>");
-});
+// middleware =>  요청을 하면(추가적인 작업을 해주는 s/w) 서버에서 응답
+// middleware(app.use(), app.set())
 
-app.get("/getBoardList", (req, res) => {
-  //   디버깅용 console.log("test");
-  res.sendFile(__dirname + "/getBoardList.html");
-});
+//app.use(공통경로, require변수명);
+app.use("/users", usersRoute);
+app.use("/items", itmesRoute);
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server Running PORT ${PORT}`));
+app.listen(3000);
