@@ -1,0 +1,74 @@
+09월 21일 수요일
+
+==============================================
+서버용 Nodejs
+
+0. npm -y init : 모듈관리 json 파일
+0-1. 최초 작업파일 생성 : server.js , app.js, index.js
+
+1. Express Server js
+   - npmjs.com > 검색 > npmi 설치프로그램
+     - js 변경 -> 재실행 > nodemon 설치 > 재실행안해도 됨
+       npm i 프로그램명, npm i D nodemon
+   - require(); import() -> 프로그램 불러오기
+   - port 설정 : nodejs(3000번), react(5000번)
+                    spring tomcat(8080번)
+   - url : 사용자가 접근하기 위한 주소
+
+   - router : 경로 설정
+      - 작업을 편하게 하기 위해 파일 분리
+      - Module.exports = {}
+
+      - ejs : html을 사용하기 위한 모듈
+
+2. database
+
+3. file uproad
+
+4. Login out/ JWT
+
+--------------------------------------------------------------
+데이터베이스
+
+mysql root로 접속
+사용자계정 : login 1234
+use mysql
+select user from user; -> 계정 존재 유무 확인
+
+계정 생성
+1. create user 'login'@'localhost' identified by '1234';
+
+권한설정
+grant all on *.* to 'login'@'localhost' with grant option;
+
+설정반영
+flush privileges;
+
+mysql 버전8 이상 => 권한 변경
+alter user 'login'@'localhost' identified with mysql_native_password by '1234';
+
+show databases; // 사용자 계정이름과 동일한 데이터베이스(폴더)가 없으면 생성
+create database login;
+use login;
+
+express + mysql + ejs
+npm -y init
+npm i express
+npm i ejs
+npm i mysql
+
+회원가입
+html -> table
+
+CREATE TABLE login(
+userid varchar(30),
+passwd varchar(20)
+);
+
+nodejs -> url, port
+
+mysql -> url, port, database
+
+
+
+
