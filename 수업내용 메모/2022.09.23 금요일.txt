@@ -1,0 +1,25 @@
+09월 23일 금요일
+작업순서 : html > db > server
+
+0-ajax 폴더생성
+erver01.js 파일 생성
+views 폴더생성
+
+npm -y init
+npm i express ejs mysql
+
+--------------------------------------------------------------------
+
+- Ajax : 필요한 부분만 변경
+- Ajax는 Javascript로 만드는데 이경우엔 좀 어려워서
+- Jquery(편리하게 사용할 수 있는 js)로 Ajax 작업 => jquery cdn
+- Server + db(json, mysql) + Ajax
+
+$.ajax({
+	url : "/addUser",
+	method : "post",
+	contentType : "application/json", // 전송데이터타입
+	data : "", // 서버로 보낼 데이터를 json.stringify 변환해서..
+	success: function(result) {
+	}
+});
