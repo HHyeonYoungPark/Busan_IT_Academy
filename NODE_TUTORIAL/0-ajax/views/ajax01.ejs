@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="post" action="/addUser">
+      userid :
+      <input type="text" name="userid" id="userid" autocomplete="off" />
+      <!-- 그냥 버튼타입으로 두면 submit으로 된다.. 한페이지에 submit이 두개면 안된다.. -->
+      <button type="button" onclick="checkID();">checkID</button>
+      <span>아이디를 입력하세요</span><br />
+      password :
+      <input type="text" name="passwd" id="passwd" autocomplete="off" /><br />
+      username :
+      <input
+        type="text"
+        name="username"
+        id="username"
+        autocomplete="off"
+      /><br />
+      <input type="submit" value="register" />
+    </form>
+
+    <script>
+      function checkID() {
+        // alert("ok"); 디버깅용
+        // 밑에는 원래 자바스크립트로 쓰는거
+        // if (document.querySelector("#userid").value == "") {
+        //   alert("아이디를 입력해주세요.");
+        //   document.querySelector("#userid").focus();
+        //   return false;
+        // }
+
+        // jquery
+        if ($("#userid").val() == "") {
+          alert("아이디를 입력해주세요.");
+          $("#userid").focus();
+          return false;
+        } else {
+          //alert($("#userid").val()); 디버깅용: 입력한 ID가 경고창에 가져와지면 서버로 넘기면됨
+          const jsObj = {
+            userid: $("#userid").val(),
+          };
+          $.ajax({
+            url: "/checkID",
+            method: "post",
+            contentType: "application/json",
+            //data: JSON.stringify({userid: $("#userid").val()}),
+            data: JSON.stringify(jsObj), // server middleware
+            success: function (result) {
+              if (result == "No") {
+                // 사용할 수 없습니다. innerHTNL, innerTEXT
+                $("span").html("사용할 수 없는 아이디입니다.");
+                $("#userid").val("");
+              } else {
+                $("span").html("<b><i>사용할 수 있는 아이디입니다.</i></b>");
+              }
+            },
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
