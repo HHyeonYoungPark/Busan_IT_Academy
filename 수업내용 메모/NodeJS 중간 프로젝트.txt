@@ -1,0 +1,37 @@
+09월 28일 수요일 
+
+* NodeJS 중간 프로젝트 : 폴더명-> MiniProj-이름
+
+작업 순서 : server설정(localhost) -> html -> db -> server
+
+1. 사이트 메인페이지를 작성 후 회원가입 프로그램, 게시판 프로그램은 연결되어 있어야 함
+   - 메인페이지는 필요하지 않더라도 
+
+2. 작업은 Mysql Command, HediSQL 어느 곳에서든 관계없음
+   - Mysql 계정 생성 후 작업 : ID-Grpware PW- Grpware)
+   - 파일이름, 데이터베이스 테이블 이름 등 나머지는 자율
+
+3. HTML, CSS, JS, express, Mysql 모두 사용
+   - Express Router ejs 도 사용해야 함
+   - HTML 파일은 header, footer 등으로 분리해서 하나의 파일로 관리해야 함
+   - HTML 내부 Title은 Bit Groupware 시작하며 페이지마다 title은 달라야 함
+     ex) 작업 예시 
+         (1) 메인페이지 : Bit Groupware > Main
+         (2) 회원관리메인 : Bit Groupware > Member > Main
+             - 회원가입 : Bit Groupware > Member > Register
+
+         (3) 게시판관리메인 : Bit Groupware > Board > Main
+             - 게시판쓰기 : Bit Groupware > Board > Insert
+- 작업 프로그램 내부에 최소 하나 이상의 Ajax 기능을 포함해야 함
+- CSS는 외부 스타일 시트 형태로 작업(폰트, 색상 그 외 것들은 자율)
+- 제출 : 소스코드(모듈 제외), 데이터베이스 sql 파일
+
+1. 회원가입
+    - 입력, 수정, 삭제, 목록, 상세보기, 
+    - 검색 : 이름, 이메일, 가입기간 - ex) 2021-01-01 ~ 2022-012-31 -> 검색이 되어야 함
+	(select box로)
+
+2. 게시판
+    - 입력, 수정, 삭제, 목록, 상세보기, 검색
+    - 검색 : 제목, 작성자, 내용, 작성기간 - ex) 2021-01-01 ~ 2022-012-31 -> 검색이 되어야 함
+	(select box로)
