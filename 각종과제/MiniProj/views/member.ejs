@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bit Groupware > Member</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <title><%= title %><%= subTitle %></title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/tableStyle.css" />
     <link
@@ -14,84 +19,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <style>
-      .search select {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 7px;
-      }
-
-      .search input {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 7px;
-      }
-
-      .search button {
-        background-color: steelblue;
-        color: #fff;
-        border-radius: 3px;
-        padding: 6px;
-        cursor: pointer;
-      }
-
-      .search select {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 7px;
-      }
-
-      .search input {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 7px;
-      }
-
-      .searchBtn {
-        background-color: steelblue;
-        color: #fff;
-        border-radius: 3px;
-        padding: 6px;
-        cursor: pointer;
-      }
-
-      .gradeSel {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 7px;
-      }
-
-      .upDelBtn {
-        border: 1px solid #d1d1d1;
-        border-radius: 3px;
-        background-color: #f1f1f1;
-        padding: 5px;
-        cursor: pointer;
-      }
-
-      .upDelBtn:hover {
-        background-color: #f9f9f9;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
-      <div class="top-wrap">
-        <h2><a href="/">Busanit Academy</a></h2>
-        <div class="top-menu">
-          <ul>
-            <li><a href="/">메인으로</a></li>
-            <li><a href="/member">회원관리</a></li>
-            <li><a href="/board">게시판관리</a></li>
-            <li><a href="/">환경설정</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="memberList">
-        <div class="memberList-top">
+      <%- include('inc/_nav') %>
+      <div class="table-List">
+        <h1>회원 관리</h1>
+        <div class="table-List-top">
           <div class="top-left">
-            <a href="/addUser"><i class="fa-solid fa-user-plus"></i>회원추가</a>
+            <a href="/addUser">
+              <button type="submit" class="addBtn">
+                <i class="fa-solid fa-user-plus"></i>회원추가
+              </button>
+            </a>
           </div>
           <div class="top-right">
             <div class="search-wrap">
@@ -131,13 +71,20 @@
                   <%= result[i].username %>
                 </a>
               </td>
-              <td><%= result[i].userid %></td>
+              <td>
+                <a href="/userView/<%= result[i].idx %>">
+                  <%= result[i].userid %>
+                </a>
+              </td>
               <td><%= result[i].email %></td>
               <td>
-                <select class="gradeSel">
-                  <option value="최고관리자">최고관리자</option>
-                  <option value="매니저">매니저</option>
-                  <option value="일반">일반</option>
+                <select
+                  class="gradeSel"
+                  onchange=" grade(this.value, '<%= result[i].idx %>');"
+                >
+                  <option value="최고관리자" <% if(result[i].grade == '최고관리자') {%>selected<%} %> >최고관리자</option>
+                  <option value="매니저" <% if(result[i].grade == '매니저') {%>selected<%} %> >매니저</option>
+                  <option value="일반" <% if(result[i].grade == '일반') {%>selected<%} %> >일반</option>
                 </select>
               </td>
               <td><%= result[i].regdate %></td>
@@ -162,5 +109,20 @@
         </div>
       </div>
     </div>
+    <script>
+      function grade(gradeValue, idValue) {
+        $.ajax({
+          url: "gradeUpdate",
+          method: "post",
+          contentType: "application/json",
+          data: JSON.stringify({ gradeValue, idValue }),
+          success: function (result) {
+            if (result.status == "success") {
+              alert(result.grade + "(으)로 등급이 변경되었습니다.");
+            }
+          },
+        });
+      }
+    </script>
   </body>
 </html>

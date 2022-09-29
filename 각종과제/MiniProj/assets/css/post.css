@@ -1,0 +1,65 @@
+.addPost-wrap {
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 500px);
+  width: 1000px;
+}
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.addPost {
+  border: 1px solid #d1d1d1;
+  padding: 20px 0;
+}
+.addPost input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+  width: 830px;
+}
+.title,
+.writer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 34px;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ta {
+  display: flex;
+  justify-content: center;
+  margin: 40px 20px 20px 20px;
+}
+.ta textarea {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: none;
+}
+
+.ta textarea:focus {
+  outline: none;
+}
+.btn-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 34px;
+}
+
+.addBtn,
+.listBtn {
+  background-color: steelblue;
+  color: #fff;
+  border-radius: 3px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
