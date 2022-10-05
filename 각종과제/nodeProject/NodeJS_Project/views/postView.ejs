@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/postView.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/png" />
+    <title><%= title %><%= subTitle %></title>
+  </head>
+  <body>
+    <div class="container">
+        <%- include('inc/_nav') %>
+      <div class="postView-wrap">
+        <h1>게시물 상세보기</h1>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <td colspan="2"><p><%= result[0].title %></p></td>
+            </tr>
+            <tr>
+              <td class="firTd">작성자</td>
+              <td class="secTd"><%= result[0].username %></td>
+            </tr>
+            <tr>
+              <td class="firTd">조회수</td>
+              <td class="secTd"><%= result[0].visit %></td>
+            </tr>
+              <td class="firTd">등록일</td>
+              <td class="secTd"><%= result[0].regdate %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="content-wrap">
+            <div class="content">
+                <textarea cols="169" rows="20" readonly><%= result[0].content %></textarea>  
+            </div>
+        </div>
+        <div class="btn-wrap">
+            <div class="listBtn">
+              <a href="/board/board">
+                <button type="button" class="upDelBtn">
+                  <i class="fa-solid fa-list"></i>목록
+                </button>
+              </a>
+            </div>
+            <div class="upDelBtn-wrap">
+              <a href="/board/upPost/<%= result[0].idx %>">
+                <button type="submit" class="upDelBtn">
+                  <i class="fa-solid fa-pen-to-square"></i>수정
+                </button>
+              </a>
+              <a
+                href="/board/delPost/<%= result[0].idx %>"
+                onclick="return confirm('게시물을 삭제하시겠습니까?');"
+              >
+                <button type="submit" class="upDelBtn" style="margin-left: 10px">
+                  <i class="fa-solid fa-trash-can"></i>삭제
+                </button>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
