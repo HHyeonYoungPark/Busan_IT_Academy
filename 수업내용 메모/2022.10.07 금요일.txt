@@ -1,0 +1,13 @@
+10월 07일 금요일 - Axios
+
+1. axios
+
+2. useEffect : 화면이 렌더링되자마자 실행을 할건지
+
+https://course-api.com/react-tours-products
+https://reqres.in/api/users
+https://dummyjson.com/products
+https://icanhazdadjoke.com
+
+------------------------------------------------
+다음주 or 다다음주 과제.. 오픈api 활용해서
