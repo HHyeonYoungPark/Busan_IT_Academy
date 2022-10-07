@@ -1,0 +1,49 @@
+.main-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  max-width: 800px;
+  margin-top: 250px;
+  text-align: center;
+}
+.main h4 {
+  margin-bottom: 40px;
+  color: steelblue;
+}
+
+.main h1 {
+  margin: 30px;
+}
+
+button {
+  border: none;
+  padding: 18px 30px;
+  border-radius: 50px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.left {
+  background: steelblue;
+  color: #fff;
+  margin-right: 10px;
+}
+
+button.right {
+  background-color: #e8edef;
+  color: #95afb7;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 70px;
+}
+
+h4 {
+  font-size: 30px;
+}

@@ -1,0 +1,38 @@
+.userBox-wrap {
+  position: absolute;
+  top: calc(50% - 250px);
+  left: calc(50% - 200px);
+}
+.userBox {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.header {
+  padding: 20px 40px;
+  border-bottom: 1px solid steelblue;
+}
+.form {
+  padding: 30px 40px;
+}
+.form-content input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+.addBtn {
+  background-color: steelblue;
+  border: 1px solid #f0f0f0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+}
