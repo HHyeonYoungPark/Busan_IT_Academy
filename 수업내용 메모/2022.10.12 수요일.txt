@@ -1,0 +1,37 @@
+10월 12일 수요일
+곧 - 오픈api과제
+--------------------------------------------------------------------------------
+
+
+axios = fetch()
+1. 외부 url 데이터 가져오기 
+   - 내부 데이터로 되어있는 자료를 사용하여 작업
+   - node + react + mysql + axios -> terminal사용
+2. async 함수( )
+    await 메소드( )
+
+3. useEffect( ,[ ]) : render가 될때 실행
+4. Loading...
+5. useState() -> Reducer()
+
+메뉴관리
+6. Router : npm i react-router-dom@6
+   <BrowserRouter><Routes><Route><Link><Outlet>
+
+------------------------------------------------------------------------------
+https://jsonplaceholder.typicode.com/albums
+
+폴더: react-axios-albums
+	- server 
+	- client
+터미널 -> client dir로 이동후 
+npx create-react-app .
+npm i axios
+
+실행할때 npm start 
+
+========================================================
+https://via.placeholder.com
+https://course-api.com/react-tours-project
+
+
