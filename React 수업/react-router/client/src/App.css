@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar {
+  background-color: aliceblue;
+  padding: 16px 32px;
+}
+
+.navbar :link {
+  margin-right: 16px;
+  text-decoration: none;
+}
+.navbar :link.active {
+  font-weight: bold;
+}
+
+main {
+  padding: 20px;
+}
+
+button {
+  outline: 0;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  cursor: pointer;
+  margin-left: 1px;
+}
+
+input {
+  outline: 0;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.nested-navbar {
+  margin-top: 20px;
+}
+
+.nested-navbar a {
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+section {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+tr {
+  height: 45px;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+tr:last-child {
+  border-bottom: 1px solid #eee;
+}
+
+.featured table tr:first-child {
+  background-color: #f7f7f7;
+}
+
+.featured table tr td:nth-child(1) {
+  width: 10%;
+}
+.featured table tr td:nth-child(2) {
+  width: 10%;
+}
+.featured table tr td:nth-child(4) {
+  width: 10%;
+}
+.featured table tr td:nth-child(5) {
+  width: 10%;
+}
+.featured table tr td:nth-child(6) {
+  width: 10%;
+}
+.featured table tr td:nth-child(7) {
+  width: 10%;
+}
+.featured table tr td:nth-child(8) {
+  width: 10%;
+}
+
+select {
+  outline: 0;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+header {
+  text-align: right;
+  padding: 15px 10px 15px 0;
+}
