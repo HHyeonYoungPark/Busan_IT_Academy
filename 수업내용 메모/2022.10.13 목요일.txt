@@ -1,0 +1,49 @@
+10월 13일 목요일
+
+npm i react-router-dom@6
+=> @6을 붙여야 최신버전으로 다운
+
+BrowserRouter
+    Routes
+        Route path="경로"   element="{파일이름}"
+
+-------------------------------------------------------------------
+react-router 폴더
+ -server
+ - client
+   cdm에서 client 폴더로
+     - npx create-react-app .
+     - npm i react-router-dom@6
+        (삭제는 npm uninstall react-router-dom)
+
+----------------------------------------------------------------------
+// Router에서는 a 태그 = Link를 import
+NavLink로 태그를 주면 클릭한 nav 메뉴 항목이 진하게 됨
+정해진 주소 이외 * => Not Found
+
+
+=-----------------------------------------
+게시판 만들때 버튼
+list
+add
+modify
+delete
+reply
+
+등등 기본적으로 있어야 함
+-----------------------------------------------------------------------
+작업순서 : html(react) -> db -> node -> react
+1. 폴더
+ - server : npm -y init 
+	nodejs (npm i express, mysql, cors)
+ - client : reactjs (npm i router-dom, axios)
+
+2. 실행
+ - nodejs : terminal - port 5000
+ - reactjs : vscode
+
+3. 계정생성(root)
+
+
+
+
