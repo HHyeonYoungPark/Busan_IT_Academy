@@ -1,0 +1,39 @@
+10월 17일 월요일
+
+---------------------------------------------------------------------------------
+
+*MVC패턴 => 서블릿
+ - Model - DB처리
+ - View - 가시화면
+ - Contrller - 제어
+
+Controller.java 
+ - DAO 처리
+ - 어디로 갈지 처리
+
+DAO
+
+
+*JSP
+Contrller + View
+Model
+ - 단순 html
+ - 화면에 결과를 보여주는 페이지
+
+서블릿
+
+1. Dynamic Web Project 만들기
+2. src 폴더에 package명 포함한 Controller.java 만들기 (서블릿)
+3. Controller.java 안에 doProc 메서드 만들기
+4. web.xml 파일 생성 (Java EE Tools -> Generate...)
+5. doProc 메서드 내용만들기(request.getRequestURI( )...)
+6. web.xml 파일 내용추가 <servlet> + <servlet-mapping>
+7. index.jsp
+8. main.jsp
+9. index.jsp 실행
+
+
+
+
+
+
