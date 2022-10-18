@@ -1,0 +1,13 @@
+0. database 테이블 만들기
+1. 다이나믹 웹 프로젝트 만들기
+2. web-inf/lib 폴더에 필요한 jar 파일 넣기
+3. build path 잡기
+4. servlet 만들기 - 이거를 먼저 만드는 이유는 web.xml 수정 먼저 하려고
+5. context.xml 만들기 및 내용 작성
+6. web.xml 내용 수정
+7. ConnectionProvider.java 만들기
+8. dto 만들기
+9. 구상(뭐부터 만들지. insert, select)
+10. jsp 만들기
+11. Controller 수정 (cmd)
+12. dao 만들기

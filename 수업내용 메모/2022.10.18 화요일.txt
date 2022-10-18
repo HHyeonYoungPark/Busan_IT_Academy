@@ -1,0 +1,96 @@
+10월 18일 화요일
+
+sts 설치
+
+스프링을 개발하기 위해서는 
+"이클립스 + 스프링 플러그인 설치"
+=> 스프링 설정
+
+=> 미리 한번에 만들어둔 스프링+이클립스 = sts
+=======================================
+DBCP = Database Connection Pool
+=> 직접 만들어서 사용하는 임시버전 (DBConnectionMGR.java)
+=> conn = mgr.getConnection();
+으로 사용을 했었다
+실제 사용하는 버전의 DBCP가 필요
+
+=> Database의 커넥션을 가져올 수 있도록 하는 작업을 하는 lib
+=> 종류가 다양 apache: common dbcp, tomcat: tomcat dbcp
+=> 다 기능은 똑같음
+=> 이전처럼 java 파일로 만들어서 사용하는 방법
+=> xml 파일 세팅으로 사용하는 방법
+
+java 파일로 만들게 되면 바로 사용이 안됨
+=> 컴파일 후 class 파일을 생성해야만 사용가능
+
+xml은 그냥 컴퓨터가 알 수 있는 형식을 갖춘 문서
+
+=================================
+1. jar 파일 필수 - mysql-connection.jar, tomcat-dbcp.jar
+
+mysql-connector.jar
+C:\Program Files\Apache Software Foundation\Tomcat 9.0 -> lib폴더
+tomcat-dbcp.jar 파일
+
+WebContent->lib 폴더에 넣어주기
+
+2. 프로젝트에서 오른버튼 클릭 후 build path- con~~~
+ 라이브러리 - classpath - addJARs 파일 선택 후 apply
+
+3. xml 설정 프로적트에서 오른버튼 -> java ee tools -. generate... web.xml 설정
+
+4. META-INF -> 마우스 오른버튼 -> new해서 XML - 파일명은 context.xml
+  context.xml은 서버가 실행되면 자동으로 읽어들이는 설정파일이다
+
+5. context.xml 내용작성
+
+<Context>
+	<Resource 
+	name="jdbc/mysql" 
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3306/jspdb"
+	username="root"
+	password="root" 
+	maxTotal="20"
+	maxIdle="10" 
+	maxWaitMillis="-1" />
+</Context>
+
+
+ java.sql.DataSource
+ - 데이터베이스에 접근을 한다는 말은 connection을 얻어서 연결하고
+   다 썼으면 connection을 끊어준다
+ - pool을 이용해서 미리 생성된 커넥션을 이용할 수 있다 >> DBCP
+ - DataSource : 자바에서 DBCP를 지원하기 위해서 만든 인터페이스
+=======================================================
+
+Web8
+
+dbcp 설정 처음부터 이후에
+
+=> 회원가입/ 회원삭제/ 회원수정/ 회원목록
+
+1. jsp 입력칸 만들기
+2. controller -> 넘어온값 받기
+3. 넘어온 값을 dao로 던진다
+4. dao -> db로 값 넣기
+5. 결과를 controller로
+6. controller ->> jsp로 출력
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
