@@ -1,0 +1,75 @@
+10월 24일 월요일 - 스프링
+
+스프링이란?
+프레임워크 - 틀이다 - 웹 개발에 필요한 공통의 요소를 미리 설정해둔 틀
+코딩에서 매번 해야하는 작업을 간단히 
+보안에 관련된 부분을 미리 정의
+다양한 라이브러리들을 간단히 추가/삭제
+실무에서 사용도 하지만 전자정부 프레임워크 때문에 배운다...
+
+=============================================
+고급 시스템 설정 - 환경변수 - 시스템 변수
+새로 만들기
+변수이름 : JAVA_HOME
+변수값 : 자바 설치 폴더 ( C:\Program Files\Java\jdk-11.0.15.1 )
+
+path - 편집
+새로 만들기
+%JAVA_HOME%\bin
+
+반드시 다 확인 누르고 닫기
+cmd 실행 - java -version / javac  - path확인용
+
+https://maven.apache.org/ 로 이동 - 다운로드 - release note
+책에 써있는 버전 3.5.2
+
+압축풀고 c드라이브에 devtool 새폴더 만들고 파일 넣어줌
+
+시스템변수 - path에 밑에 내용 편집- 새로 만들기
+( C:\devtool\apache-maven-3.5.2\bin )
+
+path 설정 이후에는 cmd 창을 다 닫고 새로 실행해야 적용됨
+
+gradle 도 깔아줌 책기준 버전4.4 했는데 안되서 6.9 받음
+devtool에 압축 풀어서 넣어줌
+고급 시스템 변수에서 path 환경변수 설정해줌
+path - 편집 - 새로 만들기
+C:\devtool\gradle-4.4\bin 으로 설정해줌
+
+
+이클립스 버전이 안 맞아서 최신버전으로 다시 설치
+20년 12월꺼
+이클립스 열어서 help - eclipseMarket - sts 검색 - 
+spring tools3 설치
+open perspective - spring 누르면 Spring Legacy Project라 뜸
+
+서버 설정해줘야함 - file - new - server - 아파치9.0
+C:\Program Files\Apache Software Foundation\Tomcat 9.0
+
+new - spring legacy project
+맨밑에 MVC 눌러줘야 함
+package명 꼭 설정해줘야함
+
+/*
+mvn에 드가서 jstl 검색후 1.2v 
+maven content 복사후 java에서 fom.xml
+</dependencies> 이 윗부분에 붙여넣기
+*/
+
+build path 에 드가서 library 에서 
+add server - server 추가해주면 됨
+
+server console창에 드가서 8005 번 저장
+===================================================
+
+src/main/java에 컨트롤러가 있다
+@RequestMapping(value="/test1")
+	public String test1() {
+	   return "test"; // jsp의 파일명
+	}
+이런 식으로 해주면..
+
+jsp파일은 src - main - webapp - WEBINF - views에 있어야 한다
+
+
+
