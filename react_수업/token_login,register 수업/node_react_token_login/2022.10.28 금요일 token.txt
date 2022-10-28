@@ -1,0 +1,35 @@
+10월 28일 금요일
+token
+
+==============================================
+node_react_token_login 폴더 생성
+server
+ - npm -y init
+ - npm i express cors mysql
+ - npm i D nodemon
+ - npm i dotenv
+ - .env 파일생성
+ - package.json -> "start" : "nodemon server.js" 설정
+ - server.js 생성
+ - npm i bcrypt (암호화)
+
+client
+ - npx create-react-app .
+ - npm i react-router-dom axios
+ - npm start
+
+=============================================
+email, password 입력하면
+nodejs -> mysql 비교 = true false
+token값을 만들어서 react쪽에 보낸다
+
+token-> reactjs
+localstorage.getItem() 방식으로 쓰면 된다
+localstorage.setItem()
+localstorage.removeItem(key, name)
+
+
+
+
+
+
