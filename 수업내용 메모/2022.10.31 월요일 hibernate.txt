@@ -1,0 +1,48 @@
+10월 31일 월요일
+
+오늘수업 - hibernate
+
+jpa 란 무엇인가
+https://ultrakain.gitbooks.io/jpa/content/chapter1/chapter1.3.html
+===================================================
+
+
+시작할때 build path에서 
+자바, 스프링, 서버 3개 다 있는지 확인후 작업 시작
+
+0. db &  table 만들기
+
+1. pom.xml <- 디펜던시 추가 (lip-jar)
+</dependencies> 위레 필요한것들 mvn에서 복붙하기
+
+<!-- 커스텀 디펜던시 -->
+추가할 내용
+mysql
+commons dbcp2
+commons logging
+commons pool2
+spring-jdbc
+sprong orm
+hibernate-entitymanager
+
+2. 설정 xml 만들기(jpa, mybatis를 사용할 경우)
+ - jpa라이브러리 관련 설정이 필요할 경우
+	context xml 설정
+
+
+ - jdbc 관련 설정이 필요없을 경우
+2. context xml 설정
+
+3. DTO 만들기
+
+4. controller 수정
+
+5. DAO 만들기 
+ 
+6. JSP 파일 만들기 
+
+
+
+
+
+
