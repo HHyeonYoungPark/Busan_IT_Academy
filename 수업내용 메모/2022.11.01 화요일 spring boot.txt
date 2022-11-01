@@ -1,0 +1,42 @@
+11월 1일 화요일
+
+스프링 - 웹 프레임워크
+ - 웹 사이트를 빠르게 만들 수 있는 툴
+ - 자바를 이용한 웹사이트 개발용
+ - 엔터프라이즈 어플리케이션 개발을 위한 model을 제공
+
+스프링 부트
+ - 스프링을 더 쉽게 이용하기 위한 도구
+ - 스프링으로 해야 하는 부분을 미리 세팅할 수 있게해서 개발에 집중
+ -> 프로젝트 시작시 설정이 더 많다
+ -> 비즈니스 로직을 구현하는데 집중할 수 있다
+------------------------------------------------------
+
+spring.io 에서 
+spring tool suite 4.16
+sts 다운받아서 실행 - 압축풀지말고 그냥 더블클릭으로 실행시키기
+
+- run 할때 spring boot app 으로 실행 
+
+- build.gradle에 mvn에서 복사한 내용을 넣음
+
+-application.properties
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.hikari.jdbc-url=jdbc:mysql://localhost:3306/spdb
+spring.datasource.hikari.username=root
+spring.datasource.hikari.password=root
+spring.datasource.hikari.connection-test-query=SELECT NOW() FROM DUAL
+
+- new 해서 server 추가 해줌
+
+
+
+
+
+
+
+
+
+
+
