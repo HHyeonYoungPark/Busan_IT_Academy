@@ -1,0 +1,16 @@
+프로젝트
+
+프엔 + 백엔  ==>> (Spring MVC 또는 Spring Boot) + myBatis
+
+=> 로그인, 회원가입, 게시판 + 본인이 원하는 기능
+=> 로그인, 회원가입, 게시판 최소 한개 이상
+
+===============================================
+ - 지금까지 수업한 내용
+
+1. 스프링 MVC(maven) + JDBC Template + commons dbcp
+2. 스프링 MVC(maven) + MyBatis + commons dbcp2
+3. 스프링 MVC(maven) + Hibernate + commons dbcp2
+4. 스프링 Boot(gradle) + MyBatis + commons dbcp2
+5. 예정 - 스프링 MVC REST API 서버 구축
+
