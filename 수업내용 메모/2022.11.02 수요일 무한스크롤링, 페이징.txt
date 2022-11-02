@@ -1,0 +1,71 @@
+11월 02일 수요일
+
+1. 훈련과정명 : 초연결 융합 서비스 개발을 위한 풀스택(Spring, React) 개발자
+
+2. 팀 구성원 : 권태근, 서정훈, 정훈희, 박현영
+ 
+3. 프로젝트 명 : 크리에이터 굿즈샵 (쇼핑몰)
+
+4. 프로젝트 기간 : 2022.11.02 ~ 2022.11.30
+
+5. 프로젝트 개요 : 크리에이터의 상품 판매를 위한 쇼핑몰
+
+6. 프로젝트 개발 환경
+    - 언어 : JavaScript, NodeJS, ReactJS
+    - DB : MySQL
+    - IDE : Visual Studio Code
+
+
+===============================
+
+11월 25일까지 이력서, 자기소개서 마무리
+
+busanit 홈페이지에서 포트폴리오 참고
+
+======================================
+오늘 수업은 
+
+1. 무한스크롤링 (api)
+2. axios 외부 데이터 페이지
+3. db 데이터 가져와서 페이지 처리 (api)
+
+====================================
+1. 무한스크롤링 (api)
+
+react_infinite_scroll 폴더 생성
+- server
+ npm -y init
+ npm i cors dotenv express mysql
+ npm i -D nodemon
+ => package.json - script - "start": "nodemon server.js"
+
+- client
+ npx create-react-app .
+ npm i axios react-infinite-scroll-component 
+
+--------------------------------------------------------
+select * from users limit 1, 20;
+-> 스크롤을 내릴때 limit의 숫자가 계속 바뀌어야 한다
+-> 1~20 => 21~40 => 41~60 이런식으로
+
+-----------------------------------------------
+
+2. axios 외부 데이터 페키징 처리 : 디비x - slice(0,20)
+
+https://jsonplaceholder.typicode.com/posts
+
+react_pagination_axios 폴더 생성
+client
+ - npx create-react-app .
+ - npm i axios
+
+Math.ceil(); -> 강제올림
+Math.floor(); -> 강제내림
+
+
+
+
+
+
+
+
