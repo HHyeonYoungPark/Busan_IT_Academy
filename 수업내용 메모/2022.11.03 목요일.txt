@@ -1,0 +1,27 @@
+11월 3일 목요일
+
+템플릿
+mui, bootstraqp, bulma, tailwind 등...
+
+=============================
+react-pagination
+
+react_page_api 폴더생성
+ - server
+     npm -y init
+     npm i cors express mysql dotenv
+     npm i -D nodemon
+       - package.json에서 노드몬설정
+       - .env 설정
+
+ - client
+     npx create-react-app .
+     npm i bulma axios react-paginate
+
+---------------------------------------------------
+SELECT COUNT(*) FROM users;
+
+SELECT * FROM users WHERE   
+==================================
+bulma 쓰려면
+index.js 에 import "bulma/css/bulma.css";
