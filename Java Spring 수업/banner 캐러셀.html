@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        
+        #showbox{
+            width: 200px;
+            height: 200px;
+            border: 3px solid red;
+            margin: 0 auto;
+            position: relative;
+	overflow: hidden;      
+        }
+        #movebox{
+            width: 600px;
+            height: 200px;
+            border: 3px solid blue;
+            display: flex;
+            position: absolute;
+        }
+        
+        #movebox img{
+            width: 200px;
+            height: 200px;
+        }
+        
+        #buttonbox{
+            width: 250px;
+            height: 100px;
+            margin: 20px auto;
+        }
+        #buttonbox button{
+            width: 100px;
+            height: 100px;
+        }
+        
+    </style>
+</head>
+<body>
+   
+    <div id="showbox">
+        <div id="movebox">
+            <img src="apple.jpg">
+            <img src="grape.jpg">
+            <img src="orange.jpg">
+        </div>        
+    </div>
+    
+    <div id="buttonbox">
+        <button>←</button>
+        <button>→</button>
+    </div>
+    
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+	/*
+	// 자동으로 움직이는거 1000=1초
+	setInterval(function(){
+                $("#movebox").animate({
+                    left: - $("#movebox img").eq(0).width()
+                },500,function(){// 콜백함수, animate 작동후 작동
+                    let tmpimg = $("#movebox img").eq(0).detach();
+                    $("#movebox").css("left","0");
+                    $("#movebox").append(tmpimg);
+                });
+            },1000);
+	*/
+
+	// 버튼을 누를때마다 움직이는거
+            $("#buttonbox button").eq(0).click(function(){
+       	 
+                $("#movebox").animate({
+                    left: - $("#movebox img").eq(0).width()
+                },500,function(){// 콜백함수, animate 작동후 작동
+                    let tmpimg = $("#movebox img").eq(0).detach();
+                    $("#movebox").css("left","0");
+                    $("#movebox").append(tmpimg);
+                });                        
+                
+            });
+            
+    $("#buttonbox button").eq(1).click(function(){
+        let last = $("#movebox img").length-1;// 마지막 번호
+        let wid = $("#movebox img").eq(last).width();//마지막 크기
+        
+        let tmpimg = $("#movebox img").eq(last).detach();
+        $("#movebox").css("left", - wid);
+        $("#movebox").prepend(tmpimg);
+        $("#movebox").animate({
+            left:0
+        },500);
+            
+        });        
+        });            
+    </script>
+</body>
+</html>
+
+
+
+
+
+
