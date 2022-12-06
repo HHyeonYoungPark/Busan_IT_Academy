@@ -1,0 +1,29 @@
+22.12.02 금요일 
+
+갑분 java 함
+
+Spring : url접속
+dependency (package.json, npm i ) : web
+mysql
+jpa : 데이터베이스에 저장, 수정, 삭제, 조회를 편하게
+thymeleaf : Node의 ejs
+lombok : 데이터 모델링 ( getter,setter ) 쉽게
+
+1. 패키지 생성
+   controller, service (dao), repository (dto), entity
+2. application.properties에 필요한 정보 설정
+3. resource > static > css,img, js
+4. resource > templete > html 파일 생성
+
+5. 작업순서
+  (1) html > db (table) > entity > repository > service > controller
+  (2) entity : 디비에 데이터를 저장하기 위한 모델링
+  (3) repository : 데이터 저장,수정,삭제,조회
+  (4) service : repository 데이터를 가공하여 controller로 전달
+  (5) controller : 주소 및 데이터를 html로 전달
+
+public int add(); > 사용 > implements > overriding
+
+6. repository (입력, 수정, 조회, 삭제) : 만들어져 있는 걸 사용 - jpa 설치되어 
+interface > implements : 여러명이서 같은 이름으로 복잡하지 않게 작업
+ex ) 
