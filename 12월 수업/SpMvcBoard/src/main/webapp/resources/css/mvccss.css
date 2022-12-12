@@ -1,0 +1,22 @@
+@charset "EUC-KR";
+*{
+	margin:0;
+	padding:0;
+}
+
+table{
+	border-collapse: collapse;	
+}
+
+td{
+	border: 1px solid black;
+	text-align: center;
+}
+
+h2{
+	color:blue;	
+}
+
+.sm-img{
+	width: 20px;	
+}

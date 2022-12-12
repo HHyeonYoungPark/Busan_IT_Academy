@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hs">
+  
+   <select id="selectMemAll" resultType="com.hs.app.MemDto">
+   	 SELECT * FROM mvcmember
+   </select>  
+   
+   <select id="selectMemOne" resultType="com.hs.app.MemDto">
+   	 SELECT * FROM mvcmember where id=#{id}
+   </select>
+   
+   <select id="selectMemCnt" resultType="Integer">
+   	SELECT COUNT(idx) FROM mvcmember where id=#{id}
+   </select>  
+   
+   <select id="selectMemLoginCnt" resultType="Integer">
+   	SELECT COUNT(idx) FROM mvcmember where id=#{id} and pw=#{pw}
+   </select>
+   
+   <insert id="insertMem">
+   	 INSERT INTO mvcmember VALUES (null, #{id} ,#{pw} ,#{name}, #{email})
+   </insert>  
+   
+   <delete id="deleteMem">
+   	 DELETE FROM mvcmember WHERE id=#{id}
+   </delete>  
+   
+   <update id="updateMem">
+   	 UPDATE mvcmember SET pw=#{pw}, name=#{name}, email=#{email} WHERE id=#{id} 
+   </update>
+   
+  </mapper>
