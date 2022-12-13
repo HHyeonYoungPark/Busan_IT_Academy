@@ -1,0 +1,30 @@
+@charset "EUC-KR";
+*{
+	margin:0;
+	padding:0;
+}
+
+table{
+	border-collapse: collapse;	
+}
+
+th{
+	color:blue;
+}
+
+th, td{
+	border: 1px solid black;		
+}
+
+h2{
+	color:blue;	
+}
+
+.sm-img{
+	width: 20px;	
+}
+
+textarea{
+	width:500px;
+	height:80px;
+}

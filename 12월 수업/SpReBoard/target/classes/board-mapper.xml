@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hs">
+  
+   <select id="selectAllCnt" resultType="Integer">
+		SELECT COUNT(*) FROM reboard
+   </select>
+   
+   <select id="selectAllP" resultType="com.hs.app.BDto">
+   	 SELECT * FROM reboard limit #{start}, #{offset}
+   </select>  
+   
+   <select id="selectOne" resultType="com.hs.app.BDto">
+   	 SELECT * FROM reboard where idx=#{idx}
+   </select>  
+   
+   <insert id="insertData">
+   	 INSERT INTO reboard VALUES (null, #{title}, #{id}, #{pw}, #{content}, default)
+   </insert>  
+   
+   <delete id="deleteData">
+   	 DELETE FROM reboard WHERE idx=#{idx} and id=#{id} and pw=#{pw}
+   </delete>  
+   
+   <update id="updateData">
+   	 UPDATE reboard SET title=#{title}, content=#{content} WHERE idx=#{idx} and id=#{id} and pw=#{pw} 
+   </update>  
+   
+   <update id="updateReplyCntPlus">
+   	 <!-- UPDATE reboard SET replycnt = (SELECT replycnt FROM reboard WHERE idx=#{idx})+1 WHERE idx=#{idx}; --> 
+   	 UPDATE reboard SET replycnt = replycnt+1 WHERE idx=#{idx}
+   </update>
+   
+   <update id="updateReplyCntMinus">
+   	 UPDATE reboard SET replycnt = (SELECT replycnt FROM reboard WHERE idx=#{idx})-1 WHERE idx=#{idx}; 
+   </update>
+   
+  </mapper>

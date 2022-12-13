@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hs">
+  
+   <select id="selectReply" resultType="com.hs.app.RDto">
+   	 SELECT * FROM replay WHERE boardidx=#{boardidx}
+   </select>
+   
+   <insert id="insertReply">
+   	 INSERT INTO replay VALUES (null, #{boardidx} ,#{id} ,#{pw}, #{content})
+   </insert>  
+   
+   <delete id="deleteReply">
+   	 DELETE FROM replay WHERE idx=#{idx} and id=#{id} and pw=#{pw}
+   </delete>
+   
+  </mapper>
